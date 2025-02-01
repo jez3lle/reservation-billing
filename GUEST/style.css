@@ -1,0 +1,470 @@
+  body {
+            margin: 0;
+            margin-top: 100px; /* Adjust based on the header's height to prevent content overlap */
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: #325f51;
+            color: white;
+        }
+
+     .header {
+            position: fixed; /* Makes the header stick to the top */
+            top: 0;
+            left: 0;
+            width: 100%; /* Ensures the header spans the full width */
+            background-color: #002f25; /* Matches the header background */
+            z-index: 1000; /* Ensures the header is above other elements */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow for better visibility */
+        }
+        
+
+        .logo-title-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Spread items across the available width */
+            position: relative;
+            padding: 0 20px; /* Optional: Adjust spacing */
+        }
+    
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%); /* Center the logo horizontally */
+        }
+        a.active {
+            position: relative;
+            margin-left: auto; /* Push it to the far right */
+        }
+    
+        a.active img {
+            width: 60px;
+            height: auto;
+            border-radius: 50px;
+        }
+
+
+        .site-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 0;
+        }
+
+        .hero {
+            background: url('bg1.png') no-repeat center center/cover;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2.8em;
+            text-shadow: 2px 2px 5px black;
+        }
+
+        /* Sidebar Styles */
+        .hamburger {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1100; /* Ensure it's above other elements */
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+        }
+
+        .menu {
+            position: fixed;
+            top: -100%; /* Hidden by default */
+            left: 0;
+            width: 100%;
+            background-color: white;
+            color: #000000;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: top 0.3s ease-in-out;
+            z-index: 1000; /* Below the hamburger icon */
+        }
+
+        .menu.active {
+            top: 0; /* Slide into view from the top */
+        }
+
+        .menu .close-icon {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #000000;
+        }
+
+        .hamburger-vertical {
+            display: none;
+            transform: rotate(90deg);
+        }
+
+        .menu.active .hamburger-vertical {
+            display: block;
+            color: black;
+        }
+
+        .menu.active .hamburger {
+            display: none;
+        }
+
+        /* Phase Cards */
+        .menucontainer {
+            margin-top: 80px;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .phase-card {
+            margin-top: 30px;
+            width: 500px;
+            padding: 20px;
+            text-align: center;
+            background-color: #fff;            
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .phase-card h2 {
+            font-size: 39px;
+            margin-bottom: 0px;
+            color: #fff;
+        }
+        .phase-card h3 {
+            font-size: 26px;
+            margin-bottom: 0px;
+            color: #fff;
+        }
+        .phase-card p {
+            color: #ffffff;
+            font-size: 18px;
+        }
+        .phase-card button {
+            padding: 12px 30px;
+            margin-top: 40px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: transparent;
+            border: 2px solid hwb(0 100% 0%);
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .phase-blue {
+            background-color: #508E87;
+        }
+        .phase-blue button:hover {
+            background-color:white;
+            color: #508E87;
+        }
+        .phase-yellow {
+            background-color: #59985c;
+        }
+        .phase-yellow button:hover {
+            background-color:white;
+            color: #59985c;
+        }
+        
+        .navbar {
+        border-top: 1px solid white;
+        margin-top: 10px;
+        }
+
+        .nav-list {
+        list-style: none;
+        display: flex;
+        justify-content: space-between; /* Space between HOME and BOOK NOW */
+        align-items: center;
+        padding: 0;
+        margin: 10px 0;
+        }
+
+        .nav-list li {
+        margin: 0 10px;
+        }
+
+        .nav-left {
+        margin-right: auto; /* Push to the far left */
+        }
+
+        .nav-right {
+        margin-left: auto; /* Push to the far right */
+        }
+        .nav-list a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        padding: 5px 10px;
+        position: relative; /* Required for positioning the pseudo-element */
+        transition: color 0.3s ease;
+        }
+
+        .nav-list a::after {
+        content: ""; /* Empty content for the line */
+        position: absolute;
+        left: 0;
+        bottom: 0; /* Place the line at the bottom of the link */
+        width: 0; /* Start with no width */
+        height: 2px; /* Adjust the thickness of the line */
+        background-color: #ffffff; /* Line color */
+        transition: width 0.3s ease; /* Smooth transition effect */
+        }
+
+        .nav-list a:hover {
+        color: #fcfcfc; /* Highlight the text color on hover */
+        }
+
+        .nav-list a:hover::after {
+        width: 100%; /* Expand the line to full width on hover */
+        }
+
+        .book-now {
+            border: 2px solid white;
+            border-radius: 0px;
+            padding: 5px 15px;
+            position: relative; /* Keep the button separate */
+            overflow: hidden;
+        }
+
+        .book-now:hover {
+            background-color:#2e7d32;
+        }
+
+        footer {
+            background-color: #244339;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .footer-logo img {
+            width: 100px;
+            height: auto;
+            border-radius: 50px;
+            margin-top: 20px;
+            margin-right: 15px;
+        }
+
+        .footer-nav, .footer-contact, .footer-actions {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-nav h3, .footer-contact h3, .footer-actions h3 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            text-transform: uppercase;
+            color: #99d1a8;
+        }
+
+        .footer-nav ul, .footer-actions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-nav ul li, .footer-actions ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-nav ul li a, .footer-actions ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav ul li a:hover, .footer-actions ul li a:hover {
+            color: #4caf50;
+        }
+
+        .footer-contact p {
+            font-size: 0.9em;
+            line-height: 1.6;
+        } 
+
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            padding: 40px 20px;
+            justify-content: center;
+        }
+
+        .about-text {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .about-text h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #99d1a8;
+        }
+
+        .about-text p {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .about-image {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .location-section {
+            padding: 0px 40px 30px;
+        
+           
+        }
+
+        .location-section h2 {
+            font-size: 1.8em;
+            color: #99d1a8;
+            margin-bottom: 10px;
+        }
+
+        .location-section p {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        .map-container {
+            margin: 40px 20px;
+            text-align: center;
+        }
+
+        .map-container h2 {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .content-wrapper {
+            margin-top: 150px;
+        }
+
+        .container {
+            top: 100px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns */
+            gap: 40px; /* Adjust spacing between cards */
+            justify-items: center; /* Center cards horizontally */
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            position: relative;
+            width: 300px;
+            text-align: center;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 0;
+            z-index: 1;
+            position: relative;
+            border: 2px solid #244339; /* Added white border */
+        }
+
+        .card-background {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 350px;
+            height: 320px;
+            background-color: #508E87;
+            border-radius: 0px;
+            z-index: 0;
+        }
+
+        .card-content {
+            position: relative;
+            padding: 20px;
+            margin-top: 10px; /* Ensures content is properly positioned within the background */
+            z-index: 1;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: -20px; /* Adjusted for better alignment */
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .card-description {
+            font-size: 14px;
+            line-height: 1.5;
+            color: white;
+            margin-top: 10px; /* Ensures proper spacing between title and description */
+            margin-bottom: 20px;
+        }
+
+
+        .card-button {
+            display: inline-block;
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .card-button:hover {
+            background-color: white;
+            color: #6a9e8a;
+        }  

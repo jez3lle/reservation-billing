@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      background-color:#ffffff;
+      color: #2C3E50;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Header */
+    .main-header {
+      width: 100%;
+      background: #184D47;
+      color: #E8F5E9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+    }
+
+    .main-header h1 {
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      margin: 0;
+    }
+
+    .user-profile {
+      display: flex;
+      margin-right: 25px;
+      align-items: center;
+    }
+
+    .user-icon {
+      width: 50px;
+      height: 50px;
+      align-items: center;
+      border-radius: 50%;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background-color: #E8F5E9;
+      width: 250px;
+      color: #042420;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      overflow-y: auto;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-links li {
+      margin: 10px 0;
+    }
+
+    .nav-links a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #042420;
+      padding: 12px 16px;
+      font-size: 1rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background-color: #508E87; /* Softer green for active background */
+      color: #c6f4ef; /* White text for readability */
+      transform: translateX(8px); /* Keep the hover effect */
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+    }
+
+    .logout-btn {
+      margin-top: auto;
+      background-color: #508E87;
+      color: #ffffff;
+      border: none;
+      padding: 10px 13px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background-color: #2E7D32;
+    }
+
+    /* Content */
+    .content {
+      flex-grow: 1;
+      padding: 20px;
+      background-color: #ffffff;
+      overflow-y: auto;
+      border-radius: 8px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+      .content-container {
+        display: flex;
+        flex: 1;
+        overflow: hidden; /* Prevents extra scrolling */
+        flex-wrap: nowrap; /* Ensures children stay in one row */
+      }
+
+      .sidebar {
+        width: 250px; /* Fixed width for sidebar */
+        flex-shrink: 0; /* Prevents shrinking */
+      }
+
+      .content {
+        flex-grow: 1; /* Content takes remaining space */
+        min-width: 0; /* Allows content to shrink without breaking layout */
+        padding: 20px;
+        background-color: #ffffff;
+        overflow-y: auto; /* Enables vertical scrolling */
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .content p {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #002f25;
+    }
+    
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="logo">
+      <h1>Rainbow Forest Paradise Resort and Campsite</h1>
+    </div>
+    <div class="user-profile">
+      <span>Hello, Admin!</span>
+      <img src="login-active.png" alt="Admin Profile Picture" class="user-icon">
+    </div>
+  </header>
+
+  <div class="content-container">
+    <nav class="sidebar">
+      <ul class="nav-links">
+        <li><a href="#dashboard" class="active" aria-current="page">Dashboard</a></li>
+        <li><a href="#reservations">Reservations</a></li>
+        <li><a href="#payments">Payments</a></li>
+        <li><a href="#guests">Guests</a></li>
+        <li><a href="#reports">Reports</a></li>
+        <li><a href="#calendar">Calendar</a></li>
+        <li><a href="#settings">Room Management</a></li>
+        <li><a href="#user-management">User Management</a></li>
+        <li><a href="#settings">Settings</a></li>
+      </ul>
+      <button class="logout-btn">Log Out</button>
+    </nav>
+
+    <main class="content">
+      <p>Welcome to the Admin Dashboard!</p>
+    </main>
+  </div>
+</body>
+</html>

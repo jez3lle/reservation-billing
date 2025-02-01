@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Included Accommodations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0px;
+            font-family: 'Jost', sans-serif;
+            background-color: #325f51;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            margin: 20px;
+            padding: 10px;
+            justify-content: center;
+            flex-direction: column;
+            align-content: center;
+            gap: 0px; /* Spacing between cards */
+            width: 90%;
+        }
+
+        .card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row; /* Align image and details side-by-side */
+            align-items: stretch;
+            border-radius: 0px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .card img {
+            width: 50%; /* Image takes half the card width */
+            object-fit: cover;
+            height: 30%;
+        }
+
+        .card-details {
+            padding: 20px;
+            width: 50%; /* Details take half the card width */
+            display: flex;
+            flex-direction: column;
+        
+        }
+
+        .card-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 0px;
+        }
+
+        .card-description {
+            top: 0px;
+            font-size: 20px;
+            
+            line-height: 1.8;
+        }
+
+        .card-button {
+            display: inline-block;
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .card-button:hover {
+            background-color: white;
+            color: #6a9e8a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <img src="house1.png" alt="House 1">
+            <div class="card-details">
+                <h2 class="card-title">House 1</h2>
+                <p class="card-description">
+                    This charming house features 3 bedrooms, 2 bathrooms, a cozy living room, and a modern kitchen with state-of-the-art appliances. 
+                    Perfect for families who love both comfort and style.
+                </p>
+                <button class="card-button">See Details</button>
+            </div>
+        </div>
+    
+        <div class="card">
+            
+            <div class="card-details">
+                <h2 class="card-title">Pavilion</h2>
+                <p class="card-description">
+                    A spacious pavilion ideal for events and gatherings. Includes an open dining area, a kitchenette, and a beautiful outdoor garden space.
+                </p>
+                <button class="card-button">See Details</button>
+            </div>
+            <img src="pavilion.png" alt="Pavilion">
+        </div>
+
+        <div class="card">
+            <img src="villa.png" alt="Villa">
+            <div class="card-details">
+                <h2 class="card-title">Luxury Villa</h2>
+                <p class="card-description">
+                    Experience luxury with this villa offering 5 bedrooms, a private pool, a home theater, and breathtaking views of the mountains.
+                </p>
+                <button class="card-button">See Details</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

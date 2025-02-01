@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Phase 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo-title-container">
+            <img src="rainbow-logo.png" alt="Logo" class="logo">
+            <a href="landing.html" aria-label="User"  class="active"><img src="login-active.png" alt="User/Guest"></a>
+        </div>
+        <nav class="navbar">
+            <ul class="nav-list">
+                <li class="nav-left"><a href="#">HOME</a></li>
+                <li><a href="aboutus.html">ABOUT</a></li>
+                <li><a href="accom.html">ACCOMMODATIONS</a></li>
+                <li><a href="#">ACTIVITIES</a></li>
+                <li><a href="#">CONTACT US</a></li>
+                <li><a href="#">GALLERY</a></li>
+                <li class="nav-right"><a href="#" class="book-now">BOOK NOW</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hamburger Icon (Only visible when sidebar is not active) -->
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+    <!-- Vertical Hamburger (Only visible when sidebar is active) -->
+    <div class="hamburger-vertical" onclick="toggleMenu()">☰</div>
+
+    <!-- Sidebar Menu -->
+    <div class="menu">
+        <div class="close-icon" onclick="toggleMenu()">X</div>
+        <div class="menucontainer">
+            <div class="phase-card phase-blue">
+                <h2>PHASE 1</h2>
+                <h3>PRIVATE</h3>
+                <p>
+                    Book the entire property for your exclusive retreat! Phase 1 includes 2 pools, 2 houses, a pavilion, and a kubo, 
+                    ensuring privacy and comfort for your group. Perfect for families, friends, or special occasions. 
+                    Guests in Phase 1 can also enjoy a variety of activities available in Phase 2 Public.
+                </p>
+                <button onclick="bookNow('Phase 1')">BOOK NOW</button>
+            </div>
+            <div class="phase-card phase-yellow">
+                <h2>PHASE 2</h2>
+                <h3>PUBLIC</h3>
+                <p>
+                    Choose from a variety of options, including multiple rooms, cabins, and houses. Phase 2 is ideal for smaller groups 
+                    or individuals looking for a cozy getaway. Enjoy a wide range of activities such as ziplining, spiderweb, 
+                    bonfires and swimming, making your stay unforgettable!
+                </p>
+                <button onclick="bookNow('Phase 2')">BOOK NOW</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to Rainbow Forest Paradise <br> Resort and Campsite</h1>
+
+    </section>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            const hamburger = document.querySelector('.hamburger');
+            const hamburgerVertical = document.querySelector('.hamburger-vertical');
+            menu.classList.toggle('active');
+            if (menu.classList.contains('active')) {
+                hamburger.style.display = 'none';
+                hamburgerVertical.style.display = 'block';
+            } else {
+                hamburger.style.display = 'block';
+                hamburgerVertical.style.display = 'none';
+            }
+        }
+
+        function bookNow(phase) {
+            alert(`You clicked Book Now for ${phase}!`);
+        }
+    </script>
+</body>
+</html>
