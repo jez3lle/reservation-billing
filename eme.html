@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainbow Forest Paradise Resort and Campsite</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lobster&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mystyle.css">
+</head>
+<body>
+    <div class="top-space">
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </div>
+    <!-- Sidebar Menu -->
+    <div class="menu">
+        <div class="close-icon" onclick="toggleMenu()">X</div>
+        <div class="menucontainer">
+            <div class="phase-card phase-private">
+                <h2>PHASE 1</h2>
+                <h3>PRIVATE</h3>
+                <p>
+                    Enjoy exclusive access to the entire resort! This includes two pools, two houses, a pavilion, and a cozy kubo, ensuring privacy and relaxation.
+                    Perfect for families, reunions, and private gatherings. Guests can also partake in exciting activities available in the public area.
+                </p>
+                <button onclick="bookNow('Phase 1')">BOOK NOW</button>
+            </div>
+            <div class="phase-card phase-public">
+                <h2>PHASE 2</h2>
+                <h3>PUBLIC</h3>
+                <p>
+                    Stay in our welcoming accommodations, including rooms, cabins, and houses, ideal for individuals or small groups. 
+                    Enjoy thrilling activities such as ziplining, bonfires, and swimming, making your stay an unforgettable adventure!
+                </p>
+                <button onclick="bookNow('Phase 2')">BOOK NOW</button>
+            </div>            
+        </div>
+    </div>
+    <header class="hero">
+        <div class="overlay"></div>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="logo">
+                <img src="rainbow-logo.png" alt="Logo">
+                <div>
+                    <h1>Rainbow Forest Paradise</h1>
+                    <h2>Resort and Campsite</h2>
+                </div>
+            </div>
+            <div class="nav-right">
+                <ul id="menu-img" class="nav-links">
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#">ACCOMMODATIONS</a></li>
+                    <li><a href="#">ACTIVITIES</a></li>
+                    <li><a href="#">CONTACT US</a></li>
+                    <li><a href="#">BOOK NOW</a></li>
+                    <li><a href="#" class="user-icon">
+                        <img src="logo.png" alt="User Icon">
+                    </a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="hero-text">
+            <h1><span>Welcome to Phase 1</span><br>Private</h1>
+            <p>Book the entire property for your exclusive retreat!</p>
+            <p>Experience nature, peace, and luxury.</p>
+            <a href="#" class="booknow">BOOK NOW</a> <!-- Book Now Button -->
+        </div>
+        <!-- Vertical Menu with Images -->
+        <div class="menu-img">
+            <img src="pavilion.png" alt="Image 1" onclick="changeBackground('pavilion.png', this)">
+            <img src="img1.jpg" alt="Image 2" onclick="changeBackground('img1.jpg', this)">
+            <img src="kubo.png" alt="Image 3" onclick="changeBackground('kubo.png', this)">
+        </div>
+    </header>
+
+
+    <script>
+        function img(anything) {
+          document.querySelector('.slide').src = anything;
+        }
+    
+        function change(change) {
+          const line = document.querySelector('.image');
+          line.style.background = change;
+        }
+      </script>
+    
+      <section class="book">
+        <div class="container flex">
+          <div class="input grid">
+            <div class="box">
+              <label>Check-in:</label>
+              <input type="date" placeholder="Check-in-Date">
+            </div>
+            <div class="box">
+              <label>Check-out:</label>
+              <input type="date" placeholder="Check-out-Date">
+            </div>
+            <div class="box">
+              <label>Adults:</label> <br>
+              <input type="number" placeholder="0">
+            </div>
+            <div class="box">
+              <label>Children:</label> <br>
+              <input type="number" placeholder="0">
+            </div>
+          </div>
+          <div class="search">
+            <a href="reservation.html">
+              <input type="button" value="Check Availability" style="cursor: pointer">
+            </a>
+          </div>
+   
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            const hamburger = document.querySelector('.hamburger');
+            const hamburgerVertical = document.querySelector('.hamburger-vertical');
+            menu.classList.toggle('active');
+            if (menu.classList.contains('active')) {
+                hamburger.style.display = 'none';
+                hamburgerVertical.style.display = 'block';
+            } else {
+                hamburger.style.display = 'block';
+                hamburgerVertical.style.display = 'none';
+            }
+        }
+
+        function bookNow(phase) {
+            alert(`You clicked Book Now for ${phase}!`);
+        }
+    </script>
+
+    <script>
+        // Function to change the background image of the hero section
+        function changeBackground(image, imgElement) {
+            document.querySelector('.hero').style.backgroundImage = `url('${image}')`;
+            // Add border to clicked image
+            const images = document.querySelectorAll('.menu img');
+            images.forEach(img => img.classList.remove('clicked'));
+            imgElement.classList.add('clicked');
+        }
+
+        // Automatic hero image transition every 3 seconds
+        const images = ['pavilion.png', 'img1.jpg', 'resort2.png'];
+        let currentImage = 0;
+        setInterval(() => {
+            currentImage = (currentImage + 1) % images.length;
+            changeBackground(images[currentImage], document.querySelectorAll('.menu img')[currentImage]);
+        }, 3000);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+   * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #325f51;
+            color: white;
+        }
+    
+        /* Hero Section */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-image: url('bg1.png');
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1s ease-in-out; /* Transition for background change */
+        }
+
+        /* Overlay */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 2, 2, 0.4);
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            width: 60px;
+            border-radius: 50%;
+            height: auto;
+            margin-right: 15px;
+        }
+        .logo h1 {
+            font-family: "Dancing Script", serif;
+            font-size: 3.0em;
+            color: white;
+            font-weight: 600;
+            margin: 0;
+        }
+        .logo h2 {
+            font-family: "Libre Baskerville", serif;
+            font-size: 1.8em;
+            color: white;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: absolute;
+            top: 0px; /* Adjusted to fit below the top space */
+            left: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 40px;
+            z-index: 10;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            align-items: center;  /* Ensure all items in the navbar are aligned */
+        }
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            text-transform: uppercase;
+            position: relative; /* Needed for positioning the pseudo-element */
+        }
+        .nav-links li a::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px; 
+            background-color: white;
+            transition: width 0.3s ease-in-out; 
+        }
+        .nav-links li a:hover::after {
+            width: 100%; 
+        }
+
+        /* User Icon */
+        .user-icon {
+            font-size: 20px;
+            color: white;
+            cursor: pointer;
+        }
+        .user-icon img {
+            width: 40px;  
+            border-radius: 50%;
+            height: auto;
+        }
+
+        /* Hero Text */
+        .hero-text {
+            position: absolute;
+            top: 60%;
+            left: 5%;
+            transform: translateY(-50%);
+            color: white;
+            max-width: 50%;
+        }
+        .hero-text h1 {
+
+            font-size: 50px;
+            font-weight: normal;
+            text-transform: uppercase;
+        }
+        .hero-text p {
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: 400;
+        }
+
+        /* Small Vertical Menu */
+        .menu-img {
+            position: absolute;
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .menu-img img {
+            width: 140px; /* Increased size */
+            height: 120px; /* Increased size */
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, border 0.3s ease-in-out;
+        }
+        .menu-img img:hover {
+            transform: scale(1.1);
+        }
+        .menu-img img.clicked {
+            border: 3px solid #fff; /
+        }
+
+        /* Book Now Button */
+        .booknow {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 14px;
+            font-weight: bold;
+            background-color: transparent; 
+            color: white;
+            text-decoration: none;
+            border-radius: 32px;
+            border: 2px solid white;
+        }
+
+        .booknow:hover {
+            background-color: #508E87;
+        }
+        /* Space above header */
+        .top-space {
+            width: 100%;
+            height: 50px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+            position: relative; 
+            z-index: 1001; /* Higher than the menu */
+        }
+
+         /* Hamburger Menu */
+         .hamburger {
+            font-size: 30px;
+            color: rgb(0, 0, 0);
+            cursor: pointer;
+            z-index: 1100;
+            position: relative; 
+        }
+
+        .menu {
+            position: fixed;
+            top: -100%; 
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: white;
+            color: black;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: top 0.4s ease-in-out;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .menu.active {
+            top: 0; 
+        }
+
+        /* Close Icon */
+        .close-icon {
+            position: absolute;
+            top: 45px;
+            left: 20px;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            color: rgb(0, 0, 0);
+        }
+
+        .hamburger-vertical {
+            display: none;
+            transform: rotate(90deg);
+        }
+
+        .menu.active .hamburger-vertical {
+            display: block;
+        }
+
+        .menu.active .hamburger {
+            display: none;
+        }
+
+        .menucontainer {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 60px;
+            padding: 30px;
+        }
+
+        .phase-card {
+            width: 500px;
+            padding: 20px;
+            margin-top: 60px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 450px; /* Ensures equal height */
+        }
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+        .phase-card h2 {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .phase-card h3 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #fff;
+            font-weight: 500;
+        }
+        .phase-card p {
+            color: #ffffff;
+            font-size: 20px;
+            line-height: 1.6;
+        }
+        .phase-card button {
+            padding: 12px 30px;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: transparent;
+            border: 2px solid white;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 8px;
+        }
+        .phase-private {
+            background: linear-gradient(135deg, #184D47, #0C2D27);
+            color: white;
+        }
+        .phase-private button:hover {
+            background-color: white;
+            color: #184D47;
+        }
+        .phase-public {
+            background: linear-gradient(135deg, #508E87, #2F6861);
+            color: white;
+        }
+        .phase-public button:hover {
+            background-color: white;
+            color: #508E87;
+        }
+
+        /*--------------homebook--------*/
+      .flex {
+          display: flex;
+      }
+      .grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          grid-gap: 30px;
+      }
+      .book {
+          margin-top: 5%;
+          width: 100%;
+          height: 20vh;
+          color: white;
+      }
+      .book .input {
+          background: #47837c;
+          padding: 20px 20px 40px 20px;
+      }
+      .book .search {
+          background: #184D47;
+          padding: 20px;
+      }
+      input {
+          width: 100%;
+          padding: 15px;
+          border: 2px solid rgba(255, 255, 255, 0.1);
+          outline: none;
+          background: #4f8680;
+          margin-top: 20px;
+          color: white;
+      }
+      ::placeholder {
+          color: white;
+      }
+      .book .search {
+          width: 20%;
+      }
+      .book .search input {
+          background: none;
+          border: none;
+          font-weight: bold;
+          font-size: 20px;
+          margin-top: 40px;
+      }
+
+
+        /*--------------aboutpage--------*/
+        .about-container {
+            display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        padding: 40px 20px;
+        justify-content: center;
+    }
+
+    .about-text {
+        flex: 1;
+        max-width: 500px;
+    }
+
+    .about-text h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        color: #99d1a8;
+    }
+
+    .about-text p {
+        font-size: 1em;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .about-image {
+        flex: 1;
+        max-width: 500px;
+    }
+
+    .about-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
