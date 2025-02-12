@@ -4,11 +4,15 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-        body {
-            background-color: #325f51;
+        html, body {
+            background-color: #325f51 !important; /* Override any other styles */
             color: white;
+            margin: 0;
+            padding: 0;
+            height: 100%;
         }
     
+
         /* Hero Section */
         .hero {
             position: relative;
@@ -41,6 +45,10 @@
             height: auto;
             margin-right: 15px;
         }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
         .logo h1 {
             font-family: "Dancing Script", serif;
             font-size: 3.0em;
@@ -57,7 +65,7 @@
         }
 
         /* Navbar */
-        .navbar {
+        .home-navbar {
             position: absolute;
             top: 0px; /* Adjusted to fit below the top space */
             left: 10px;
@@ -68,13 +76,13 @@
             padding: 40px;
             z-index: 10;
         }
-        .nav-links {
+        .home-nav-links {
             list-style: none;
             display: flex;
             gap: 30px;
             align-items: center;  /* Ensure all items in the navbar are aligned */
         }
-        .nav-links li a {
+        .home-nav-links li a {
             color: white;
             text-decoration: none;
             font-size: 16px;
@@ -82,17 +90,17 @@
             text-transform: uppercase;
             position: relative; /* Needed for positioning the pseudo-element */
         }
-        .nav-links li a::after {
+        .home-nav-links li a::after {
             content: "";
             position: absolute;
             bottom: -2px;
             left: 0;
             width: 0;
             height: 2px; 
-            background-color: white;
+            background-color: white; /* Add this to make the underline visible */
             transition: width 0.3s ease-in-out; 
         }
-        .nav-links li a:hover::after {
+        .home-nav-links li a:hover::after {
             width: 100%; 
         }
 
@@ -118,7 +126,6 @@
             max-width: 50%;
         }
         .hero-text h1 {
-
             font-size: 50px;
             font-weight: normal;
             text-transform: uppercase;
@@ -167,13 +174,13 @@
         }
 
         .booknow:hover {
-            background-color: #508E87;
+            background-color: #8e8215;
         }
         /* Space above header */
         .top-space {
             width: 100%;
             height: 50px;
-            background: #ffffff;
+            background: transparent;
             display: flex;
             align-items: center;
             padding-left: 20px;
@@ -303,57 +310,45 @@
             background-color: white;
             color: #508E87;
         }
-
-        /*--------------homebook--------*/
-      .flex {
-          display: flex;
-      }
-      .grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          grid-gap: 30px;
-      }
-      .book {
-          margin-top: 5%;
-          width: 100%;
-          height: 20vh;
-          color: white;
-      }
-      .book .input {
-          background: #47837c;
-          padding: 20px 20px 40px 20px;
-      }
-      .book .search {
-          background: #184D47;
-          padding: 20px;
-      }
-      input {
-          width: 100%;
-          padding: 15px;
-          border: 2px solid rgba(255, 255, 255, 0.1);
-          outline: none;
-          background: #4f8680;
-          margin-top: 20px;
-          color: white;
-      }
-      ::placeholder {
-          color: white;
-      }
-      .book .search {
-          width: 20%;
-      }
-      .book .search input {
-          background: none;
-          border: none;
-          font-weight: bold;
-          font-size: 20px;
-          margin-top: 40px;
-      }
-
-
-        /*--------------aboutpage--------*/
-        .about-container {
-            display: flex;
+    
+   
+    /*--------------aboutpage--------*/
+    .top-space {
+        width: 100%;
+        height: 50px;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        position: relative;
+        z-index: 1001;
+    }
+    .page-header {
+        width: 100%;
+        background: #508E87;
+        padding: 20px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        z-index: 1000;
+    }
+    .page-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+        z-index: -1;
+    }
+    .page-header.hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+    .about-container {
+        display: flex;
         flex-wrap: wrap;
         gap: 40px;
         padding: 40px 20px;
@@ -388,3 +383,232 @@
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
+    .icon {
+        display: flex;
+        align-items: center;
+    }
+
+    .icon img {
+        width: 40px;
+        border-radius: 50%;
+    }
+    
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .nav-links {
+        list-style: none; /* Removes bullet points */
+        display: flex;
+        gap: 30px;
+        align-items: center;
+        margin-left: auto; /* Push links to the right */
+        margin-right: 20px; /* Ensure alignment with user icon */
+    }
+
+    .nav-links li {
+        list-style: none; /* Ensures no bullets appear */
+    }
+ 
+    .nav-links li a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        position: relative;
+        text-transform: uppercase;
+    }
+    .nav-links li a::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px; 
+        background-color: white;
+        transition: width 0.3s ease-in-out; 
+    }
+    .nav-links li a:hover::after {
+        width: 100%; 
+    }   
+    .location-section {
+        padding: 0px 40px 30px; 
+    }
+    
+    .location-section h2 {
+        font-size: 1.8em;
+        color: #99d1a8;
+        margin-bottom: 10px;
+    }
+    
+    .location-section p {
+        font-size: 1em;
+        line-height: 1.6;
+    }
+    
+    .map-container {
+        margin: 40px 20px;
+        text-align: center;
+    }
+    
+    .map-container h2 {
+        font-size: 1.1em;
+        margin-bottom: 15px;
+        color: #ffffff;
+    }
+    
+    .map-container iframe {
+        width: 100%;
+        max-width: 800px;
+        height: 400px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    /*--------------footer--------*/
+    footer {
+        background-color: #244339;
+        color: white;
+        padding: 40px 20px;
+    }
+
+    .footer-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .footer-logo img {
+        width: 100px;
+        height: auto;
+        border-radius: 50px;
+        margin-top: 20px;
+        margin-right: 15px;
+    }
+
+    .footer-nav, .footer-contact, .footer-actions {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .footer-nav h3, .footer-contact h3, .footer-actions h3 {
+        margin-bottom: 10px;
+        font-size: 1.2em;
+        text-transform: uppercase;
+        color: #99d1a8;
+    }
+
+    .footer-nav ul, .footer-actions ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-nav ul li, .footer-actions ul li {
+        margin-bottom: 8px;
+    }
+
+    .footer-nav ul li a, .footer-actions ul li a {
+        text-decoration: none;
+        color: white;
+        font-size: 0.9em;
+        transition: color 0.3s ease;
+    }
+
+    .footer-nav ul li a:hover, .footer-actions ul li a:hover {
+        color: #4caf50;
+    }
+
+    .footer-contact p {
+        font-size: 0.9em;
+        line-height: 1.6;
+    } 
+    /*--------------accommodationpage--------*/
+    .content-wrapper {
+        margin-top: 50px;
+    }
+
+    .container {
+        top: 100px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 columns */
+        gap: 40px; /* Adjust spacing between cards */
+        justify-items: center; /* Center cards horizontally */
+        margin-top: 20px;
+        padding: 20px;
+    }
+
+    .card {
+        position: relative;
+        width: 300px;
+        text-align: center;
+    }
+
+    .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 0;
+        z-index: 1;
+        position: relative;
+        border: 2px solid #85dabf; /* Added white border */
+    }
+
+    .card-background {
+        position: absolute;
+        top: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 350px;
+        height: 320px;
+        background-color: #508E87;
+        border-radius: 0px;
+        z-index: 0;
+    }
+
+    .card-content {
+        position: relative;
+        padding: 20px;
+        margin-top: 10px; /* Ensures content is properly positioned within the background */
+        z-index: 1;
+    }
+
+    .card-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-top: -20px; /* Adjusted for better alignment */
+        margin-bottom: 10px;
+        color: white;
+    }
+
+    .card-description {
+        font-size: 14px;
+        line-height: 1.5;
+        color: white;
+        margin-top: 10px; /* Ensures proper spacing between title and description */
+        margin-bottom: 20px;
+    }
+
+
+    .card-button {
+        display: inline-block;
+        background-color: transparent;
+        color: white;
+        border: 2px solid white;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .card-button:hover {
+        background-color: white;
+        color: #6a9e8a;
+    }  
+    

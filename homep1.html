@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainbow Forest Paradise Resort and Campsite</title>
+    <link rel="stylesheet" href="css/flatpickr.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lobster&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mystyle.css">
+    <style>
+         .book {
+            width: 100%;
+            max-width: 1200px;
+            background: #47837c;
+            margin: auto; /* Centers it horizontally */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            min-height: 110vh; 
+        }
+        .input {
+            display: grid;
+            justify-content: center;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 2px;
+            padding: 0px 0px 0px 5px;
+            background-color: #4f8680; /* Same background color for form fields */
+        }
+
+        .box {
+            display: flex;
+            color: white;
+            text-align: left;
+            flex-direction: column;
+        }
+
+        .box label {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .box input, .box select {
+            padding: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            outline: none;
+            background: #4f8680;
+            color: white;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        .box input[type="number"]:focus {
+            border-color: #89BAA9;
+            color: white;
+        }
+
+        .search {
+            display: flex;
+            padding: 20px;
+            justify-content: center;
+            background: #184D47;
+        }
+
+        .search button {
+            background: #184D47; /* Different background color */
+            color: white;
+            padding: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .search button:hover {
+            background: #4f8680;
+            color: #ffffff;
+        }
+
+        @media (max-width: 1024px) {
+            .input {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .input {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            .search button {
+                grid-column: span 3;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-space">
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </div>
+    <div class="menu">
+        <div class="close-icon" onclick="toggleMenu()">X</div>
+        <div class="menucontainer">
+            <div class="phase-card phase-private">
+                <h2>PHASE 1</h2>
+                <h3>PRIVATE</h3>
+                <p>
+                    Enjoy exclusive access to the entire resort! This includes two pools, two houses, a pavilion, and a cozy kubo, ensuring privacy and relaxation.
+                    Perfect for families, reunions, and private gatherings. Guests can also partake in exciting activities available in the public area.
+                </p>
+                <button onclick="bookNow('Phase 1')">BOOK NOW</button>
+            </div>
+            <div class="phase-card phase-public">
+                <h2>PHASE 2</h2>
+                <h3>PUBLIC</h3>
+                <p>
+                    Stay in our welcoming accommodations, including rooms, cabins, and houses, ideal for individuals or small groups. 
+                    Enjoy thrilling activities such as ziplining, bonfires, and swimming, making your stay an unforgettable adventure!
+                </p>
+                <button onclick="bookNow('Phase 2')">BOOK NOW</button>
+            </div>            
+        </div>
+    </div>
+    <header class="hero">
+        <div class="overlay"></div>
+        <!-- Navbar -->
+        <nav class="home-navbar">
+            <div class="logo">
+                <img src="rainbow-logo.png" alt="Logo">
+                <div>
+                    <h1>Rainbow Forest Paradise</h1>
+                    <h2>Resort and Campsite</h2>
+                </div>
+            </div>
+            <div class="nav-right">
+                <ul id="menu-img" class="home-nav-links">
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#">ACCOMMODATIONS</a></li>
+                    <li><a href="#">ACTIVITIES</a></li>
+                    <li><a href="#">CONTACT US</a></li>
+                    <li><a href="#">BOOK NOW</a></li>
+                    <li><a href="#" class="user-icon">
+                        <img src="logo.png" alt="User Icon">
+                    </a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="hero-text">
+            <h1><span>Welcome to Phase 1</span><br>Private</h1>
+            <p>Book the entire property for your exclusive retreat!</p>
+            <p>Experience nature, peace, and luxury.</p>
+            <a href="#" class="booknow">BOOK NOW</a> <!-- Book Now Button -->
+        </div>
+        <!-- Vertical Menu with Images -->
+        <div class="menu-img">
+            <img src="pavilion.png" alt="Image 1" onclick="changeBackground('pavilion.png', this)">
+            <img src="img1.jpg" alt="Image 2" onclick="changeBackground('img1.jpg', this)">
+            <img src="kubo.png" alt="Image 3" onclick="changeBackground('kubo.png', this)">
+        </div>
+    </header>
+
+    <section class="book">
+        <form class="booking-form" id="availability-form">
+            <div class="input">
+                <!-- Check-in -->
+                <div class="box">
+                    <label for="check-in">Check-in:</label>
+                    <input type="text" id="check-in" name="check-in" placeholder="MM/DD/YYYY" readonly required>
+                </div>
+                <!-- Check-out -->
+                <div class="box">
+                    <label for="check-out">Check-out:</label>
+                    <input type="text" id="check-out" name="check-out" placeholder="MM/DD/YYYY" readonly required>
+                </div>
+                <!-- Adults -->
+                <div class="box">
+                    <label for="adults">Adults:</label>
+                    <input type="number" id="adults" name="adults" min="0" max="5" value="" required>
+                </div>
+                <!-- Children -->
+                <div class="box">
+                    <label for="children">Children:</label>
+                    <input type="number" id="children" name="children" min="0" max="5" value="" required>
+                </div>
+                <div class="search">
+                    <button type="button" class="booking-button" id="check-availability">Check Availability</button>
+                </div>
+            </div>
+        </form>
+
+        <div id="availability-message" class="availability-message"></div>
+        <div id="loading-spinner" style="display:none; text-align:center; color:white; font-size: 18px;">Loading...</div>
+    </section>
+
+    <script src="js/flatpickr.min.js"></script>
+    <script>
+        // Initialize Flatpickr for Check-in and Check-out
+        flatpickr("#check-in", {
+            dateFormat: "m/d/Y",
+            theme: "material_blue", // Optional: Flatpickr themes like material_blue, dark, etc.
+            onChange: function(selectedDates, dateStr, instance) {
+                const checkOutInput = document.getElementById('check-out');
+                checkOutInput.disabled = false; // Enable check-out field when check-in is selected
+                checkOutInput.focus();
+            }
+        });
+
+        flatpickr("#check-out", {
+            dateFormat: "m/d/Y",
+            minDate: "today", // Disable past dates
+        });
+
+        document.getElementById('check-availability').addEventListener('click', function (event) {
+            const checkInDate = document.getElementById('check-in').value;
+            const checkOutDate = document.getElementById('check-out').value;
+            const adults = document.getElementById('adults').value;
+            const children = document.getElementById('children').value;
+            const availabilityMessage = document.getElementById('availability-message');
+
+            // Reset availability message
+            availabilityMessage.textContent = '';
+            document.getElementById('loading-spinner').style.display = 'block'; // Show loading spinner
+
+            // Validate dates
+            if (!checkInDate || !checkOutDate) {
+                availabilityMessage.textContent = 'Please select both check-in and check-out dates.';
+                document.getElementById('loading-spinner').style.display = 'none';
+                return;
+            }
+
+            // Check availability using AJAX
+            fetch(`check-availability.php?check-in=${checkInDate}&check-out=${checkOutDate}&adults=${adults}&children=${children}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.available) {
+                        availabilityMessage.innerHTML = `
+                            <span style="color: green;">Your selected dates are available!</span>
+                            <a href="reservation-form.php?check-in=${checkInDate}&check-out=${checkOutDate}&adults=${adults}&children=${children}" class="booking-button">Proceed to Booking</a>
+                        `;
+                    } else {
+                        availabilityMessage.innerHTML = `
+                            <span style="color: white; font-size: 20px;">Sorry, the property is fully booked for these dates.</span>
+                        `;
+                    }
+                    document.getElementById('loading-spinner').style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    availabilityMessage.textContent = 'An error occurred while checking availability.';
+                    document.getElementById('loading-spinner').style.display = 'none';
+                });
+        });
+    </script>
+
+
+    <script>
+        function img(anything) {
+          document.querySelector('.slide').src = anything;
+        }
+    
+        function change(change) {
+          const line = document.querySelector('.image');
+          line.style.background = change;
+        }
+      </script>
+    
+     
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            const hamburger = document.querySelector('.hamburger');
+            const hamburgerVertical = document.querySelector('.hamburger-vertical');
+            menu.classList.toggle('active');
+            if (menu.classList.contains('active')) {
+                hamburger.style.display = 'none';
+                hamburgerVertical.style.display = 'block';
+            } else {
+                hamburger.style.display = 'block';
+                hamburgerVertical.style.display = 'none';
+            }
+        }
+
+        function bookNow(phase) {
+            alert(`You clicked Book Now for ${phase}!`);
+        }
+    </script>
+
+    <script>
+        // Function to change the background image of the hero section
+        function changeBackground(image, imgElement) {
+            document.querySelector('.hero').style.backgroundImage = `url('${image}')`;
+            // Add border to clicked image
+            const images = document.querySelectorAll('.menu img');
+            images.forEach(img => img.classList.remove('clicked'));
+            imgElement.classList.add('clicked');
+        }
+
+        // Automatic hero image transition every 3 seconds
+        const images = ['pavilion.png', 'img1.jpg', 'resort2.png'];
+        let currentImage = 0;
+        setInterval(() => {
+            currentImage = (currentImage + 1) % images.length;
+            changeBackground(images[currentImage], document.querySelectorAll('.menu img')[currentImage]);
+        }, 3000);
+    </script>
+
+</body>
+</html>

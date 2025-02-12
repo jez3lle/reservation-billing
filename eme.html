@@ -1,160 +1,245 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rainbow Forest Paradise Resort and Campsite</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lobster&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="mystyle.css">
+    <title>Rainbow Forest Paradise</title>
+    
+    <link rel="stylesheet" href="css/flatpickr.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+    .booking-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 20px auto; /* Automatically centers horizontally */
+        max-width: 1000px;
+    }
+
+
+    .availability-message {
+        font-size: 20px;
+        font-weight: 400;
+        text-align: center;
+        width: 100%;
+    }
+
+    .booking-form {
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 1000px;
+        padding: 20px;
+        background-color: #47837c;        
+        color: white;
+        position: relative;
+    }
+
+    .form-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px; /* Adjust gap between fields */
+        flex-wrap: nowrap; /* Prevent wrapping */
+        align-items: center;
+    }
+
+    .form-group div {
+        flex: 1;
+        min-width: 150px; /* Ensure a minimum width for each field */
+        position: relative;
+    }
+
+    .form-group label {
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        border: 2px white;
+        font-weight: 400;
+        margin-bottom: 2px;
+    }
+
+    .form-group input {
+        padding: 8px;
+        font-size: 14px;
+        justify-content: center;
+        align-items: center;
+        gap: 1px;
+        margin-top: 5px;
+    }
+
+    .form-group input:focus {
+        border-color: #89BAA9;
+    }
+
+    .error-message {
+        font-size: 16px;
+        position: absolute;
+        color: #fbfcfc;
+    }
+
+    .booking-button {
+        padding: 10px 20px;
+        background: #184D47;
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+        width: 100%;
+        text-align: center;
+        text-decoration: none;
+    }
+    .booking-button a {
+        text-decoration: none;
+    }
+
+    .booking-button:hover {
+        background-color: #47837c;
+        border: 1px solid #ffffff;
+    }
+
+    /* Media Queries for responsiveness */
+    @media (max-width: 768px) {
+        .booking-container {
+            width: 90%;
+        }
+        .form-group {
+            flex-direction: column;
+        }
+        .booking-button {
+            width: 100%;
+            margin-top: 20px;
+        }
+    }
+    </style>
 </head>
 <body>
-    <div class="top-space">
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
+<div class="booking-container">
+    <form class="booking-form" id="availability-form">
+        <div class="form-group">
+            <div>
+                <label for="arrival-date">Arrival Date:</label>
+                <input type="date" id="arrival-date" name="arrival-date" value="<?= $arrivalDate ?>" required>
+                <div class="error-message" id="arrival-error"></div>
+            </div>
+            <div>
+                <label for="departure-date">Departure Date:</label>
+                <input type="date" id="departure-date" name="departure-date" value="<?= $departureDate ?>" required>
+                <div class="error-message" id="departure-error"></div>
+            </div>
+            <div>
+                <label for="adults">Adults:</label>
+                <input type="number" id="adults" name="adults" value="<?= $adults ?>" min="1" required>
+            </div>
+            <div>
+                <label for="kids">Kids:</label>
+                <input type="number" id="kids" name="kids" value="<?= $kids ?>" min="0" required>
+            </div>
+            <div>
+                <button type="button" class="booking-button" id="check-availability">Check Availability</button>
+            </div>
+            
+        </div>
+    </form>
+    <div id="availability-message" class="availability-message"></div>
+    <div id="book-now-container" style="display: none; text-align: center; margin-top: 20px;">
+        <a href="reservation-form.php?arrival-date=<?php echo $arrivalDate; ?>&departure-date=<?php echo $departureDate; ?>&adults=<?php echo $adults; ?>&kids=<?php echo $kids; ?>" class="booking-button">Book Now</a>
     </div>
-    <!-- Sidebar Menu -->
-    <div class="menu">
-        <div class="close-icon" onclick="toggleMenu()">X</div>
-        <div class="menucontainer">
-            <div class="phase-card phase-private">
-                <h2>PHASE 1</h2>
-                <h3>PRIVATE</h3>
-                <p>
-                    Enjoy exclusive access to the entire resort! This includes two pools, two houses, a pavilion, and a cozy kubo, ensuring privacy and relaxation.
-                    Perfect for families, reunions, and private gatherings. Guests can also partake in exciting activities available in the public area.
-                </p>
-                <button onclick="bookNow('Phase 1')">BOOK NOW</button>
-            </div>
-            <div class="phase-card phase-public">
-                <h2>PHASE 2</h2>
-                <h3>PUBLIC</h3>
-                <p>
-                    Stay in our welcoming accommodations, including rooms, cabins, and houses, ideal for individuals or small groups. 
-                    Enjoy thrilling activities such as ziplining, bonfires, and swimming, making your stay an unforgettable adventure!
-                </p>
-                <button onclick="bookNow('Phase 2')">BOOK NOW</button>
-            </div>            
-        </div>
+    <div id="loading-spinner" style="display: none; text-align: center; margin-top: 20px;">
+        Checking availability...
     </div>
-    <header class="hero">
-        <div class="overlay"></div>
-        <!-- Navbar -->
-        <nav class="navbar">
-            <div class="logo">
-                <img src="rainbow-logo.png" alt="Logo">
-                <div>
-                    <h1>Rainbow Forest Paradise</h1>
-                    <h2>Resort and Campsite</h2>
-                </div>
-            </div>
-            <div class="nav-right">
-                <ul id="menu-img" class="nav-links">
-                    <li><a href="#">HOME</a></li>
-                    <li><a href="#">ABOUT</a></li>
-                    <li><a href="#">ACCOMMODATIONS</a></li>
-                    <li><a href="#">ACTIVITIES</a></li>
-                    <li><a href="#">CONTACT US</a></li>
-                    <li><a href="#">BOOK NOW</a></li>
-                    <li><a href="#" class="user-icon">
-                        <img src="logo.png" alt="User Icon">
-                    </a></li>
-                </ul>
-            </div>
-        </nav>
-        <div class="hero-text">
-            <h1><span>Welcome to Phase 1</span><br>Private</h1>
-            <p>Book the entire property for your exclusive retreat!</p>
-            <p>Experience nature, peace, and luxury.</p>
-            <a href="#" class="booknow">BOOK NOW</a> <!-- Book Now Button -->
-        </div>
-        <!-- Vertical Menu with Images -->
-        <div class="menu-img">
-            <img src="pavilion.png" alt="Image 1" onclick="changeBackground('pavilion.png', this)">
-            <img src="img1.jpg" alt="Image 2" onclick="changeBackground('img1.jpg', this)">
-            <img src="kubo.png" alt="Image 3" onclick="changeBackground('kubo.png', this)">
-        </div>
-    </header>
-
-
-    <script>
-        function img(anything) {
-          document.querySelector('.slide').src = anything;
-        }
     
-        function change(change) {
-          const line = document.querySelector('.image');
-          line.style.background = change;
-        }
-      </script>
     
-      <section class="book">
-        <div class="container flex">
-          <div class="input grid">
-            <div class="box">
-              <label>Check-in:</label>
-              <input type="date" placeholder="Check-in-Date">
-            </div>
-            <div class="box">
-              <label>Check-out:</label>
-              <input type="date" placeholder="Check-out-Date">
-            </div>
-            <div class="box">
-              <label>Adults:</label> <br>
-              <input type="number" placeholder="0">
-            </div>
-            <div class="box">
-              <label>Children:</label> <br>
-              <input type="number" placeholder="0">
-            </div>
-          </div>
-          <div class="search">
-            <a href="reservation.html">
-              <input type="button" value="Check Availability" style="cursor: pointer">
-            </a>
-          </div>
-   
-    <script>
-        function toggleMenu() {
-            const menu = document.querySelector('.menu');
-            const hamburger = document.querySelector('.hamburger');
-            const hamburgerVertical = document.querySelector('.hamburger-vertical');
-            menu.classList.toggle('active');
-            if (menu.classList.contains('active')) {
-                hamburger.style.display = 'none';
-                hamburgerVertical.style.display = 'block';
-            } else {
-                hamburger.style.display = 'block';
-                hamburgerVertical.style.display = 'none';
-            }
+</div>
+
+<script src="js/flatpickr.min.js"></script>
+<script>
+    // Initialize Flatpickr for Arrival and Departure Date
+    flatpickr("#arrival-date", {
+        dateFormat: "Y-m-d",
+        theme: "material_blue", // Optional theme
+        onChange: function(selectedDates, dateStr, instance) {
+            const departureInput = document.getElementById('departure-date');
+            departureInput.disabled = false; // Enable departure date field
+            departureInput.focus();
+        }
+    });
+
+    flatpickr("#departure-date", {
+        dateFormat: "Y-m-d",
+        minDate: "today"
+    });
+
+    document.getElementById('check-availability').addEventListener('click', function () {
+        const arrivalDate = document.getElementById('arrival-date').value;
+        const departureDate = document.getElementById('departure-date').value;
+        const adults = document.getElementById('adults').value;
+        const kids = document.getElementById('kids').value;
+        const arrivalError = document.getElementById('arrival-error');
+        const departureError = document.getElementById('departure-error');
+        const availabilityMessage = document.getElementById('availability-message');
+        const bookNowContainer = document.getElementById('book-now-container');
+
+        // Reset errors
+        arrivalError.textContent = '';
+        departureError.textContent = '';
+        availabilityMessage.textContent = '';
+        bookNowContainer.style.display = 'none'; // Hide "Book Now" button by default
+        document.getElementById('loading-spinner').style.display = 'block'; // Show loading spinner
+
+        const arrival = new Date(arrivalDate);
+        const departure = new Date(departureDate);
+        const today = new Date();
+
+        let hasError = false;
+
+        // Validate dates
+        if (!arrivalDate) {
+            arrivalError.textContent = 'Please select an arrival date.';
+            hasError = true;
+        } else if (arrival < today) {
+            arrivalError.textContent = 'Arrival date cannot be in the past.';
+            hasError = true;
         }
 
-        function bookNow(phase) {
-            alert(`You clicked Book Now for ${phase}!`);
-        }
-    </script>
-
-    <script>
-        // Function to change the background image of the hero section
-        function changeBackground(image, imgElement) {
-            document.querySelector('.hero').style.backgroundImage = `url('${image}')`;
-            // Add border to clicked image
-            const images = document.querySelectorAll('.menu img');
-            images.forEach(img => img.classList.remove('clicked'));
-            imgElement.classList.add('clicked');
+        if (!departureDate) {
+            departureError.textContent = 'Please select a departure date.';
+            hasError = true;
+        } else if (departure <= arrival) {
+            departureError.textContent = 'Departure date must be after the arrival date.';
+            hasError = true;
         }
 
-        // Automatic hero image transition every 3 seconds
-        const images = ['pavilion.png', 'img1.jpg', 'resort2.png'];
-        let currentImage = 0;
-        setInterval(() => {
-            currentImage = (currentImage + 1) % images.length;
-            changeBackground(images[currentImage], document.querySelectorAll('.menu img')[currentImage]);
-        }, 3000);
-    </script>
+        if (hasError) {
+            document.getElementById('loading-spinner').style.display = 'none'; // Hide spinner
+            return;
+        }
+
+        // Check availability using AJAX
+        fetch(`check-availability.php?arrival-date=${arrivalDate}&departure-date=${departureDate}&adults=${adults}&kids=${kids}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.available) {
+                    availabilityMessage.innerHTML = `Your selected dates are available!`;
+                    bookNowContainer.style.display = 'block'; // Show "Book Now" button
+                } else {
+                    availabilityMessage.innerHTML = `Sorry, the property is fully booked for these dates.`;
+                    bookNowContainer.style.display = 'none'; // Hide "Book Now" button
+                }
+                document.getElementById('loading-spinner').style.display = 'none'; // Hide spinner
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                availabilityMessage.textContent = 'An error occurred while checking availability.';
+                document.getElementById('loading-spinner').style.display = 'none'; // Hide spinner
+            });
+    });
+</script>
 
 </body>
 </html>
+

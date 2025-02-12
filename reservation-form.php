@@ -5,10 +5,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Collect data from the form
     $arrivalDate = $_POST['arrival-date'];
     $departureDate = $_POST['departure-date'];
-    $lastName = $_POST['guest-last-name']; // Collect last name
-    $firstName = $_POST['guest-first-name']; // Collect first name
-    $guestEmail = $_POST['guest-email']; // Collect guest email
-    $guestPhone = $_POST['guest-phone']; // Collect guest phone
+    $lastName = mysqli_real_escape_string($conn, $_POST['guest-last-name']); // Collect last name
+    $firstName = mysqli_real_escape_string($conn, $_POST['guest-first-name']); // Collect first name
+    $guestEmail = mysqli_real_escape_string($conn, $_POST['guest-email']); // Collect guest email
+    $guestPhone = mysqli_real_escape_string($conn, $_POST['guest-phone']); // Collect guest phone
+    $adults = $_POST['number-of-adults']; // Number of adults
+    $kids = $_POST['number-of-kids']; // Number of kids
 
     // Combine first and last name into a single full name
     $guestName = $lastName . ', ' . $firstName;
@@ -17,8 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $paymentExpiry = date('Y-m-d H:i:s', strtotime('+48 hours'));  // 48-hour grace period
 
     // Insert reservation into the database
-    $query = "INSERT INTO reservations (arrival_date, departure_date, guest_name, guest_email, guest_phone, reservation_status, created_at, payment_expiry)
-              VALUES ('$arrivalDate', '$departureDate', '$guestName', '$guestEmail', '$guestPhone', 'pending', NOW(), '$paymentExpiry')";
+    $query = "INSERT INTO reservations (arrival_date, departure_date, guest_name, guest_email, guest_phone, adults, kids, reservation_status, created_at, payment_expiry)
+              VALUES ('$arrivalDate', '$departureDate', '$guestName', '$guestEmail', '$guestPhone', '$adults', '$kids', 'pending', NOW(), '$paymentExpiry')";
     if (mysqli_query($conn, $query)) {
         $reservationId = mysqli_insert_id($conn); // Get the inserted reservation ID
         header("Location: upload-proof.php?id=$reservationId"); // Redirect to upload proof of payment
@@ -28,9 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// Pre-fill arrival and departure dates if passed via GET
+// Pre-fill form values from query parameters
 $arrivalDate = isset($_GET['arrival-date']) ? $_GET['arrival-date'] : '';
 $departureDate = isset($_GET['departure-date']) ? $_GET['departure-date'] : '';
+$adults = isset($_GET['adults']) ? $_GET['adults'] : '';
+$kids = isset($_GET['kids']) ? $_GET['kids'] : '';
 ?>
 
 <!DOCTYPE html>
@@ -41,17 +45,6 @@ $departureDate = isset($_GET['departure-date']) ? $_GET['departure-date'] : '';
     <title>Reservation Form</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        /* Base Styles */
-        body {
-            font-family: 'Poppins', Arial, sans-serif;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #89BAA9; /* Dark Green */
-        }
         .reservation-form {
             width: 100%;
             max-width: 1000px;
@@ -159,17 +152,17 @@ $departureDate = isset($_GET['departure-date']) ? $_GET['departure-date'] : '';
 
         <div class="form-row">
             <div class="form-group">
-                <label for="number-of-guests">Number of Adults:</label>
-                <input type="number" id="number-of-adults" name="number-of-guests" placeholder="Number of Guests" required>
+                <label for="number-of-adults">Number of Adults:</label>
+                <input type="number" id="number-of-adults" name="number-of-adults" placeholder="Number of Adults" required>
             </div>
             <div class="form-group">
-                <label for="number-of-guests">Number of Kids:</label>
-                <input type="number" id="number-of-kids" name="number-of-guests" placeholder="Number of Guests" required>
+                <label for="number-of-kids">Number of Kids:</label>
+                <input type="number" id="number-of-kids" name="number-of-kids" placeholder="Number of Kids" required>
             </div>
         </div>
 
         <div class="form-row">
-        <div class="form-group">
+            <div class="form-group">
                 <label for="arrival-date">Arrival Date:</label>
                 <input type="date" id="arrival-date" name="arrival-date" value="<?php echo $arrivalDate; ?>" required>
             </div>
