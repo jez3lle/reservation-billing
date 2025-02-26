@@ -16,6 +16,7 @@
     <div class="top-space">
         <div class="hamburger" onclick="toggleMenu()">☰</div>
     </div>
+    
     <div class="menu">
         <div class="close-icon" onclick="toggleMenu()">X</div>
         <div class="menucontainer">
@@ -43,9 +44,8 @@
 
     <header class="page-header">
         <div class="navbar">
-            <!-- Logo -->
             <div class="logo">
-                <img src="rainbow-logo.png" alt="Resort Logo">
+                <img src="images/rainbow-logo.png" alt="Resort Logo">
                 <div class="logo-text">
                     <h1>Rainbow Forest Paradise</h1>
                     <h2>Resort and Campsite</h2>
@@ -60,7 +60,7 @@
                     <li><a href="#">BOOK NOW</a></li>
             </ul>
             <div class="icon">
-                <img src="logo.png" alt="User">
+                <img src="images/logo.png" alt="User">
             </div>
         </div>
     </header>
@@ -69,7 +69,7 @@
     <div class="accom-container">
         <div class="card">
             <div class="card-background"></div>
-            <img src="house1.png" alt="House">
+            <img src="images/house1.png" alt="House">
             <div class="card-content">
                 <h2 class="card-title">House 1</h2>
                 <p class="card-description">
@@ -81,7 +81,7 @@
 
         <div class="card">
             <div class="card-background"></div>
-            <img src="pavilion.png" alt="House">
+            <img src="images/pavilion.png" alt="House">
             <div class="card-content">
                 <h2 class="card-title">Pavilion</h2>
                 <p class="card-description">
@@ -93,7 +93,7 @@
 
         <div class="card">
             <div class="card-background"></div>
-            <img src="house2.png" alt="House">
+            <img src="images/house2.png" alt="House">
             <div class="card-content">
                 <h2 class="card-title">House 2</h2>
                 <p class="card-description">
@@ -107,7 +107,7 @@
     <div class="accom-container">
         <div class="card">
             <div class="card-background"></div>
-            <img src="kubo.jpg" alt="House">
+            <img src="images/kubo.jpg" alt="House">
             <div class="card-content">
                 <h2 class="card-title">Kubo</h2>
                 <p class="card-description">
@@ -119,7 +119,7 @@
  
         <div class="card">
             <div class="card-background"></div>
-            <img src="bg2.png" alt="House">
+            <img src="images/bg2.png" alt="House">
             <div class="card-content">
                 <h2 class="card-title">Pool</h2>
                 <p class="card-description">
@@ -131,7 +131,7 @@
 
         <div class="card">
             <div class="card-background"></div>
-            <img src="pool.png" alt="House">
+            <img src="images/pool.png" alt="House">
             <div class="card-content">
                 <h2 class="card-title">Pool</h2>
                 <p class="card-description">
@@ -142,59 +142,58 @@
         </div>
     </div>
 </main>
-    
-   
-<footer>
-    <div class="footer-container">
-        <div class="footer-logo">
-            <img src="rainbow-logo.png" alt="Rainbow Forest Logo">
+     
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="images/rainbow-logo.png" alt="Rainbow Forest Logo">
+            </div>
+            <div class="footer-nav">
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="#">Accommodations</a></li>
+                    <li><a href="#">Activities</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p><strong>Address:</strong> Brgy. Cuyambay, Tanay, Rizal</p>
+                <p><strong>Contact No.:</strong> 0960 587 7561</p>
+            </div>
+            <div class="footer-actions">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Follow Us</a></li>
+                    <li><a href="#">Book Now</a></li>
+                    <li><a href="#">Cancel Reservation</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="footer-nav">
-            <h3>Explore</h3>
-            <ul>
-                <li><a href="#">Accommodations</a></li>
-                <li><a href="#">Activities</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
-        </div>
-        <div class="footer-contact">
-            <h3>Contact Us</h3>
-            <p><strong>Address:</strong> Brgy. Cuyambay, Tanay, Rizal</p>
-            <p><strong>Contact No.:</strong> 0960 587 7561</p>
-        </div>
-        <div class="footer-actions">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="#">Follow Us</a></li>
-                <li><a href="#">Book Now</a></li>
-                <li><a href="#">Cancel Reservation</a></li>
-            </ul>
-        </div>
-    </div>
-</footer>
+    </footer>
 
-<script>
-    function toggleMenu() {
-        const menu = document.querySelector('.menu');
-        const hamburger = document.querySelector('.hamburger');
-        const hamburgerVertical = document.querySelector('.hamburger-vertical');
-        const header = document.querySelector('.page-header');
-        menu.classList.toggle('active');
-        header.classList.toggle('hidden');
-        if (menu.classList.contains('active')) {
-            hamburger.style.display = 'none';
-            hamburgerVertical.style.display = 'block';
-        } else {
-            hamburger.style.display = 'block';
-            hamburgerVertical.style.display = 'none';
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            const hamburger = document.querySelector('.hamburger');
+            const hamburgerVertical = document.querySelector('.hamburger-vertical');
+            const header = document.querySelector('.page-header');
+            menu.classList.toggle('active');
+            header.classList.toggle('hidden');
+            if (menu.classList.contains('active')) {
+                hamburger.style.display = 'none';
+                hamburgerVertical.style.display = 'block';
+            } else {
+                hamburger.style.display = 'block';
+                hamburgerVertical.style.display = 'none';
+            }
         }
-    }
 
-    function bookNow(phase) {
-        alert(`You clicked Book Now for ${phase}!`);
-    }
-</script>
+        function bookNow(phase) {
+            alert(`You clicked Book Now for ${phase}!`);
+        }
+    </script>
 
 </body>
 </html>
