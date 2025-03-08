@@ -1,0 +1,385 @@
+<?php
+session_start();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME - Rainbow Forest Paradise Resort and Campsite</title>
+    <link rel="stylesheet" href="mystyle.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lobster&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/flatpickr.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="top-space">
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </div>
+    <div class="menu">
+        <div class="close-icon" onclick="toggleMenu()">X</div>
+        <div class="menucontainer">
+            <div class="phase-card phase-private">
+                <h2>PHASE 1</h2>
+                <h3>PRIVATE</h3>
+                <p>
+                    Enjoy exclusive access to the entire resort! This includes two pools, two houses, a pavilion, and a cozy kubo, ensuring privacy and relaxation.
+                    Perfect for families, reunions, and private gatherings. Guests can also partake in exciting activities available in the public area.
+                </p>
+                <a href="home_p1.php" class="phasebutton">Proceed to Phase 1</a>
+            </div>
+            <div class="phase-card phase-public">
+                <h2>PHASE 2</h2>
+                <h3>PUBLIC</h3>
+                <p>
+                    Stay in our welcoming accommodations, including rooms, cabins, and houses, ideal for individuals or small groups. 
+                    Enjoy thrilling activities such as ziplining, bonfires, and swimming, making your stay an unforgettable adventure!
+                </p>
+                <a href="home_p2.php" class="phasebutton">Proceed to Phase 2</a>
+            </div>            
+        </div>
+    </div>
+    <header class="hero">
+        <div class="overlay"></div>
+        <nav class="home-navbar">
+            <div class="logo">
+                <img src="images/rainbow-logo.png" alt="Logo">
+                <div>
+                    <h1>Rainbow Forest Paradise</h1>
+                    <h2>Resort and Campsite</h2>
+                </div>
+            </div>
+            <div class="nav-right">
+                <ul id="p2menu-img" class="home-nav-links">
+                    <li><a href="home_p1.php">HOME</a></li>
+                    <li><a href="aboutus.html">ABOUT</a></li>
+                    <li><a href="accom.html">ACCOMMODATIONS</a></li>
+                    <li><a href="activities.html">ACTIVITIES</a></li>
+                    <li><a href="#">CONTACT US</a></li>
+                    <li><a href="#">BOOK NOW</a></li>
+                    <li><a href="#" class="user-icon">
+                        <img src="images/logo.png" alt="User Icon">
+                    </a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="hero-text">
+            <h1><span>Welcome to Phase 2</span><br>Public</h1>
+            <p>Book Our Public Area!</p>
+            <p>Experience nature, peace, and luxury.</p>
+            <a href="#" class="booknow">BOOK NOW</a> <!-- Book Now Button -->
+        </div>
+        <!-- Vertical Menu with Images -->
+        <div class="p2menu-img">
+            <img src="images/resort-image.jpeg" alt="Image 1" onclick="changeBackground('images/phase2-1.jpg', this)">
+            <img src="images/resort3.png" alt="Image 2" onclick="changeBackground('images/phase2-4.jpg', this)">
+            <img src="images/phase2-5.jpg" alt="Image 3" onclick="changeBackground('images/phase2-5.jpg', this)">
+        </div>
+    </header>
+
+<div class="booking-container">
+    <form class="booking-form" id="availability-form">
+        <div class="form-group">
+            <div>
+                <label for="arrival-date">Arrival Date:</label>
+                <input type="text" id="arrival-date" name="arrival-date" readonly required>
+                <div class="error-message" id="arrival-error"></div>
+            </div>
+            <div>
+                <label for="departure-date">Departure Date:</label>
+                <input type="text" id="departure-date" name="departure-date" readonly required>
+                <div class="error-message" id="departure-error"></div>
+            </div>
+            <div>
+                <label for="adults">Adults:</label>
+                <input type="number" id="adults" name="adults" min="1" value="" required>
+            </div>
+            <div>
+                <label for="kids">Kids:</label>
+                <input type="number" id="kids" name="kids" min="0" value="" required>
+            </div>
+            <div>
+                <button type="button" class="booking-button" id="check-availability">Check Availability</button>
+            </div>
+        </div>
+    </form>
+    <div id="availability-message" class="availability-message"></div>
+</div>
+
+<!-- Loading Spinner -->
+<div id="loading-spinner" style="display:none; text-align:center; color:white; font-size: 18px;">Loading...</div>
+
+<section class="abouthome" id="abouthome">
+    <div class="containerflex">
+      <div class="left">
+        <div class="img">
+          <img src="images/phase2.png" alt="" class="image1">
+          <img src="images/phase2-4.jpg" alt="" class="image2">
+        </div>
+      </div>
+      <div class="right">
+        <div class="heading">
+          <h5>Take a break. Exclusive Getaway. Recharge your batteries.</h5>
+          <h2>Welcome to Rainbow Forest Paradise Resort and Campsite</h2>
+          <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Himenaeos vehicula sem amet primis; efficitur posuere. 
+            Ullamcorper faucibus ante turpis semper class quisque; potenti platea. Tristique semper facilisis tortor placerat mi libero. Nibh eleifend suscipit penatibus nulla lacus fames. 
+            Sit ultricies euismod tristique habitant morbi; nisl eget luctus eleifend. 
+            Rhoncus class sapien sed praesent lorem sollicitudin pharetra cubilia.
+            </p>
+          <a href="about us.html"><button class="btn1" style="cursor: pointer;">READ MORE</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="amenities-section" id="amenities">
+    <div class="container">
+      <h2 class="section-title">Our Activities</h2>
+      <div class="amenities-content">
+        <div class="amenities-grid">
+          <div class="amenity-item" style="background-image: url('images/bg1.png');">
+            <div class="amenity-text">
+              <h3>Swimming Pool</h3>
+            </div>
+          </div>
+          <div class="amenity-item" style="background-image: url('images/camping.jpg');">
+            <div class="amenity-text">
+              <h3>Camping</h3>
+            </div>
+          </div>
+          <div class="amenity-item" style="background-image: url('images/bonfire.jpg');">
+            <div class="amenity-text">
+              <h3>Bonfire</h3>
+            </div>
+          </div>
+          <div class="amenity-item" style="background-image: url('images/ziplinee.jpg');">
+            <div class="amenity-text">
+              <h3>Zipline</h3>
+            </div>
+          </div>
+          <div class="amenity-item" style="background-image: url('images/spiderweb.png');">
+            <div class="amenity-text">
+              <h3>Spider Web</h3>
+            </div>
+          </div>
+          <div class="amenity-item" style="background-image: url('images/kubo.jpg');">
+            <div class="amenity-text">
+              <h3>Kubo/Cottages</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="empty-space"></div>
+    </div>
+  </section>
+  
+  <section class="photo-gallery">
+    <h2>Welcome to Our Photo Gallery</h2>
+    <div class="gallery-container" id="gallery">
+        <div class="gallery-item"><img src="gal2.jpg" alt="Image 1"></div>
+        <div class="gallery-item"><img src="phase2-2.jpg" alt="Image 2"></div>
+        <div class="gallery-item"><img src="gal3.jpg" alt="Image 3"></div>
+        <div class="gallery-item"><img src="gal4.jpg" alt="Image 4"></div>
+        <div class="gallery-item"><img src="gal5.jpg" alt="Image 5"></div>
+    </div>
+    <div class="gallery-navigation">
+        <button onclick="nextImages()">See More</button>
+    </div>
+</section>
+  
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="images/rainbow-logo.png" alt="Rainbow Forest Logo">
+        </div>
+        <div class="footer-nav">
+            <h3>Explore</h3>
+            <ul>
+                <li><a href="#">Accommodations</a></li>
+                <li><a href="#">Activities</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-contact">
+            <h3>Contact Us</h3>
+            <p><strong>Address:</strong> Brgy. Cuyambay, Tanay, Rizal</p>
+            <p><strong>Contact No.:</strong> 0960 587 7561</p>
+        </div>
+        <div class="footer-actions">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Follow Us</a></li>
+                <li><a href="#">Book Now</a></li>
+                <li><a href="#">Cancel Reservation</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+  
+<script src="js/flatpickr.min.js"></script>
+<script>
+    // Initialize Flatpickr for Arrival and Departure Date
+    flatpickr("#arrival-date", {
+        dateFormat: "Y-m-d",
+        theme: "material_blue", // Optional: Flatpickr themes like material_blue, dark, etc.
+        onChange: function(selectedDates, dateStr, instance) {
+            const departureInput = document.getElementById('departure-date');
+            departureInput.disabled = false; // Enable departure date field when arrival is selected
+            departureInput.focus();
+        }
+    });
+
+    flatpickr("#departure-date", {
+        dateFormat: "Y-m-d",
+        minDate: "today", // Disable past dates
+        onChange: function(selectedDates, dateStr, instance) {
+            // Optional: You can perform additional logic here
+        }
+    });
+
+    document.getElementById('check-availability').addEventListener('click', function (event) {
+        const arrivalDate = document.getElementById('arrival-date').value;
+        const departureDate = document.getElementById('departure-date').value;
+        const adults = document.getElementById('adults').value;
+        const kids = document.getElementById('kids').value;
+        const arrivalError = document.getElementById('arrival-error');
+        const departureError = document.getElementById('departure-error');
+        const availabilityMessage = document.getElementById('availability-message');
+
+        // Reset errors
+        arrivalError.textContent = '';
+        departureError.textContent = '';
+        availabilityMessage.textContent = '';
+        document.getElementById('loading-spinner').style.display = 'block'; // Show loading spinner
+
+        const arrival = new Date(arrivalDate);
+        const departure = new Date(departureDate);
+        const today = new Date();
+
+        let hasError = false;
+
+        // Validate dates
+        if (!arrivalDate) {
+            arrivalError.textContent = 'Please select an arrival date.';
+            hasError = true;
+        } else if (arrival < today) {
+            arrivalError.textContent = 'Arrival date cannot be in the past.';
+            hasError = true;
+        }
+
+        if (!departureDate) {
+            departureError.textContent = 'Please select a departure date.';
+            hasError = true;
+        } else if (departure <= arrival) {
+            departureError.textContent = 'Departure date must be after the arrival date.';
+            hasError = true;
+        }
+
+        if (hasError) {
+            document.getElementById('loading-spinner').style.display = 'none'; // Hide spinner
+            return;
+        }
+
+        // Check availability using AJAX
+        fetch(`check-availability.php?arrival-date=${arrivalDate}&departure-date=${departureDate}&adults=${adults}&kids=${kids}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.available) {
+                    availabilityMessage.innerHTML = `Your selected dates are available!`;
+                } else {
+                    availabilityMessage.innerHTML = `Sorry, the property is fully booked for these dates.`;
+                }
+                document.getElementById('loading-spinner').style.display = 'none'; // Hide spinner
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                availabilityMessage.textContent = 'An error occurred while checking availability.';
+                document.getElementById('loading-spinner').style.display = 'none'; // Hide spinner
+            });
+        });
+    </script>
+
+
+    <script>
+        function img(anything) {
+        document.querySelector('.slide').src = anything;
+        }
+
+        function change(change) {
+        const line = document.querySelector('.image');
+        line.style.background = change;
+        }
+    </script>
+
+    <script>
+    function toggleMenu() {
+        const menu = document.querySelector('.menu');
+        const hamburger = document.querySelector('.hamburger');
+        const hamburgerVertical = document.querySelector('.hamburger-vertical');
+        menu.classList.toggle('active');
+        if (menu.classList.contains('active')) {
+            hamburger.style.display = 'none';
+            hamburgerVertical.style.display = 'block';
+        } else {
+            hamburger.style.display = 'block';
+            hamburgerVertical.style.display = 'none';
+        }
+    }
+
+    function bookNow(phase) {
+        alert(`You clicked Book Now for ${phase}!`);
+    }
+    </script>
+
+    <script>
+    // Function to change the background image of the hero section
+        function changeBackground(image, imgElement) {
+            document.querySelector('.hero').style.backgroundImage = `url('${image}')`;
+            // Add border to clicked image
+            const images = document.querySelectorAll('.menu img');
+            images.forEach(img => img.classList.remove('clicked'));
+            imgElement.classList.add('clicked');
+        }
+
+        // Automatic hero image transition every 3 seconds
+        const images = ['phase2-1.jpg', 'phase2-4.jpg', 'phase2-5.jpg'];
+        let currentImage = 0;
+        setInterval(() => {
+            currentImage = (currentImage + 1) % images.length;
+            changeBackground(images[currentImage], document.querySelectorAll('.menu img')[currentImage]);
+        }, 3000);
+    </script>
+
+    <script>
+        const image = [
+            "resort11.png", "resort3.png", "kubo.jpg", "phase1.png", "phase2.png",
+            "resort6.png", "resort7.png", "resort8.png", "resort9.png", "resort10.png"
+        ];
+        let index = 0;
+        const gallery = document.getElementById("gallery");
+
+        function nextImages() {
+            index = (index + 5) % images.length;
+            gallery.innerHTML = "";
+            for (let i = 0; i < 5; i++) {
+                let img = document.createElement("img");
+                img.src = images[(index + i) % images.length];
+                img.alt = `Image ${index + i + 1}`;
+                let div = document.createElement("div");
+                div.classList.add("gallery-item");
+                div.appendChild(img);
+                gallery.appendChild(div);
+            }
+        }
+    </script>
+
+</body>
+</html>

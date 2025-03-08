@@ -117,7 +117,7 @@ session_start();
                     Enjoy exclusive access to the entire resort! This includes two pools, two houses, a pavilion, and a cozy kubo, ensuring privacy and relaxation.
                     Perfect for families, reunions, and private gatherings. Guests can also partake in exciting activities available in the public area.
                 </p>
-                <button onclick="bookNow('Phase 1')">BOOK NOW</button>
+                <a href="homep1.php" class="phasebutton">Proceed to Phase 2</a>
             </div>
             <div class="phase-card phase-public">
                 <h2>PHASE 2</h2>
@@ -126,7 +126,7 @@ session_start();
                     Stay in our welcoming accommodations, including rooms, cabins, and houses, ideal for individuals or small groups. 
                     Enjoy thrilling activities such as ziplining, bonfires, and swimming, making your stay an unforgettable adventure!
                 </p>
-                <button onclick="bookNow('Phase 2')">BOOK NOW</button>
+                <a href="phase2.php" class="phasebutton">Proceed to Phase 2</a>
             </div>            
         </div>
     </div>
@@ -145,8 +145,8 @@ session_start();
                 <ul id="menu-img" class="home-nav-links">
                     <li><a href="homep1.html">HOME</a></li>
                     <li><a href="aboutus.html">ABOUT</a></li>
-                    <li><a href="accom.html">ACCOMMODATIONS</a></li>
-                    <li><a href="#">ACTIVITIES</a></li>
+                    <li><a href="accomodation_p1.html">ACCOMMODATIONS</a></li>
+                    <li><a href="activities.html">ACTIVITIES</a></li>
                     <li><a href="#">CONTACT US</a></li>
                     <li><a href="#">BOOK NOW</a></li>
                     <li><a href="#" class="user-icon">

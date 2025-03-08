@@ -8,165 +8,146 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
   <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-  }
-
-  body {
-    background: linear-gradient(135deg, #184D47, #2F6861);
-    color: #0B3D20;
-    text-align: center;
-    padding: 0px;
-  }
-
-  /* Header */
-  .landing-header {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 15px;
-    margin-top: 60px;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(12px);
-    animation: fadeIn 1s ease-in-out;
-  }
-
-  .landing-header h1 {
-    font-size: 2.8em;
-    font-family: "Dancing Script", cursive;
-    color: #ffffff;
-    text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.4);
-  }
-
-  .landing-header p {
-    font-size: 1.1em;
-    color: #ffffff;
-  }
-
-  .select-experience {
-    margin-top: 30px;
-    font-size: 1.3em;
-    font-weight: 500;
-    color: #ffffff;
-  }
-
-  .menucontainer {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-    max-width: 1200px;
-    margin: auto;
-  }
-
-   .phase-card {
-            width: 500px;
-            padding: 30px;
-            margin-top: 20px;
-            text-align: center;
-            border-radius: 12px;
-            background-color: #508E87;
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 450px; 
-        }
-        .phase-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-        }
-        .phase-card h2 {
-            font-size: 35px;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-        .phase-card h3 {
-            font-size: 38px;
-            margin-bottom: 20px;
-            color: #fff;
-            font-weight: 700;
-        }
-        .phase-card p {
-            color: #ffffff;
-            font-size: 18px;
-            line-height: 1.6;
-        }
-        .phase-card button {
-            padding: 12px 30px;
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #ffffff;
-            background-color: transparent;
-            border: 2px solid white;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-            border-radius: 8px;
-        }
-        .phase-private {
-            background: linear-gradient(135deg, #184D47, #0C2D27);
-            color: white;
-        }
-        .phase-private button:hover {
-            background-color: white;
-            color: #184D47;
-        }
-        .phase-public {
-            background: linear-gradient(135deg, #508E87, #2F6861);
-            color: white;
-        }
-        .phase-public button:hover {
-            background-color: white;
-            color: #508E87;
-        }
-
-  .btn {
-    display: inline-block;
-    padding: 14px 30px;
-    background: #ffffff;
-    color: #184D47;
-    font-size: 1.2em;
-    font-weight: bold;
-    border: none;
-    border-radius: 30px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    text-decoration: none;
-  }
-
-  .btn:hover {
-    background: #184D47;
-    color: #ffffff;
-  }
-  .btn-container {
-    margin-top: auto; /* Push button to bottom */
-  }
-
-  /* Animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 
-  /* Responsive */
-  @media (max-width: 768px) {
+    body {
+      background: linear-gradient(135deg, #184D47, #2F6861);
+      color: #0B3D20;
+      text-align: center;
+      padding: 0px;
+    }
+
+    .landing-header {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 15px;
+      margin-top: 60px;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(12px);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .landing-header h1 {
+      font-size: 2.8em;
+      font-family: "Dancing Script", cursive;
+      color: #ffffff;
+      text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .landing-header p {
+      font-size: 1.1em;
+      color: #ffffff;
+    }
+
+    .select-experience {
+      margin-top: 30px;
+      font-size: 1.3em;
+      font-weight: 500;
+      color: #ffffff;
+    }
+
     .menucontainer {
-      flex-direction: column;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
     }
 
     .phase-card {
-      width: 95%;
+      width: 500px;
+      padding: 30px;
+      margin-top: 20px;
+      text-align: center;
+      border-radius: 12px;
+      background-color: #508E87;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 450px; 
     }
-  }
+    .phase-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    }
+    .phase-card h2 {
+      font-size: 35px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .phase-card h3 {
+      font-size: 38px;
+      margin-bottom: 20px;
+      color: #fff;
+      font-weight: 700;
+    }
+    .phase-card p {
+      color: #ffffff;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    .phase-card .phasebutton {
+      padding: 12px 30px;
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: transparent;
+      border: 2px solid white;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      border-radius: 26px;
+    }
+    .phasebutton {
+      display: inline-block;
+      padding: 14px 30px;
+      background: #ffffff;
+      color: #184D47;
+      font-size: 1.2em;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .phasebutton:hover {
+      background: #184D47;
+      color: #ffffff;
+      border: 2px solid white;
+    }
+    .phasebutton-container {
+      margin-top: auto;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .menucontainer {
+        flex-direction: column;
+      }
+
+      .phase-card {
+        width: 95%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -186,7 +167,7 @@
         Perfect for families, reunions, and private gatherings. 
     </p>
       <div class="btn-container">
-        <a href="homep1.php" class="btn">Proceed to Phase 1</a>
+        <a href="home_p1.php" class="phasebutton">Proceed to Phase 1</a>
       </div>
     </div>
     
@@ -198,7 +179,7 @@
         Enjoy thrilling activities such as ziplining, spiderweb, bonfires, and more!
     </p>
       <div class="btn-container">
-        <a href="phase2.html" class="btn">Proceed to Phase 2</a>
+        <a href="home_p2.php" class="phasebutton">Proceed to Phase 2</a>
       </div>
     </div>            
   </div>

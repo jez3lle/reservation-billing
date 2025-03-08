@@ -6,6 +6,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+   
         }
         html, body {
             background-color: #325f51 !important; /* Override any other styles */
@@ -159,7 +160,7 @@
         .booknow {
             display: inline-block;
             margin-top: 20px;
-            padding: 15px 30px;
+            padding: 15px 35px;
             font-size: 14px;
             font-weight: bold;
             background-color: transparent; 
@@ -169,7 +170,7 @@
             border: 2px solid white;
         }
         .booknow:hover {
-            background-color: #b3a41d;
+            background-color: #c7a925;
         }
 
         /* Space above header */
@@ -269,7 +270,9 @@
             font-size: 20px;
             line-height: 1.6;
         }
-        .phase-card button {
+
+        .phase-card .phasebutton {
+            display: inline-block; /* Ensures it behaves like a button */
             padding: 12px 30px;
             margin-top: 20px;
             font-size: 18px;
@@ -279,24 +282,33 @@
             border: 2px solid white;
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s;
-            border-radius: 8px;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none; /* Removes underline */
         }
+
+        /* Private Phase */
         .phase-private {
             background: linear-gradient(135deg, #184D47, #0C2D27);
             color: white;
         }
-        .phase-private button:hover {
+
+        .phase-private .phasebutton:hover {
             background-color: white;
             color: #184D47;
         }
+
+        /* Public Phase */
         .phase-public {
             background: linear-gradient(135deg, #508E87, #2F6861);
             color: white;
         }
-        .phase-public button:hover {
+
+        .phase-public .phasebutton:hover {
             background-color: white;
             color: #508E87;
         }
+
 
         .booking-container {
             display: flex;
@@ -456,7 +468,7 @@
         }
     
         .btn1 {
-            background: #8B8000;
+            background: #c7a925;
             color: white;
             margin-top: 18px;
             padding: 10px 25px;
@@ -466,7 +478,7 @@
             transition: 0.3s;
         }
         .btn1:hover {
-            background: #b3a41d;
+            background: #2e7d32;
         }
         @media (max-width: 768px) {
             .containerflex {
@@ -535,7 +547,7 @@
             position: absolute;
             bottom: 5px;
             left: 5px;
-            background-color: rgba(12, 10, 10, 0.6); /* Overlay for text contrast */
+            background-color: rgba(47, 160, 102, 0.6); /* Overlay for text contrast */
             color: white;
             padding: 10px 15px;
             border-radius: 0px;
@@ -544,6 +556,8 @@
             margin: 0;
             font-size: 15px;
             font-weight: bold;
+            letter-spacing: 2px; /* Adjust spacing as needed */
+            text-transform: uppercase;
         }
         .empty-space {
             width: 30%;
