@@ -33,7 +33,7 @@ if (!$bill) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Bill</title>
-    <link rel="stylesheet" href="bill.css">
+    <link rel="stylesheet" href="css/bill.css">
 </head>
 <body>
 

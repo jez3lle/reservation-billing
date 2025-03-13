@@ -1,8 +1,37 @@
 <?php
-session_start();
+session_start(); // Start the session at the beginning
+
+// Store check-in/check-out dates if redirected from booking page
+if (isset($_GET['check_in']) && isset($_GET['check_out'])) {
+    // Validate dates before storing in session
+    $check_in = date('Y-m-d', strtotime($_GET['check_in']));
+    $check_out = date('Y-m-d', strtotime($_GET['check_out']));
+    
+    if ($check_in && $check_out && $check_in < $check_out) {
+        $_SESSION['check_in'] = $check_in;
+        $_SESSION['check_out'] = $check_out;
+    }
+}
+
+function getUserStatus() {
+    if (isset($_SESSION["user_id"])) {
+        $mysqli = require __DIR__ . "/database.php";
+        $stmt = $mysqli->prepare("SELECT first_name, last_name FROM user WHERE id = ?");
+        $stmt->bind_param("i", $_SESSION["user_id"]);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        $stmt->close();
+        
+        // Return null if user doesn't exist in database (account might have been deleted)
+        return $user ?: null;
+    }
+    return null;
+}
+
+// Get the current user if logged in
+$current_user = getUserStatus();
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +45,7 @@ session_start();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/flatpickr.min.css">
+    <link rel="stylesheet" href="flatpickr.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         
@@ -117,7 +146,7 @@ session_start();
                     Enjoy exclusive access to the entire resort! This includes two pools, two houses, a pavilion, and a cozy kubo, ensuring privacy and relaxation.
                     Perfect for families, reunions, and private gatherings. Guests can also partake in exciting activities available in the public area.
                 </p>
-                <a href="home_p1.php" class="phasebutton">Proceed to Phase 1</a>
+                <button onclick="bookNow('Phase 1')">BOOK NOW</button>
             </div>
             <div class="phase-card phase-public">
                 <h2>PHASE 2</h2>
@@ -126,7 +155,7 @@ session_start();
                     Stay in our welcoming accommodations, including rooms, cabins, and houses, ideal for individuals or small groups. 
                     Enjoy thrilling activities such as ziplining, bonfires, and swimming, making your stay an unforgettable adventure!
                 </p>
-                <a href="home_p2.php" class="phasebutton">Proceed to Phase 2</a>
+                <button onclick="bookNow('Phase 2')">BOOK NOW</button>
             </div>            
         </div>
     </div>
@@ -143,23 +172,38 @@ session_start();
             </div>
             <div class="nav-right">
                 <ul id="menu-img" class="home-nav-links">
-                    <li><a href="home_p1.html">HOME</a></li>
-                    <li><a href="aboutus_p1.html">ABOUT</a></li>
-                    <li><a href="accomodation_p1.html">ACCOMMODATIONS</a></li>
-                    <li><a href="activities_p1.html">ACTIVITIES</a></li>
+                    <li><a href="home_p1.php">HOME</a></li>
+                    <li><a href="aboutus_p1.php">ABOUT</a></li>
+                    <li><a href="accomodation_p1.php">ACCOMMODATIONS</a></li>
+                    <li><a href="activities_p1.php">ACTIVITIES</a></li>
                     <li><a href="#">CONTACT US</a></li>
                     <li><a href="#">BOOK NOW</a></li>
-                    <li><a href="#" class="user-icon">
-                        <img src="images/logo.png" alt="User Icon">
-                    </a></li>
                 </ul>
+            </div>
+            <div class="icon">
+                <?php if($current_user): ?>
+                    <div class="user-info">
+                        <span class="user-name">Hello, <?= htmlspecialchars($current_user["first_name"]) ?></span>
+                        <div class="user-actions">
+                            <a href="account.php" class="profile-btn">My Profile</a>
+                            <form action="logout.php" method="post">
+                                <button type="submit" class="logout-btn">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <!-- Just a placeholder since we're already on the login page -->
+                    <a href="index.php" class="user-icon">
+                        <img src="images/logo.png" alt="User Icon">
+                    </a>
+                <?php endif; ?>
             </div>
         </nav>
         <div class="hero-text">
             <h1><span>Welcome to Phase 1</span><br>Private</h1>
             <p>Book the entire property for your exclusive retreat!</p>
             <p>Experience nature, peace, and luxury.</p>
-            <a href="#" class="booknow">BOOK NOW</a> 
+            <a href="#" class="booknow">BOOK NOW</a> <!-- Book Now Button -->
         </div>
         <!-- Vertical Menu with Images -->
         <div class="menu-img">
@@ -182,6 +226,8 @@ session_start();
         <div id="availabilityResult" class="message-box"></div>
     </form>
 
+
+
     <section class="abouthome" id="abouthome">
         <div class="containerflex">
         <div class="left">
@@ -199,7 +245,7 @@ session_start();
                 Sit ultricies euismod tristique habitant morbi; nisl eget luctus eleifend. 
                 Rhoncus class sapien sed praesent lorem sollicitudin pharetra cubilia.
                 </p>
-            <a href="aboutus_p1.html"><button class="btn1" style="cursor: pointer;">READ MORE</button>
+            <a href="about us.html"><button class="btn1" style="cursor: pointer;">READ MORE</button>
             </a>
             </div>
         </div>
@@ -208,7 +254,7 @@ session_start();
 
   <section class="amenities-section" id="amenities">
     <div class="container">
-      <h2 class="section-title">Our Activities</h2>
+      <h2 class="section-title">Our Amenities</h2>
       <div class="amenities-content">
         <div class="amenities-grid">
           <div class="amenity-item" style="background-image: url('images/bg1.png');">
@@ -226,7 +272,7 @@ session_start();
               <h3>Bonfire</h3>
             </div>
           </div>
-          <div class="amenity-item" style="background-image: url('images/zipline.jpg');">
+          <div class="amenity-item" style="background-image: url('images/ziplinee.jpg');">
             <div class="amenity-text">
               <h3>Zipline</h3>
             </div>
@@ -260,8 +306,6 @@ session_start();
             <button onclick="nextImages()">See More</button>
         </div>
     </section>
-    
-
     <footer>
         <div class="footer-container">
             <div class="footer-logo">
@@ -291,7 +335,6 @@ session_start();
             </div>
         </div>
     </footer>
-
     <script>
         $(document).ready(function(){
             var today = new Date().toISOString().split('T')[0];
@@ -340,7 +383,7 @@ session_start();
                         if (response.trim() === "logged_in") {
                             window.location.href = "reservation_form.php";
                         } else {
-                            window.location.href = "login.php?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
+                            window.location.href = "index.php?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
                         }
                     },
                     error: function() {

@@ -1,3 +1,24 @@
+<?php
+session_start(); // Start the session at the beginning
+function getUserStatus() {
+    if (isset($_SESSION["user_id"])) {
+        $mysqli = require __DIR__ . "/database.php";
+        $stmt = $mysqli->prepare("SELECT first_name, last_name FROM user WHERE id = ?");
+        $stmt->bind_param("i", $_SESSION["user_id"]);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        $stmt->close();
+        
+        // Return null if user doesn't exist in database (account might have been deleted)
+        return $user ?: null;
+    }
+    return null;
+}
+
+// Get the current user if logged in
+$current_user = getUserStatus();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,14 +74,29 @@
 
             <ul class="nav-links">
                 <li><a href="home_p1.php">HOME</a></li>
-                <li><a href="aboutus_p1.html">ABOUT</a></li>
-                <li><a href="accomodation_p1.html">ACCOMMODATIONS</a></li>
+                <li><a href="aboutus_p1.php">ABOUT</a></li>
+                <li><a href="accomodation_p1.php">ACCOMMODATIONS</a></li>
                 <li><a href="activities_p1.html">ACTIVITIES</a></li>
                 <li><a href="#">CONTACT US</a></li>
                 <li><a href="#">BOOK NOW</a></li>
             </ul>
             <div class="icon">
-                <img src="images/logo.png" alt="User">
+                <?php if($current_user): ?>
+                    <div class="user-info">
+                        <span class="user-name">Hello, <?= htmlspecialchars($current_user["first_name"]) ?></span>
+                        <div class="user-actions">
+                            <a href="account.php" class="profile-btn">My Profile</a>
+                            <form action="logout.php" method="post">
+                                <button type="submit" class="logout-btn">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <!-- Just a placeholder since we're already on the login page -->
+                    <a href="index.php" class="user-icon">
+                        <img src="images/logo.png" alt="User Icon">
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </header>

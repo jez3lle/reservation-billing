@@ -903,5 +903,30 @@
             font-size: 0.9em;
             line-height: 1.6;
         } 
+        .icon {
+            display: flex;
+            align-items: center;
+        }
+        .icon img {
+            width: 40px;
+            border-radius: 50%;
+        }
+        /* User info styling */
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: transparent; /* Add this line */
+        }
+        
+        .user-name {
+            color: white;
+            font-weight: 500;
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 10px;
+        }
 
 

@@ -46,7 +46,7 @@ $total_amount = $bill['total_amount'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Payment</title>
-    <link rel="stylesheet" href="upload_payment.css">
+    <link rel="stylesheet" href="css/upload_payment.css">
 </head>
 <body>
 
