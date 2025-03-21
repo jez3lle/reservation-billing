@@ -15,7 +15,7 @@ if (!isset($_SESSION["user_id"])) {
     $_SESSION["redirect_after_login"] = $_SERVER["REQUEST_URI"];
     
     // Make sure this path is correct relative to this file
-    header("Location: login.php"); // or the correct path to your login page
+    header("Location: index.php"); // or the correct path to your login page
     exit;
 }
 
@@ -59,9 +59,11 @@ $mysqli->close();
     <link rel="stylesheet" href="reservation.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Reservation Form</h2>
-        <form action="reservation_process.php" method="POST" class="reservation-form" id="reservation-form">
+<div class="container">
+        <h2>Guest Reservation Form</h2>
+        <p>Complete the form below to make your reservation.</p>
+        
+        <form action="guest_reservation_process.php" method="POST" class="reservation-form" id="reservation-form">
             <div class="form-row">
                 <div class="form-group">
                     <label>Check-in Date:</label>
@@ -88,6 +90,7 @@ $mysqli->close();
                 <div class="form-group">
                     <label>Email:</label>
                     <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($user['email'] ?? ''); ?>">
+                    <div id="email-error" class="error-message"></div>
                 </div>
                 <div class="form-group">
                     <label>Phone Number:</label>
@@ -95,7 +98,37 @@ $mysqli->close();
                     <div id="contact_number-error" class="error-message"></div>
                 </div>
             </div>
-            <button type="submit" class="btn">Submit Reservation</button>
+            
+            <!-- Additional guest-specific fields -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Number of Guests(Adults):</label>
+                    <input type="number" name="guest_count" id="guest_count" min="1" required>
+                    <div id="guest_count-error" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label>Number of Guests(Kids):</label>
+                    <input type="number" name="guest_count" id="guest_count" min="1" required>
+                    <div id="guest_count-error" class="error-message"></div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-row">
+                    <label>Special Requests:</label>
+                    <textarea name="special_requests" id="special_requests" rows="3"></textarea>
+                </div>
+                <div class="form-row">
+                    <label>Add-Ons:</label>
+                    <textarea name="special_requests" id="special_requests" placeholder="Pillows, Mattress, etc." rows="3"></textarea>
+                </div>        
+            </div>
+            
+            <p class="note">Note: A confirmation email will be sent to your provided email address.</p>
+            
+            <div class="form-row actions">
+                <a href="home_p1.php" class="btn btn-secondary">Back to Home</a>
+                <button type="submit" class="btn">Submit Reservation</button>
+            </div>
         </form>
     </div>
   

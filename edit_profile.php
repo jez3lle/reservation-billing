@@ -73,7 +73,7 @@ if (!$user) {
     <style>
         .edit-profile-form {
             max-width: 600px;
-            margin: 15px;
+            margin: 25px;
             padding: 30px;
             background-color: #f9f9f9;
             border-radius: 8px;
@@ -139,6 +139,13 @@ if (!$user) {
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
+        h1{
+            margin-top: 20px;
+        }
+        .user-info{
+            display: flex;
+            flex-direction: column;
+        }
     </style>
 </head>
 <body>
@@ -182,25 +189,28 @@ if (!$user) {
             </div>
 
             <ul class="nav-links">
-                <li><a href="homep1.html">HOME</a></li>
-                <li><a href="aboutus.html">ABOUT</a></li>
-                <li><a href="accom.html">ACCOMMODATIONS</a></li>
-                <li><a href="activties.html">ACTIVITIES</a></li>
+                <li><a href="home_p1.php">HOME</a></li>
+                <li><a href="aboutus_p1.php">ABOUT</a></li>
+                <li><a href="accommodation_p1.php">ACCOMMODATIONS</a></li>
+                <li><a href="activties_p1.php">ACTIVITIES</a></li>
                 <li><a href="#">BOOK NOW</a></li>
             </ul>
             <div class="icon">
                 <?php if($user): ?>
                     <div class="user-info">
-                    <span class="user-name">Hello, <?= htmlspecialchars($user["first_name"] . " " . $user["last_name"]) ?></span>
+                        <span class="user-name">Hello, <?= htmlspecialchars($user["first_name"]) ?></span>
                         <div class="user-actions">
-                            <a href="account.php" class="profile-btn">My Account</a>
+                            <a href="account.php" class="profile-btn">My Profile</a>
                             <form action="logout.php" method="post">
                                 <button type="submit" class="logout-btn">Logout</button>
                             </form>
                         </div>
                     </div>
                 <?php else: ?>
-                    <span>Login/Register</span>
+                    <!-- Just a placeholder since we're already on the login page -->
+                    <a href="index.php" class="user-icon">
+                        <img src="images/logo.png" alt="User Icon">
+                    </a>
                 <?php endif; ?>
             </div>
         </div>

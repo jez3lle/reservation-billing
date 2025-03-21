@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         send_email($email, $subject, $body); // Use the email from the form
 
         // Redirect to the bill view page
-        header("Location: view_bill.php?reservation_id=$reservation_id");
+        header("Location: bill.php?reservation_id=$reservation_id");
         exit();
 
     } catch (Exception $e) {

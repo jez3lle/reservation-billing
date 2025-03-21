@@ -130,6 +130,29 @@ $current_user = getUserStatus();
             cursor: pointer;
             border-radius: 5px;
         }
+        .account-info {
+            margin-top: 150px;
+            margin-bottom: 150px;
+            background-color: #f0f0f0;
+        }
+
+        .account-info p{
+            line-height: 3;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        
+        h1{
+            alignment: center;
+        }
+
+        .user-info{
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-btn{
+            color:white;
+        }
     </style>
 </head>
 <body>
@@ -272,7 +295,7 @@ $current_user = getUserStatus();
               <h3>Bonfire</h3>
             </div>
           </div>
-          <div class="amenity-item" style="background-image: url('images/ziplinee.jpg');">
+          <div class="amenity-item" style="background-image: url('images/zipline.jpg');">
             <div class="amenity-text">
               <h3>Zipline</h3>
             </div>
@@ -339,18 +362,24 @@ $current_user = getUserStatus();
         $(document).ready(function(){
             var today = new Date().toISOString().split('T')[0];
             $("#check_in, #check_out").attr("min", today);
-
             $("#checkAvailability").click(function(){
                 var check_in = $("#check_in").val();
                 var check_out = $("#check_out").val();
+                var today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
 
                 if (!check_in || !check_out) {
-                    $("#availabilityResult").html("<p class='error'>Please select both check-in and check-out dates.</p>");
+                    $("#availabilityResult").html("<p style='color: red;'>Please select both check-in and check-out dates.</p>");
+                    return;
+                }
+                
+                // Check if check-in date is today
+                if (check_in === today) {
+                    $("#availabilityResult").html("<p style='color: red;'>Same-day check-in is not allowed. Please select a future date.</p>");
                     return;
                 }
 
                 if (check_in >= check_out) {
-                    $("#availabilityResult").html("<p class='error'>Check-out date must be after check-in date.</p>");
+                    $("#availabilityResult").html("<p style='color: red;'>Check-out date must be after check-in date.</p>");
                     return;
                 }
 
@@ -363,37 +392,68 @@ $current_user = getUserStatus();
                     success: function(response){
                         $("#availabilityResult").html(response);
 
-                        if(response.includes("Available")) {
-                            $("#availabilityResult").append(`
-                                <button id="proceedToReservation" data-checkin="${check_in}" data-checkout="${check_out}">Proceed to Reservation</button>
-                            `);
+                        // Remove any existing buttons first
+                        $(".reservation-buttons, #proceedToReservation").parent("div").remove();
+                        
+                        // Only show reservation buttons if the property is available
+                        // Look for "Available!" which only appears in the success message
+                        if(response.includes("Available!")) {
+                            // Store dates in sessionStorage
+                            sessionStorage.setItem('check_in', check_in);
+                            sessionStorage.setItem('check_out', check_out);
+                            
+                            // Check if user is logged in
+                            $.ajax({
+                                url: "check_login.php",
+                                type: "GET",
+                                success: function(loginResponse) {
+                                    if (loginResponse.trim() === "logged_in") {
+                                        // User is logged in, show normal button as direct link
+                                        $("#availabilityResult").append(`
+                                            <div style="display: flex; justify-content: center; margin-top: 15px;">
+                                                <a href="reservation_form.php?check_in=${encodeURIComponent(check_in)}&check_out=${encodeURIComponent(check_out)}" class="btn" id="proceedToReservation" style="padding: 10px 18px; background: green; color: white; text-decoration: none; border-radius: 5px; cursor: pointer;">Proceed to Reservation</a>
+                                            </div>
+                                        `);
+                                    } else {
+                                        // User is not logged in, show both options as direct links
+                                        $("#availabilityResult").append(`
+                                            <div class="reservation-buttons" style="display: flex; justify-content: center; gap: 10px; margin-top: 15px;">
+                                                <a href="guest_reservation.php?check_in=${encodeURIComponent(check_in)}&check_out=${encodeURIComponent(check_out)}" class="btn" id="guestReservation" style="padding: 10px 18px; background: #4caf50; color: white; text-decoration: none; border-radius: 5px; cursor: pointer;">Continue as Guest</a>
+                                                <a href="index.php?check_in=${encodeURIComponent(check_in)}&check_out=${encodeURIComponent(check_out)}" class="btn" id="loginToReserve" style="padding: 10px 18px; background: #03624c; color: white; text-decoration: none; border-radius: 5px; cursor: pointer;">Login to Reserve</a>
+                                            </div>
+                                        `);
+                                    }
+                                }
+                            });
                         }
                     }
                 });
             });
-
+            // Handle click for logged-in users
             $(document).on("click", "#proceedToReservation", function(){
                 var check_in = $(this).data("checkin");
                 var check_out = $(this).data("checkout");
+                window.location.href = "reservation_form.php?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
+            });
 
-                $.ajax({
-                    url: "check_login.php",
-                    type: "GET",
-                    success: function(response) {
-                        if (response.trim() === "logged_in") {
-                            window.location.href = "reservation_form.php";
-                        } else {
-                            window.location.href = "index.php?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
-                        }
-                    },
-                    error: function() {
-                        alert("Error checking login status. Please try again.");
-                    }
-                });
+            // Handle click for guest users
+            $(document).on("click", "#guestReservation", function(){
+                var check_in = $(this).data("checkin");
+                var check_out = $(this).data("checkout");
+                window.location.href = "guest_reservation.php?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
+            });
+
+            // Handle click for users who want to login first
+            $(document).on("click", "#loginToReserve", function(){
+                var check_in = $(this).data("checkin");
+                var check_out = $(this).data("checkout");
+                window.location.href = "index.php?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
             });
         });
-    </script>
-
+        function proceedToReservationFunc(check_in, check_out) {
+        window.location.href = "reservation_form.php?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
+        }
+    </script> <!-- Add this closing tag -->
 
     <script>
         function img(anything) {

@@ -32,6 +32,31 @@ $current_user = getUserStatus();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        .account-info {
+            margin-top: 150px;
+            margin-bottom: 150px;
+            background-color: #f0f0f0;
+        }
+
+        .account-info p{
+            line-height: 3;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        
+        h1{
+            alignment: center;
+        }
+
+        .user-info{
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-btn{
+            color:white;
+        }
+    </style>
 </head>
 <body>
     <div class="top-space">

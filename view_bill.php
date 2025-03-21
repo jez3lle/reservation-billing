@@ -1,9 +1,9 @@
 <?php
 session_start();
-include 'db_connect.php';
+include 'database.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -15,7 +15,7 @@ $sql = "SELECT b.*, r.check_in, r.check_out
         FROM bills b
         JOIN reservations r ON b.reservation_id = r.id
         WHERE b.reservation_id = ? AND b.user_id = ?";
-$stmt = $conn->prepare($sql);
+$stmt = $mysqli->prepare($sql);
 $stmt->bind_param("ii", $reservation_id, $user_id);
 $stmt->execute();
 $result = $stmt->get_result();

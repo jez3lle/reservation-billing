@@ -1,9 +1,9 @@
 <?php
 session_start();
-$conn = new mysqli("localhost", "root", "", "resort_db");
+require "database.php";
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
 }
 
 $check_in = $_POST['check_in'];
@@ -31,7 +31,7 @@ $sql = "SELECT * FROM reservations
         OR (check_in >= ? AND check_in < ?) 
         OR (check_out > ? AND check_out <= ?)";
 
-$stmt = $conn->prepare($sql);
+$stmt = $mysqli->prepare($sql);
 $stmt->bind_param("ssssss", $check_out, $check_in, $check_in, $check_out, $check_in, $check_out);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -43,5 +43,5 @@ if ($result->num_rows > 0) {
 }
 
 $stmt->close();
-$conn->close();
+$mysqli->close();
 ?>

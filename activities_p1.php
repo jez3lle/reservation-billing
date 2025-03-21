@@ -26,6 +26,32 @@ $current_user = getUserStatus();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACTIVITIES - Rainbow Forest Paradise Resort and Campsite</title>
     <link rel="stylesheet" href="mystyle.css">
+    <style>
+        .account-info {
+            margin-top: 150px;
+            margin-bottom: 150px;
+            background-color: #f0f0f0;
+        }
+
+        .account-info p{
+            line-height: 3;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        
+        h1{
+            alignment: center;
+        }
+
+        .user-info{
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-btn{
+            color:white;
+        }
+    </style>
+</head>
 <body>
     <div class="top-space">
         <div class="hamburger" onclick="toggleMenu()">☰</div>

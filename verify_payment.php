@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db_connect.php';
+include 'database.php';
 
 // Check if admin is logged in
 if (!isset($_SESSION['admin_id'])) {
@@ -17,7 +17,7 @@ $sql = "SELECT p.id AS payment_id, p.file_path, p.status,
         JOIN users u ON r.user_id = u.id 
         WHERE p.status = 'Pending'";
 
-$result = $conn->query($sql);
+$result = $mysqli->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -85,4 +85,4 @@ $result = $conn->query($sql);
 </body>
 </html>
 
-<?php $conn->close(); ?>
+<?php $mysqli->close(); ?>

@@ -36,8 +36,8 @@ if (!$user) {
     <style>
         
         .account-info {
-            margin-top: 150px;
-            margin-bottom: 150px;
+            margin-top: 140px;
+            margin-bottom: 140px;
             background-color: #f0f0f0;
         }
 
@@ -99,9 +99,9 @@ if (!$user) {
 
             <ul class="nav-links">
                 <li><a href="home_p1.php">HOME</a></li>
-                    <li><a href="aboutus.php">ABOUT</a></li>
+                    <li><a href="aboutus_p1.php">ABOUT</a></li>
                     <li><a href="accomodation_p1.php">ACCOMMODATIONS</a></li>
-                    <li><a href="activties.php">ACTIVITIES</a></li>
+                    <li><a href="activties_p1.php">ACTIVITIES</a></li>
                     <li><a href="#">BOOK NOW</a></li>
             </ul>
             <div class="icon">
