@@ -37,6 +37,6 @@ $stmt->execute();
 <body>
     <h1>Account Activated</h1>
     <p>Account activated successfully!. You can now 
-    <a href="index.php">Login</a></p>
+    <a href="login.php">Login</a></p>
 </body>
 </html>

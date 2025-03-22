@@ -27,7 +27,7 @@
     <div class="login-container">
         <h2>Reset Password</h2>
         <div class="btn-group">
-            <a href= "login.php" class="btn">LogIn</a>
+            <a href= "index.php" class="btn">LogIn</a>
             <a  href= "createacc.php"class="btn">Create New Account</a>
             <a href= "Resetpass.php" class="btn-active"><u>Reset your password</u></a>
         </div>

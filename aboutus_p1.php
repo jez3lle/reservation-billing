@@ -88,7 +88,6 @@ $current_user = getUserStatus();
 
     <header class="page-header">
         <div class="navbar">
-            <!-- Logo -->
             <div class="logo">
                 <img src="images/rainbow-logo.png" alt="Resort Logo">
                 <div class="logo-text">
@@ -102,7 +101,7 @@ $current_user = getUserStatus();
                 <li><a href="aboutus_p1.php">ABOUT</a></li>
                 <li><a href="accomodation_p1.php">ACCOMMODATIONS</a></li>
                 <li><a href="activities_p1.html">ACTIVITIES</a></li>
-                <li><a href="#">CONTACT US</a></li>
+                <li><a href="contact_p1.php">CONTACT US</a></li>
                 <li><a href="#">BOOK NOW</a></li>
             </ul>
             <div class="icon">
@@ -130,8 +129,9 @@ $current_user = getUserStatus();
         <div class="about-text">
             <h2>About Us</h2>
             <p>
-                Nestled in the heart of Brgy. Cuyambay, Tanay, Rizal, Rainbow Forest Paradise Resort and Campsite offers a refreshing escape, balancing tranquility with adventure. 
-                Founded in 2019 by Mr. Rodrigo Juco and Mrs. Josefina Tan Juco, this scenic haven invites guests to disconnect from the city and immerse themselves in nature.
+                Rainbow Forest Paradise Resort and Campsite is a sanctuary for nature lovers, adventure seekers, and those craving a peaceful retreat.
+                Experience the warmth of Filipino hospitality as you unwind in a place where tranquility meets excitement.
+                Since 2019, we have been a haven for travelers looking to escape the noise of city life and reconnect with nature.
             </p>
         </div>
         <div class="about-image">
@@ -142,8 +142,10 @@ $current_user = getUserStatus();
     <div class="location-section">
         <h2>Location</h2>
         <p>
-            Rainbow Forest Paradise Resort is located in the lush countryside, nestled within a tropical forest, offering a serene retreat close to nature. 
-            <br>Its secluded spot provides a peaceful ambiance, yet it's easily accessible from nearby cities, making it a convenient getaway for relaxation and adventure.
+        Rainbow Forest Paradise Resort is located just a few hours away from Manila, in the lush countryside, 
+        nestled within a tropical forest. <br> It offers a serene retreat where you can unwind and reconnect with nature. 
+        Its secluded spot provides a peaceful ambiance, yet it remains easily accessible from nearby cities,
+         making it the perfect destination for both relaxation and adventure.
         </p>
     </div>
     

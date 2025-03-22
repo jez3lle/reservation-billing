@@ -1,6 +1,6 @@
 <?php
 
-$token = $_GET["token"] ?? null; // Use null coalescing operator to avoid undefined index notice
+$token = $_GET["token"] ?? null; 
 
 if ($token === null) {
     die("Token is required.");

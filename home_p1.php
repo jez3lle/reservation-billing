@@ -48,7 +48,6 @@ $current_user = getUserStatus();
     <link rel="stylesheet" href="flatpickr.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        
         #bookingForm {
             margin: 20px auto 20px auto; /* Top margin, auto center, bottom margin */
             padding:25px 40px;
@@ -153,10 +152,17 @@ $current_user = getUserStatus();
         .profile-btn{
             color:white;
         }
+        .accom-divider {
+            width: 120px;
+            height: 4px;
+            background-color:#508E87;
+            margin: 10px 0;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
-    <div class="top-space">
+<div class="top-space">
         <div class="hamburger" onclick="toggleMenu()">☰</div>
     </div>
     <div class="menu">
@@ -169,7 +175,7 @@ $current_user = getUserStatus();
                     Enjoy exclusive access to the entire resort! This includes two pools, two houses, a pavilion, and a cozy kubo, ensuring privacy and relaxation.
                     Perfect for families, reunions, and private gatherings. Guests can also partake in exciting activities available in the public area.
                 </p>
-                <button onclick="bookNow('Phase 1')">BOOK NOW</button>
+                <a href="home_p1.php" class="phasebutton">Proceed to Phase 1</a>
             </div>
             <div class="phase-card phase-public">
                 <h2>PHASE 2</h2>
@@ -178,7 +184,7 @@ $current_user = getUserStatus();
                     Stay in our welcoming accommodations, including rooms, cabins, and houses, ideal for individuals or small groups. 
                     Enjoy thrilling activities such as ziplining, bonfires, and swimming, making your stay an unforgettable adventure!
                 </p>
-                <button onclick="bookNow('Phase 2')">BOOK NOW</button>
+                <a href="home_p2.php" class="phasebutton">Proceed to Phase 2</a>
             </div>            
         </div>
     </div>
@@ -199,7 +205,7 @@ $current_user = getUserStatus();
                     <li><a href="aboutus_p1.php">ABOUT</a></li>
                     <li><a href="accomodation_p1.php">ACCOMMODATIONS</a></li>
                     <li><a href="activities_p1.php">ACTIVITIES</a></li>
-                    <li><a href="#">CONTACT US</a></li>
+                    <li><a href="contact_p1.php">CONTACT US</a></li>
                     <li><a href="#">BOOK NOW</a></li>
                 </ul>
             </div>
@@ -261,12 +267,13 @@ $current_user = getUserStatus();
         </div>
         <div class="right">
             <div class="heading">
-            <h5>Take a break. Exclusive Getaway. Recharge your batteries.</h5>
+            <h5>Take a break. Exclusive Getaway. Reconnect with nature.</h5>
+            <div class="accom-divider"></div>
             <h2>Welcome to Rainbow Forest Paradise Resort and Campsite</h2>
-            <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Himenaeos vehicula sem amet primis; efficitur posuere. 
-                Ullamcorper faucibus ante turpis semper class quisque; potenti platea. Tristique semper facilisis tortor placerat mi libero. Nibh eleifend suscipit penatibus nulla lacus fames. 
-                Sit ultricies euismod tristique habitant morbi; nisl eget luctus eleifend. 
-                Rhoncus class sapien sed praesent lorem sollicitudin pharetra cubilia.
+            <p>Looking for an affordable yet clean and relaxing resort or campsite just a few hours away from Manila?
+                 Rainbow Forest Paradise is the perfect destination for those seeking a peaceful retreat surrounded by nature. Whether you're planning a private getaway with family and friends or a fun-filled adventure in the great outdoors, our resort offers the ideal balance of comfort, relaxation, and excitement.
+                 At Rainbow Forest Paradise, we take pride in providing a well-maintained and tranquil environment, 
+                 ensuring a stress-free stay for all our guests. Our friendly and accommodating staff are always ready to assist, making sure your experience is nothing short of exceptional. From cozy accommodations to refreshing pools and open-air pavilions, every corner of our resort is designed to offer relaxation and enjoyment.
                 </p>
             <a href="about us.html"><button class="btn1" style="cursor: pointer;">READ MORE</button>
             </a>
@@ -277,7 +284,7 @@ $current_user = getUserStatus();
 
   <section class="amenities-section" id="amenities">
     <div class="container">
-      <h2 class="section-title">Our Amenities</h2>
+      <h2 class="section-title">Our Activities</h2>
       <div class="amenities-content">
         <div class="amenities-grid">
           <div class="amenity-item" style="background-image: url('images/bg1.png');">
