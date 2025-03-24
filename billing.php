@@ -2,40 +2,22 @@
 session_start();
 
 // Check if reservation details exist in session
-if (!isset($_SESSION['guest_reservation'])) {
+if (!isset($_SESSION['temp_reservation'])) {
     // Redirect to reservation page if no reservation data is found
     header("Location: guest_reservation.php");
     exit;
 }
 
 // Get reservation details from session
-$reservation = $_SESSION['guest_reservation'];
-
-// Get the database connection
-$mysqli = require 'database.php';
-
-// Fetch reservation details from database to get complete information
-$stmt = $mysqli->prepare("SELECT * FROM guest_reservations WHERE reservation_code = ?");
-$stmt->bind_param("s", $reservation['reservation_code']);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows === 0) {
-    // Reservation not found in database
-    $_SESSION['reservation_error'] = "Reservation details not found. Please try again.";
-    header("Location: guest_reservation.php");
-    exit;
-}
-
-$reservationData = $result->fetch_assoc();
+$reservation = $_SESSION['temp_reservation'];
 
 // Calculate number of nights
-$check_in = new DateTime($reservationData['check_in_date']);
-$check_out = new DateTime($reservationData['check_out_date']);
+$check_in = new DateTime($reservation['check_in_date']);
+$check_out = new DateTime($reservation['check_out_date']);
 $nights = $check_in->diff($check_out)->days;
 
 // Calculate total number of guests
-$total_guests = $reservationData['guest_adult'] + $reservationData['guest_kid'];
+$total_guests = $reservation['guest_adult'] + $reservation['guest_kid'];
 
 // Set base rate and additional person rate
 $base_rate = 20000; // Base rate for up to 20 people per night
@@ -118,30 +100,88 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // In a real application, you would process the payment here
             // For this example, we'll just simulate success
             
-            // Update reservation status to confirmed
-            $update_stmt = $mysqli->prepare("UPDATE guest_reservations SET status = 'confirmed', payment_amount = ?, payment_method = ? WHERE reservation_code = ?");
-            $update_stmt->bind_param("dss", $total, $payment_method, $reservation['reservation_code']);
+            // Get the database connection
+            $mysqli = require 'database.php';
             
-            if ($update_stmt->execute()) {
+            // Now that payment is successful/validated, insert the reservation into the database
+            $stmt = $mysqli->prepare("INSERT INTO guest_reservations (
+                reservation_code, 
+                user_id, 
+                first_name, 
+                last_name, 
+                email, 
+                contact_number, 
+                check_in_date, 
+                check_out_date, 
+                guest_adult, 
+                guest_kid, 
+                special_requests, 
+                add_ons, 
+                status, 
+                payment_amount, 
+                payment_method,
+                created_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            
+            // Generate a final reservation code (not temporary)
+            $final_reservation_code = 'RES-' . strtoupper(substr(md5(uniqid(rand(), true)), 0, 10));
+            
+            // Get user ID from session
+            $user_id = $reservation['user_id'];
+            
+            // Status depends on payment method - cash requires payment on arrival
+            $status = ($payment_method === 'cash') ? 'pending_payment' : 'confirmed';
+            
+            $created_at = date('Y-m-d H:i:s');
+            
+            $stmt->bind_param(
+                "sissssssiiissds", 
+                $final_reservation_code, 
+                $user_id, 
+                $reservation['first_name'], 
+                $reservation['last_name'], 
+                $reservation['email'], 
+                $reservation['contact_number'], 
+                $reservation['check_in_date'], 
+                $reservation['check_out_date'], 
+                $reservation['guest_adult'], 
+                $reservation['guest_kid'], 
+                $reservation['special_requests'], 
+                $reservation['add_ons'], 
+                $status, 
+                $total, 
+                $payment_method,
+                $created_at
+            );
+            
+            if ($stmt->execute()) {
                 $payment_success = true;
+                
+                // Update the reservation code in session to the final one
+                $_SESSION['temp_reservation']['reservation_code'] = $final_reservation_code;
                 
                 // Store payment confirmation in session
                 $_SESSION['payment_confirmation'] = [
-                    'reservation_code' => $reservation['reservation_code'],
+                    'reservation_code' => $final_reservation_code,
                     'amount' => $total,
                     'payment_method' => $payment_method,
                     'transaction_id' => 'TXN-' . strtoupper(substr(md5(uniqid(rand(), true)), 0, 10)),
                     'date' => date('Y-m-d H:i:s')
                 ];
                 
+                // Update guest_reservation session for compatibility with existing code
+                $_SESSION['guest_reservation'] = $_SESSION['temp_reservation'];
+                $_SESSION['guest_reservation']['reservation_code'] = $final_reservation_code;
+                
                 // Redirect to confirmation page
                 header("Location: guest_confirmation.php");
                 exit;
             } else {
-                $payment_error = "Failed to update reservation status. Please try again.";
+                $payment_error = "Failed to create reservation. Please try again. Error: " . $mysqli->error;
             }
             
-            $update_stmt->close();
+            $stmt->close();
+            $mysqli->close();
         }
     }
 }
@@ -220,11 +260,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </tr>
                                 <tr>
                                     <th>Number of Adults:</th>
-                                    <td><?php echo $reservationData['guest_adult']; ?></td>
+                                    <td><?php echo $reservation['guest_adult']; ?></td>
                                 </tr>
                                 <tr>
                                     <th>Number of Children:</th>
-                                    <td><?php echo $reservationData['guest_kid']; ?></td>
+                                    <td><?php echo $reservation['guest_kid']; ?></td>
                                 </tr>
                                 <tr>
                                     <th>Total Guests:</th>
@@ -338,144 +378,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </div>
                                     <div class="mb-3">
                                         <label for="gcash_number" class="form-label">Your GCash Number</label>
-                                        <input type="text" class="form-control" id="gcash_number" name="gcash_number" placeholder="09XXXXXXXXX">
-                                    </div>
-                                </div>
-                                
-                                <!-- Bank Transfer Details -->
-                                <div id="bank_transfer_details" class="payment-option">
-                                    <h5 class="mb-3">Bank Transfer Details</h5>
-                                    <div class="mb-3">
-                                        <p>Please transfer the payment to the following bank account:</p>
-                                        <p><strong>Bank Name:</strong> Sample Bank</p>
-                                        <p><strong>Account Number:</strong> 1234567890</p>
-                                        <p><strong>Account Name:</strong> Resort Name</p>
-                                        <p>Please include your reservation code <strong><?php echo $reservation['reservation_code']; ?></strong> in the reference/notes.</p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="reference_number" class="form-label">Reference/Transaction Number</label>
-                                        <input type="text" class="form-control" id="reference_number" name="reference_number">
-                                    </div>
-                                </div>
-                                
-                                <!-- Cash Payment Details -->
-                                <div id="cash_details" class="payment-option">
-                                    <h5 class="mb-3">Cash Payment on Arrival</h5>
-                                    <div class="alert alert-info">
-                                        <p>You have selected to pay cash upon arrival. Please note:</p>
-                                        <ul>
-                                            <li>Payment must be made in full at check-in</li>
-                                            <li>We accept Philippine Peso (₱) only</li>
-                                            <li>Your reservation will be held until your scheduled check-in time</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                
-                                <div class="d-grid gap-2 mt-4">
-                                    <button type="submit" class="btn btn-primary" id="completePaymentBtn">Complete Reservation</button>
-                                </div>
-                            </form>
-                        </div>
-                        
-                        <div class="text-center mt-3">
-                            <a href="guest_reservation.php" class="btn btn-outline-secondary">Back to Reservation</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Bootstrap JS and Icons -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Payment method selection
-            const paymentSelectors = document.querySelectorAll('.payment-method-selector');
-            const paymentMethodInput = document.getElementById('payment_method');
-            const completePaymentBtn = document.getElementById('completePaymentBtn');
-            
-            paymentSelectors.forEach(selector => {
-                selector.addEventListener('click', function() {
-                    // Remove selected class from all options
-                    paymentSelectors.forEach(s => s.classList.remove('selected'));
-                    
-                    // Add selected class to clicked option
-                    this.classList.add('selected');
-                    
-                    // Get the payment method
-                    const method = this.getAttribute('data-method');
-                    
-                    // Set the hidden input value
-                    paymentMethodInput.value = method;
-                    
-                    // Hide all payment option details
-                    const paymentOptions = document.querySelectorAll('.payment-option');
-                    paymentOptions.forEach(option => {
-                        option.style.display = 'none';
-                    });
-                    
-                    // Show the selected payment option details
-                    const selectedOption = document.getElementById(method + '_details');
-                    if (selectedOption) {
-                        selectedOption.style.display = 'block';
-                    }
-                    
-                    // Update button text based on payment method
-                    if (method === 'cash') {
-                        completePaymentBtn.textContent = 'Reserve Now, Pay Later';
-                    } else {
-                        completePaymentBtn.textContent = 'Complete Payment';
-                    }
-                });
-            });
-            
-            // Form validation
-            document.getElementById('paymentForm').addEventListener('submit', function(e) {
-                const method = paymentMethodInput.value;
-                
-                if (!method) {
-                    e.preventDefault();
-                    alert('Please select a payment method');
-                    return;
-                }
-                
-                // Additional validation based on payment method
-                switch (method) {
-                    case 'credit_card':
-                        const cardName = document.getElementById('card_name').value;
-                        const cardNumber = document.getElementById('card_number').value;
-                        const cardExpiry = document.getElementById('card_expiry').value;
-                        const cardCvv = document.getElementById('card_cvv').value;
-                        
-                        if (!cardName || !cardNumber || !cardExpiry || !cardCvv) {
-                            e.preventDefault();
-                            alert('Please fill in all credit card details');
-                        }
-                        break;
-                        
-                    case 'gcash':
-                        const gcashNumber = document.getElementById('gcash_number').value;
-                        
-                        if (!gcashNumber) {
-                            e.preventDefault();
-                            alert('Please enter your GCash number');
-                        }
-                        break;
-                        
-                    case 'bank_transfer':
-                        const referenceNumber = document.getElementById('reference_number').value;
-                        
-                        if (!referenceNumber) {
-                            e.preventDefault();
-                            alert('Please enter the reference/transaction number');
-                        }
-                        break;
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                                        <input type="text" class="form-control" id="gcash_number"

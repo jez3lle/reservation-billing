@@ -103,7 +103,7 @@ $current_user = getUserStatus();
                 <li><a href="aboutus_p1.php">ABOUT</a></li>
                 <li><a href="accomodation_p1.php">ACCOMMODATIONS</a></li>
                 <li><a href="activities_p1.php">ACTIVITIES</a></li>
-                <li><a href="#">CONTACT US</a></li>
+                <li><a href="contact_p1.php">CONTACT US</a></li>
                 <li><a href="#">BOOK NOW</a></li>
             </ul>
             <div class="icon">
@@ -126,85 +126,116 @@ $current_user = getUserStatus();
             </div>
         </div>
     </header>
-
+    
     <main class="content-wrapper">
-    <div class="accom-container">
-        <div class="card">
-            <div class="card-background"></div>
-            <img src="images/house1.png" alt="House">
-            <div class="card-content">
-                <h2 class="card-title">House 1</h2>
-                <p class="card-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="card-button">See Details</button>
+    <h1>Accommodations in Private</h1>
+        <div class="accom-container">
+            <div class="accom-item">
+                <div class="accom-image">
+                    <img src="images/house1.png" alt="House">
+                </div>
+                <div class="accom-details">
+                    <h2 class="accom-title">House 1</h2>
+                    <div class="accom-divider"></div>
+                    <button class="accom-button">See Details</button>
+                </div>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="card-background"></div>
-            <img src="images/pavilion.png" alt="House">
-            <div class="card-content">
-                <h2 class="card-title">Pavilion</h2>
-                <p class="card-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="card-button">See Details</button>
+            <div class="accom-item">
+                <div class="accom-image">
+                    <img src="images/IMG_4964.jpg" alt="House 2">
+                </div>
+                <div class="accom-details">
+                    <h2 class="accom-title">House 2</h2>
+                    <div class="accom-divider"></div>
+             
+                    <button class="accom-button">See Details</button>
+                </div>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="card-background"></div>
-            <img src="images/house2.png" alt="House">
-            <div class="card-content">
-                <h2 class="card-title">House 2</h2>
-                <p class="card-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="card-button">See Details</button>
+            <div class="accom-item">
+                <div class="accom-image">
+                    <img src="images/bg1.png" alt="Swimming Pools">
+                </div>
+                <div class="accom-details">
+                    <h2 class="accom-title">2 Swimming Pools</h2>
+                    <div class="accom-divider"></div>
+                    <button class="accom-button">See Details</button>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="accom-container">
-        <div class="card">
-            <div class="card-background"></div>
-            <img src="images/kubo.jpg" alt="House">
-            <div class="card-content">
-                <h2 class="card-title">Kubo</h2>
-                <p class="card-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="card-button">See Details</button>
-            </div>
-        </div>
- 
-        <div class="card">
-            <div class="card-background"></div>
-            <img src="images/bg2.png" alt="House">
-            <div class="card-content">
-                <h2 class="card-title">Pool</h2>
-                <p class="card-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="card-button">See Details</button>
-            </div>
-        </div>
 
-        <div class="card">
-            <div class="card-background"></div>
-            <img src="images/pool.png" alt="House">
-            <div class="card-content">
-                <h2 class="card-title">Pool</h2>
-                <p class="card-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="card-button">See Details</button>
+            <div class="accom-item">
+                <div class="accom-image">
+                    <img src="images/IMG_4974.jpg" alt="Kubo">
+                </div>
+                <div class="accom-details">
+                    <h2 class="accom-title">Kubo with 2 Room</h2>
+                    <div class="accom-divider"></div>
+                    <button class="accom-button">See Details</button>
+                </div>
             </div>
+
+            <div class="accom-item">
+                <div class="accom-image">
+                    <img src="images/pavilion.png" alt="Pavilion">
+                </div>
+                <div class="accom-details">
+                    <h2 class="accom-title">Pavilion</h2>
+                    <div class="accom-divider"></div>
+                    <button class="accom-button">See Details</button>
+                </div>
+            </div>
+
+            <div class="accom-item">
+                <div class="accom-image">
+                    <img src="images/IMG_4954.jpg" alt="Roofdeck">
+                </div>
+                <div class="accom-details">
+                    <h2 class="accom-title">Roofdeck</h2>
+                    <div class="accom-divider"></div>
+                    <button class="accom-button">See Details</button>
+                </div>
+            </div>
+
+            <div class="accom-item">
+                <div class="accom-image">
+                    <img src="images/IMG_4961.jpg" alt="Kitchen">
+                </div>
+                <div class="accom-details">
+                    <h2 class="accom-title">Alfresco Kitchen</h2>
+                    <div class="accom-divider"></div>
+                    <button class="accom-button">See Details</button>
+                </div>
+            </div>
+                        
+            <div class="accom-item">
+                <div class="accom-image">
+                    <img src="images/IMG_4982.jpg" alt="Pavilion">
+                </div>
+                <div class="accom-details">
+                    <h2 class="accom-title">Karaoke</h2>
+                    <div class="accom-divider"></div>
+                    <button class="accom-button">See Details</button>
+                </div>
+            </div>
+
+            <div class="accom-item">
+                <div class="accom-image">
+                    <img src="images/IMG_4967.jpg" alt="Exclusive">
+                </div>
+                <div class="accom-details">
+                    <h2 class="accom-title">Exclusive</h2>
+                    <div class="accom-divider"></div>
+                    <button class="accom-button">See Details</button>
+                </div>
+            </div>
+
+
         </div>
-    </div>
-</main>
-     
+    </main>
+    
+   
     <footer>
         <div class="footer-container">
             <div class="footer-logo">

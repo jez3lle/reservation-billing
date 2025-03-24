@@ -1,7 +1,37 @@
 <?php
-session_start();
-?>
+session_start(); // Start the session at the beginning
 
+// Store check-in/check-out dates if redirected from booking page
+if (isset($_GET['check_in']) && isset($_GET['check_out'])) {
+    // Validate dates before storing in session
+    $check_in = date('Y-m-d', strtotime($_GET['check_in']));
+    $check_out = date('Y-m-d', strtotime($_GET['check_out']));
+    
+    if ($check_in && $check_out && $check_in < $check_out) {
+        $_SESSION['check_in'] = $check_in;
+        $_SESSION['check_out'] = $check_out;
+    }
+}
+
+function getUserStatus() {
+    if (isset($_SESSION["user_id"])) {
+        $mysqli = require __DIR__ . "/database.php";
+        $stmt = $mysqli->prepare("SELECT first_name, last_name FROM user WHERE id = ?");
+        $stmt->bind_param("i", $_SESSION["user_id"]);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        $stmt->close();
+        
+        // Return null if user doesn't exist in database (account might have been deleted)
+        return $user ?: null;
+    }
+    return null;
+}
+
+// Get the current user if logged in
+$current_user = getUserStatus();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +39,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME - Rainbow Forest Paradise Resort and Campsite</title>
     <link rel="stylesheet" href="mystyle.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lobster&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,36 +47,164 @@ session_start();
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="flatpickr.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-image: url('images/img27.jpg');
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1s ease-in-out; 
+        }
+        #bookingForm {
+            margin: 20px auto 20px auto; /* Top margin, auto center, bottom margin */
+            padding:25px 40px;
+            border-radius: 10px;
+            background-color: white;
+            width: 100%;
+            max-width: 800px;
+            border-left: 10px solid #afd757;
+            color: #000000;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            color: #000000;
+            display: block;
+        }
+    
+        .form-row {
+            display: flex;
+            margin: 0;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-left: -10px;
+        }
+    
+        input[type="date"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #03624c;
+            border-radius: 5px;
+            outline: none;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+            color: #03624c;
+            font-weight: bold;
+        }
+    
+        input[type="date"]::placeholder {
+            color: #03624c;
+        }
+    
+        #checkAvailability {
+            background-color: #4caf50;
+            color: #FFFAEC;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+    
+        #checkAvailability:hover {
+            background-color: #FBFFE4;
+            color: #1B4D3E;
+        }
+    
+    
+        .message-box {
+            color: #03624c;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .loading {
+            color: blue;
+        }
+        .error {
+            color: #03624c;
+        }
+        #proceedToReservation {
+            padding: 10px 18px;
+            background: green;
+            margin-top: 15px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .account-info {
+            margin-top: 150px;
+            margin-bottom: 150px;
+            background-color: #f0f0f0;
+        }
+
+        .account-info p{
+            line-height: 3;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        
+        h1{
+            alignment: center;
+        }
+
+        .user-info{
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-btn{
+            color:white;
+        }
+
+        .accom-divider {
+            width: 120px;
+            height: 4px;
+            background-color:#508E87;
+            margin: 10px 0;
+            border-radius: 10px;
+        }
+        .indent {
+        margin-left: 2em;
+    }
+
+    </style>
 </head>
 <body>
     <div class="top-space">
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
-    </div>
-    <div class="menu">
-        <div class="close-icon" onclick="toggleMenu()">X</div>
-        <div class="menucontainer">
-            <div class="phase-card phase-private">
-                <h2>PHASE 1</h2>
-                <h3>PRIVATE</h3>
-                <p>
-                    Enjoy exclusive access to the entire resort! This includes two pools, two houses, a pavilion, and a cozy kubo, ensuring privacy and relaxation.
-                    Perfect for families, reunions, and private gatherings. Guests can also partake in exciting activities available in the public area.
-                </p>
-                <a href="home_p1.php" class="phasebutton">Proceed to Phase 1</a>
-            </div>
-            <div class="phase-card phase-public">
-                <h2>PHASE 2</h2>
-                <h3>PUBLIC</h3>
-                <p>
-                    Stay in our welcoming accommodations, including rooms, cabins, and houses, ideal for individuals or small groups. 
-                    Enjoy thrilling activities such as ziplining, bonfires, and swimming, making your stay an unforgettable adventure!
-                </p>
-                <a href="home_p2.php" class="phasebutton">Proceed to Phase 2</a>
-            </div>            
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
         </div>
-    </div>
+        <div class="menu">
+            <div class="close-icon" onclick="toggleMenu()">X</div>
+            <div class="menucontainer">
+                <div class="phase-card phase-private">
+                    <h2>PHASE 1</h2>
+                    <h3>PRIVATE</h3>
+                    <p>
+                        Enjoy exclusive access to the entire resort! This includes two pools, two houses, a pavilion, and a cozy kubo, ensuring privacy and relaxation.
+                        Perfect for families, reunions, and private gatherings. Guests can also partake in exciting activities available in the public area.
+                    </p>
+                    <a href="home_p1.php" class="phasebutton">Proceed to Phase 1</a>
+                </div>
+                <div class="phase-card phase-public">
+                    <h2>PHASE 2</h2>
+                    <h3>PUBLIC</h3>
+                    <p>
+                        Stay in our welcoming accommodations, including rooms, cabins, and houses, ideal for individuals or small groups. 
+                        Enjoy thrilling activities such as ziplining, bonfires, and swimming, making your stay an unforgettable adventure!
+                    </p>
+                    <a href="home_p2.php" class="phasebutton">Proceed to Phase 2</a>
+                </div>            
+            </div>
+        </div>
     <header class="hero">
         <div class="overlay"></div>
+        <!-- Navbar -->
         <nav class="home-navbar">
             <div class="logo">
                 <img src="images/rainbow-logo.png" alt="Logo">
@@ -55,95 +214,93 @@ session_start();
                 </div>
             </div>
             <div class="nav-right">
-                <ul id="p2menu-img" class="home-nav-links">
-                    <li><a href="home_p1.php">HOME</a></li>
-                    <li><a href="aboutus.html">ABOUT</a></li>
-                    <li><a href="accom.html">ACCOMMODATIONS</a></li>
-                    <li><a href="activities.html">ACTIVITIES</a></li>
-                    <li><a href="#">CONTACT US</a></li>
+                <ul id="menu-img" class="home-nav-links">
+                    <li><a href="home_p2.php">HOME</a></li>
+                    <li><a href="aboutus_p2.php">ABOUT</a></li>
+                    <li><a href="accomodation_p2.html">ACCOMMODATIONS</a></li>
+                    <li><a href="activities_p2.php">ACTIVITIES</a></li>
+                    <li><a href="contact_p2.php">CONTACT US</a></li>
                     <li><a href="#">BOOK NOW</a></li>
-                    <li><a href="#" class="user-icon">
-                        <img src="images/logo.png" alt="User Icon">
-                    </a></li>
                 </ul>
+            </div>
+            <div class="icon">
+                <?php if($current_user): ?>
+                    <div class="user-info">
+                        <span class="user-name">Hello, <?= htmlspecialchars($current_user["first_name"]) ?></span>
+                        <div class="user-actions">
+                            <a href="account.php" class="profile-btn">My Profile</a>
+                            <form action="logout.php" method="post">
+                                <button type="submit" class="logout-btn">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <!-- Just a placeholder since we're already on the login page -->
+                    <a href="index.php" class="user-icon">
+                        <img src="images/logo.png" alt="User Icon">
+                    </a>
+                <?php endif; ?>
             </div>
         </nav>
         <div class="hero-text">
             <h1><span>Welcome to Phase 2</span><br>Public</h1>
-            <p>Book Our Public Area!</p>
-            <p>Experience nature, peace, and luxury.</p>
-            <a href="#" class="booknow">BOOK NOW</a> <!-- Book Now Button -->
+            <p>Stay Your Way – Choose a Room, Enjoy the Adventure!</p>
+            <p>Nature, Comfort, and Activities – Your Ideal Escape!</p>
+            <a href="#" class="booknow">BOOK NOW</a> 
         </div>
-        <!-- Vertical Menu with Images -->
-        <div class="p2menu-img">
-            <img src="images/resort-image.jpeg" alt="Image 1" onclick="changeBackground('images/phase2-1.jpg', this)">
-            <img src="images/resort3.png" alt="Image 2" onclick="changeBackground('images/phase2-4.jpg', this)">
-            <img src="images/phase2-5.jpg" alt="Image 3" onclick="changeBackground('images/phase2-5.jpg', this)">
+        <div class="menu-img">
+            <img src="images/img27.jpg" alt="Image 1" onclick="changeBackground('images/img27.jpg', this)">
+            <img src="images/img28.jpg" alt="Image 2" onclick="changeBackground('images/img28.jpg', this)">
+            <img src="images/img25.jpg" alt="Image 3" onclick="changeBackground('images/img25.jpg', this)">
         </div>
     </header>
 
-<div class="booking-container">
-    <form class="booking-form" id="availability-form">
-        <div class="form-group">
-            <div>
-                <label for="arrival-date">Arrival Date:</label>
-                <input type="text" id="arrival-date" name="arrival-date" readonly required>
-                <div class="error-message" id="arrival-error"></div>
-            </div>
-            <div>
-                <label for="departure-date">Departure Date:</label>
-                <input type="text" id="departure-date" name="departure-date" readonly required>
-                <div class="error-message" id="departure-error"></div>
-            </div>
-            <div>
-                <label for="adults">Adults:</label>
-                <input type="number" id="adults" name="adults" min="1" value="" required>
-            </div>
-            <div>
-                <label for="kids">Kids:</label>
-                <input type="number" id="kids" name="kids" min="0" value="" required>
-            </div>
-            <div>
-                <button type="button" class="booking-button" id="check-availability">Check Availability</button>
-            </div>
+    <form id="bookingForm">
+        <div class="form-row">
+            <label for="check_in">Check-in:</label>
+            <input type="date" id="check_in" name="check_in" required>
+
+            <label for="check_out">Check-out:</label>
+            <input type="date" id="check_out" name="check_out" required>
+
+            <button type="button" id="checkAvailability">Check Availability</button>
         </div>
+        <div id="availabilityResult" class="message-box"></div>
     </form>
-    <div id="availability-message" class="availability-message"></div>
-</div>
 
-<!-- Loading Spinner -->
-<div id="loading-spinner" style="display:none; text-align:center; color:white; font-size: 18px;">Loading...</div>
 
-<section class="abouthome" id="abouthome">
-    <div class="containerflex">
-      <div class="left">
-        <div class="img">
-          <img src="images/phase2.png" alt="" class="image1">
-          <img src="images/phase2-4.jpg" alt="" class="image2">
+
+    <section class="abouthome" id="abouthome">
+        <div class="containerflex">
+        <div class="left">
+            <div class="img">
+            <img src="images/resort2.png" alt="" class="image1">
+            <img src="images/pavilion.png" alt="" class="image2">
+            </div>
         </div>
-      </div>
-      <div class="right">
-        <div class="heading">
-          <h5>Take a break. Exclusive Getaway. Recharge your batteries.</h5>
-          <h2>Welcome to Rainbow Forest Paradise Resort and Campsite</h2>
-          <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Himenaeos vehicula sem amet primis; efficitur posuere. 
-            Ullamcorper faucibus ante turpis semper class quisque; potenti platea. Tristique semper facilisis tortor placerat mi libero. Nibh eleifend suscipit penatibus nulla lacus fames. 
-            Sit ultricies euismod tristique habitant morbi; nisl eget luctus eleifend. 
-            Rhoncus class sapien sed praesent lorem sollicitudin pharetra cubilia.
-            </p>
-          <a href="about us.html"><button class="btn1" style="cursor: pointer;">READ MORE</button>
-          </a>
+        <div class="right">
+            <div class="heading">
+                <h5>Take a break. Exclusive Getaway. Reconnect with nature.</h5>
+                <div class="accom-divider"></div>
+                <h2>Welcome to Rainbow Forest Paradise Resort and Campsite</h2>
+                    <p class="indent">Looking for an affordable yet clean and relaxing resort or campsite just a few hours away from Manila?
+                    Rainbow Forest Paradise is the perfect destination for those seeking a peaceful retreat surrounded by nature. Whether you're planning a private getaway with family and friends or a fun-filled adventure in the great outdoors, our resort offers the ideal balance of comfort, relaxation, and excitement.              
+                    </p>
+                    <p class="indent">At Rainbow Forest Paradise Resort and Campsite, we take pride in providing a well-maintained and tranquil environment, 
+                    ensuring a stress-free stay for all our guests. Our friendly and accommodating staff are always ready to assist, making sure your experience is nothing short of exceptional. From cozy accommodations to refreshing pools and open-air pavilions, every corner of our resort is designed to offer relaxation and enjoyment.
+                    </p>
+                <a href="about us.html"><button class="btn1" style="cursor: pointer;">READ MORE</button></a>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+        </div>
+    </section>
 
   <section class="amenities-section" id="amenities">
     <div class="container">
       <h2 class="section-title">Our Activities</h2>
       <div class="amenities-content">
         <div class="amenities-grid">
-          <div class="amenity-item" style="background-image: url('images/bg1.png');">
+          <div class="amenity-item" style="background-image: url('images/img2.jpg');">
             <div class="amenity-text">
               <h3>Swimming Pool</h3>
             </div>
@@ -158,17 +315,17 @@ session_start();
               <h3>Bonfire</h3>
             </div>
           </div>
-          <div class="amenity-item" style="background-image: url('images/ziplinee.jpg');">
+          <div class="amenity-item" style="background-image: url('images/zipline.jpg');">
             <div class="amenity-text">
               <h3>Zipline</h3>
             </div>
           </div>
-          <div class="amenity-item" style="background-image: url('images/spiderweb.png');">
+          <div class="amenity-item" style="background-image: url('images/IMG_4850.jpg');">
             <div class="amenity-text">
               <h3>Spider Web</h3>
             </div>
           </div>
-          <div class="amenity-item" style="background-image: url('images/kubo.jpg');">
+          <div class="amenity-item" style="background-image: url('images/IMG_4890.jpg');">
             <div class="amenity-text">
               <h3>Kubo/Cottages</h3>
             </div>
@@ -179,134 +336,144 @@ session_start();
     </div>
   </section>
   
-  <section class="photo-gallery">
-    <h2>Welcome to Our Photo Gallery</h2>
-    <div class="gallery-container" id="gallery">
-        <div class="gallery-item"><img src="gal2.jpg" alt="Image 1"></div>
-        <div class="gallery-item"><img src="phase2-2.jpg" alt="Image 2"></div>
-        <div class="gallery-item"><img src="gal3.jpg" alt="Image 3"></div>
-        <div class="gallery-item"><img src="gal4.jpg" alt="Image 4"></div>
-        <div class="gallery-item"><img src="gal5.jpg" alt="Image 5"></div>
-    </div>
-    <div class="gallery-navigation">
-        <button onclick="nextImages()">See More</button>
-    </div>
-</section>
-  
-
-<footer>
-    <div class="footer-container">
-        <div class="footer-logo">
-            <img src="images/rainbow-logo.png" alt="Rainbow Forest Logo">
+    <section class="photo-gallery">
+        <h2>Welcome to Our Photo Gallery</h2>
+        <div class="gallery-container" id="gallery">
+            <div class="gallery-item"><img src="images/img28.jpg" alt="Image 1"></div>
+            <div class="gallery-item"><img src="images/img27.jpg" alt="Image 2"></div>
+            <div class="gallery-item"><img src="images/IMG_4828.jpg" alt="Image 3"></div>
+            <div class="gallery-item"><img src="images/IMG_4922.jpg" alt="Image 4"></div>
+            <div class="gallery-item"><img src="images/IMG_4896.jpg" alt="Image 5"></div>
         </div>
-        <div class="footer-nav">
-            <h3>Explore</h3>
-            <ul>
-                <li><a href="#">Accommodations</a></li>
-                <li><a href="#">Activities</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
+        <div class="gallery-navigation">
+            <button onclick="nextImages()">See More</button>
         </div>
-        <div class="footer-contact">
-            <h3>Contact Us</h3>
-            <p><strong>Address:</strong> Brgy. Cuyambay, Tanay, Rizal</p>
-            <p><strong>Contact No.:</strong> 0960 587 7561</p>
+    </section>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="images/rainbow-logo.png" alt="Rainbow Forest Logo">
+            </div>
+            <div class="footer-nav">
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="#">Accommodations</a></li>
+                    <li><a href="#">Activities</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p><strong>Address:</strong> Brgy. Cuyambay, Tanay, Rizal</p>
+                <p><strong>Contact No.:</strong> 0960 587 7561</p>
+            </div>
+            <div class="footer-actions">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Follow Us</a></li>
+                    <li><a href="#">Book Now</a></li>
+                    <li><a href="#">Cancel Reservation</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="footer-actions">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="#">Follow Us</a></li>
-                <li><a href="#">Book Now</a></li>
-                <li><a href="#">Cancel Reservation</a></li>
-            </ul>
-        </div>
-    </div>
-</footer>
-  
-<script src="js/flatpickr.min.js"></script>
-<script>
-    // Initialize Flatpickr for Arrival and Departure Date
-    flatpickr("#arrival-date", {
-        dateFormat: "Y-m-d",
-        theme: "material_blue", // Optional: Flatpickr themes like material_blue, dark, etc.
-        onChange: function(selectedDates, dateStr, instance) {
-            const departureInput = document.getElementById('departure-date');
-            departureInput.disabled = false; // Enable departure date field when arrival is selected
-            departureInput.focus();
-        }
-    });
+    </footer>
+    <script>
+        $(document).ready(function(){
+            var today = new Date().toISOString().split('T')[0];
+            $("#check_in, #check_out").attr("min", today);
+            $("#checkAvailability").click(function(){
+                var check_in = $("#check_in").val();
+                var check_out = $("#check_out").val();
+                var today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
 
-    flatpickr("#departure-date", {
-        dateFormat: "Y-m-d",
-        minDate: "today", // Disable past dates
-        onChange: function(selectedDates, dateStr, instance) {
-            // Optional: You can perform additional logic here
-        }
-    });
-
-    document.getElementById('check-availability').addEventListener('click', function (event) {
-        const arrivalDate = document.getElementById('arrival-date').value;
-        const departureDate = document.getElementById('departure-date').value;
-        const adults = document.getElementById('adults').value;
-        const kids = document.getElementById('kids').value;
-        const arrivalError = document.getElementById('arrival-error');
-        const departureError = document.getElementById('departure-error');
-        const availabilityMessage = document.getElementById('availability-message');
-
-        // Reset errors
-        arrivalError.textContent = '';
-        departureError.textContent = '';
-        availabilityMessage.textContent = '';
-        document.getElementById('loading-spinner').style.display = 'block'; // Show loading spinner
-
-        const arrival = new Date(arrivalDate);
-        const departure = new Date(departureDate);
-        const today = new Date();
-
-        let hasError = false;
-
-        // Validate dates
-        if (!arrivalDate) {
-            arrivalError.textContent = 'Please select an arrival date.';
-            hasError = true;
-        } else if (arrival < today) {
-            arrivalError.textContent = 'Arrival date cannot be in the past.';
-            hasError = true;
-        }
-
-        if (!departureDate) {
-            departureError.textContent = 'Please select a departure date.';
-            hasError = true;
-        } else if (departure <= arrival) {
-            departureError.textContent = 'Departure date must be after the arrival date.';
-            hasError = true;
-        }
-
-        if (hasError) {
-            document.getElementById('loading-spinner').style.display = 'none'; // Hide spinner
-            return;
-        }
-
-        // Check availability using AJAX
-        fetch(`check-availability.php?arrival-date=${arrivalDate}&departure-date=${departureDate}&adults=${adults}&kids=${kids}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.available) {
-                    availabilityMessage.innerHTML = `Your selected dates are available!`;
-                } else {
-                    availabilityMessage.innerHTML = `Sorry, the property is fully booked for these dates.`;
+                if (!check_in || !check_out) {
+                    $("#availabilityResult").html("<p style='color: red;'>Please select both check-in and check-out dates.</p>");
+                    return;
                 }
-                document.getElementById('loading-spinner').style.display = 'none'; // Hide spinner
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                availabilityMessage.textContent = 'An error occurred while checking availability.';
-                document.getElementById('loading-spinner').style.display = 'none'; // Hide spinner
+                
+                // Check if check-in date is today
+                if (check_in === today) {
+                    $("#availabilityResult").html("<p style='color: red;'>Same-day check-in is not allowed. Please select a future date.</p>");
+                    return;
+                }
+
+                if (check_in >= check_out) {
+                    $("#availabilityResult").html("<p style='color: red;'>Check-out date must be after check-in date.</p>");
+                    return;
+                }
+
+                $("#availabilityResult").html("<p class='loading'>Checking availability...</p>");
+
+                $.ajax({
+                    url: "check_availability.php",
+                    type: "POST",
+                    data: { check_in: check_in, check_out: check_out },
+                    success: function(response){
+                        $("#availabilityResult").html(response);
+
+                        // Remove any existing buttons first
+                        $(".reservation-buttons, #proceedToReservation").parent("div").remove();
+                        
+                        // Only show reservation buttons if the property is available
+                        // Look for "Available!" which only appears in the success message
+                        if(response.includes("Available!")) {
+                            // Store dates in sessionStorage
+                            sessionStorage.setItem('check_in', check_in);
+                            sessionStorage.setItem('check_out', check_out);
+                            
+                            // Check if user is logged in
+                            $.ajax({
+                                url: "check_login.php",
+                                type: "GET",
+                                success: function(loginResponse) {
+                                    if (loginResponse.trim() === "logged_in") {
+                                        // User is logged in, show normal button as direct link
+                                        $("#availabilityResult").append(`
+                                            <div style="display: flex; justify-content: center; margin-top: 15px;">
+                                                <a href="reservation_form.php?check_in=${encodeURIComponent(check_in)}&check_out=${encodeURIComponent(check_out)}" class="btn" id="proceedToReservation" style="padding: 10px 18px; background: green; color: white; text-decoration: none; border-radius: 5px; cursor: pointer;">Proceed to Reservation</a>
+                                            </div>
+                                        `);
+                                    } else {
+                                        // User is not logged in, show both options as direct links
+                                        $("#availabilityResult").append(`
+                                            <div class="reservation-buttons" style="display: flex; justify-content: center; gap: 10px; margin-top: 15px;">
+                                                <a href="guest_reservation.php?check_in=${encodeURIComponent(check_in)}&check_out=${encodeURIComponent(check_out)}" class="btn" id="guestReservation" style="padding: 10px 18px; background: #4caf50; color: white; text-decoration: none; border-radius: 5px; cursor: pointer;">Continue as Guest</a>
+                                                <a href="index.php?check_in=${encodeURIComponent(check_in)}&check_out=${encodeURIComponent(check_out)}" class="btn" id="loginToReserve" style="padding: 10px 18px; background: #03624c; color: white; text-decoration: none; border-radius: 5px; cursor: pointer;">Login to Reserve</a>
+                                            </div>
+                                        `);
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+            // Handle click for logged-in users
+            $(document).on("click", "#proceedToReservation", function(){
+                var check_in = $(this).data("checkin");
+                var check_out = $(this).data("checkout");
+                window.location.href = "reservation_form.php?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
+            });
+
+            // Handle click for guest users
+            $(document).on("click", "#guestReservation", function(){
+                var check_in = $(this).data("checkin");
+                var check_out = $(this).data("checkout");
+                window.location.href = "guest_reservation.php?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
+            });
+
+            // Handle click for users who want to login first
+            $(document).on("click", "#loginToReserve", function(){
+                var check_in = $(this).data("checkin");
+                var check_out = $(this).data("checkout");
+                window.location.href = "index.php?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
             });
         });
-    </script>
-
+        function proceedToReservationFunc(check_in, check_out) {
+        window.location.href = "reservation_form.php?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
+        }
+    </script> <!-- Add this closing tag -->
 
     <script>
         function img(anything) {
@@ -350,7 +517,7 @@ session_start();
         }
 
         // Automatic hero image transition every 3 seconds
-        const images = ['phase2-1.jpg', 'phase2-4.jpg', 'phase2-5.jpg'];
+        const images = ['images/img27.jpg', 'images/img25.jpg', 'images/img28.jpg'];
         let currentImage = 0;
         setInterval(() => {
             currentImage = (currentImage + 1) % images.length;

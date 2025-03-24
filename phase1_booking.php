@@ -325,7 +325,7 @@ include 'db.php';
                         if (response.trim() === "logged_in") {
                             window.location.href = "reservation1_form.php";
                         } else {
-                            window.location.href = "login.php?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
+                            window.location.href = "index.php?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
                         }
                     },
                     error: function () {

@@ -50,6 +50,60 @@ $current_user = getUserStatus();
         .profile-btn{
             color:white;
         }
+        .activities-container {
+            max-width: 1200px;
+            margin: 30px auto;
+        }
+
+        .activities-container h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #ffd700;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .activity-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .activity-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .activity-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .activity-item h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        .activity-item p {
+            font-size: 1em;
+        }
+
+        .activities-note {
+            text-align: center;
+            margin: 40px 0;
+            font-style: italic;
+            color: #ccc;
+        }
     </style>
 </head>
 <body>
@@ -96,7 +150,7 @@ $current_user = getUserStatus();
                 <li><a href="aboutus_p1.php">ABOUT</a></li>
                 <li><a href="accomodation_p1.php">ACCOMMODATIONS</a></li>
                 <li><a href="activities_p1.php">ACTIVITIES</a></li>
-                <li><a href="#">CONTACT US</a></li>
+                <li><a href="contact_p1.php">CONTACT US</a></li>
                 <li><a href="#">BOOK NOW</a></li>
             </ul>
             <div class="icon">
@@ -120,83 +174,53 @@ $current_user = getUserStatus();
         </div>
     </header>
 
-    <main class="content-wrapper">
-    <div class="accom-container">
-        <div class="card">
-            <div class="card-background"></div>
-            <img src="images/bonfire.jpg" alt="bonfire">
-            <div class="card-content">
-                <h2 class="card-title">Bonfire</h2>
-                <p class="card-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="card-button">See Details</button>
+    <main class="activities-container">
+        <h2>Activities</h2>
+        <section class="activity-grid">
+            <div class="activity-item">
+                <img src="images/zipline2.jpg" alt="Zipline">
+                <h2>Zipline Adventure</h2>
+                <p>Soar through the forest canopy and experience breathtaking views.</p>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="card-background"></div>
-            <img src="images/spiderweb.png" alt="spiderweb">
-            <div class="card-content">
-                <h2 class="card-title">Spiderweb</h2>
-                <p class="card-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="card-button">See Details</button>
+            <div class="activity-item">
+                <img src="images/IMG_4849.jpg" alt="Spider Web">
+                <h2>Spider Web</h2>
+                <p>Test your balance and agility on our exciting spider web course.</p>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="card-background"></div>
-            <img src="images/zipline.jpg" alt="zipline">
-            <div class="card-content">
-                <h2 class="card-title">Zipline</h2>
-                <p class="card-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="card-button">See Details</button>
+            <div class="activity-item">
+                <img src="images/bonfire2.jpg" alt="Bonfire">
+                <h2>Bonfire Nights</h2>
+                <p>Enjoy warm evenings with a crackling bonfire under the stars.</p>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <div class="accom-container">
-        <div class="card">
-            <div class="card-background"></div>
-            <img src="images/bonfire.jpg" alt="bonfire">
-            <div class="card-content">
-                <h2 class="card-title">Kubo</h2>
-                <p class="card-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="card-button">See Details</button>
-            </div>
-        </div>
- 
-        <div class="card">
-            <div class="card-background"></div>
-            <img src="images/bonfire.jpg" alt="bonfire">
-            <div class="card-content">
-                <h2 class="card-title">Bonfire</h2>
-                <p class="card-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="card-button">See Details</button>
-            </div>
-        </div>
+        <p class="activities-note">
+            Please note: These activities are displayed for informational purposes only and do not require prior reservations. Availability may vary.
+        </p>
 
-        <div class="card">
-            <div class="card-background"></div>
-            <img src="images/bonfire.jpg" alt="bonfire">
-            <div class="card-content">
-                <h2 class="card-title">Bonfire</h2>
-                <p class="card-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="card-button">See Details</button>
+        <section class="activity-grid">
+            
+            <div class="activity-item">
+                    <img src="images/atv.jpg" alt="ATV">
+                    <h2>ATV Trails</h2>
+                    <p>Explore the rugged terrain with an adventurous ATV ride.</p>
             </div>
-        </div>
-    </div>
-</main>
+
+            <div class="activity-item">
+                <img src="images/resort2.png" alt="Swimming">
+                <h2>Swimming Pools</h2>
+                <p>Relax and cool off in our refreshing swimming pools. </p>
+            </div>
+
+            <div class="activity-item">
+                <img src="images/camping.jpg" alt="Camping">
+                <h2>Camping</h2>
+                <p>Discover the natural beauty of the area with scenic hiking trails.</p>
+            </div>
+        </section>
+    </main>
     
    
 <footer>

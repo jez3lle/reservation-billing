@@ -9,7 +9,7 @@
    
         }
         html, body {
-            background-color: #325f51 !important; /* Override any other styles */
+            background-color: #325f51 !important;
             color: white;
             margin: 0;
             padding: 0;
@@ -715,9 +715,9 @@
             max-width: 500px;
         }
         .about-text h2 {
-            font-size: 2em;
+            font-size: 2.8em;
             margin-bottom: 20px;
-            color: #99d1a8;
+            color: #ffd700;
         }
         .about-text p {
             font-size: 1em;
@@ -748,8 +748,8 @@
             padding: 0px 40px 30px; 
         } 
         .location-section h2 {
-            font-size: 1.8em;
-            color: #99d1a8;
+            font-size: 2.7em;
+            color: #ffd700;
             margin-bottom: 10px;
         }  
         .location-section p {
@@ -777,81 +777,122 @@
         }
 
         /*--------------accommodationpage-----------*/
+           
         .content-wrapper {
-            margin-top: 50px;
+            width: 90%;
+            max-width: 1400px;
+            margin: 50px auto;
+            text-align: center; 
+            padding: 10px;
+        }
+
+        .content-wrapper h1 {
+            font-size: 2.5em;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .accom-container {
-            top: 100px;
             display: grid;
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 40px; 
-            justify-items: center; 
-            margin-top: 20px;
+            grid-template-columns: repeat(3, 1fr); /* Ensures 3 equal columns */
+            gap: 40px;
             padding: 20px;
+        }
+        
+        .accom-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 8px rgba(41, 149, 140, 0.1);
         }
 
-        .card {
-            position: relative;
-            width: 300px;
-            text-align: center;
+        .accom-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(255, 255, 255, 0.2);
         }
-        .card img {
+
+        .accom-image img {
             width: 100%;
-            height: 200px;
+            height: 280px;
             object-fit: cover;
-            border-radius: 0;
-            z-index: 1;
-            position: relative;
-            border: 2px solid #85dabf; 
+            transition: transform 0.3s ease;
         }
-        .card-background {
-            position: absolute;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 350px;
-            height: 320px;
-            background-color: #508E87;
-            border-radius: 0px;
-            z-index: 0;
+
+        .accom-item:hover .accom-image img {
+            transform: scale(1.05);
         }
-        .card-content {
-            position: relative;
-            padding: 20px;
-            margin-top: 10px; 
-            z-index: 1;
+
+        .accom-details {
+            padding: 25px;
+            text-align: center; /* Center accommodation details */
         }
-        .card-title {
-            font-size: 24px;
+
+        .accom-title {
+            font-size: 22px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: #ffcc70;
+            letter-spacing: 1px;
+        }
+
+        .availability {
+            font-size: 16px;
             font-weight: bold;
-            margin-top: -20px; 
-            margin-bottom: 10px;
-            color: white;
-        }
-        .card-description {
-            font-size: 14px;
-            line-height: 1.5;
-            color: white;
-            margin-top: 10px; 
-            margin-bottom: 20px;
-        }
-        .card-button {
+            color: #e0e0e0;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 8px;
             display: inline-block;
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            margin-bottom: 5px;
         }
-        .card-button:hover {
-            background-color: white;
-            color: #6a9e8a;
-        }  
+
+        .accom-description {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .accom-divider {
+            width: 130px;
+            height: 4px;
+            background-color: #ffcc70;
+            margin: 15px auto; /* center divider */
+        }
+
+        .accom-button {
+            display: inline-block;
+            margin-top: 12px;
+            background: #ffcc70;
+            color: #184D47;
+            padding: 14px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 24px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .accom-button:hover {
+            background: #ffffff;
+            color: #1e3c72;
+            box-shadow: 0 6px 18px rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .accom-container {
+                grid-template-columns: 1fr;
+            }
+
+            .content-wrapper h1 {
+                font-size: 2em;
+            }
+        }
 
         /*--------------footer-------------*/
         footer {

@@ -57,11 +57,31 @@ $mysqli->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservation Form</title>
     <link rel="stylesheet" href="reservation.css">
+    <style>
+        /* Styles for the notification */
+        .guest-notification {
+            background-color: #ffedd5;
+            border-left: 4px solid #f97316;
+            padding: 10px 15px;
+            margin: 15px 0;
+            display: none; /* Hidden by default */
+        }
+        
+        .guest-notification.show {
+            display: block;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
         <h2>Guest Reservation Form</h2>
         <p>Complete the form below to make your reservation.</p>
+        
+        <!-- Notification area for guest count rules -->
+        <div id="guest-notification" class="guest-notification">
+            <strong>Important:</strong> For more than 20 guests total, an extra charge will apply and the 2nd house will be available for use. 
+            For 20 guests or fewer, the 2nd house cannot be used.
+        </div>
         
         <form action="guest_reservation_process.php" method="POST" class="reservation-form" id="reservation-form">
             <div class="form-row">
@@ -99,17 +119,17 @@ $mysqli->close();
                 </div>
             </div>
             
-            <!-- Additional guest-specific fields -->
+            <!-- Guest count fields -->
             <div class="form-row">
                 <div class="form-group">
                     <label>Number of Guests(Adults):</label>
-                    <input type="number" name="guest_count" id="guest_count" min="1" required>
-                    <div id="guest_count-error" class="error-message"></div>
+                    <input type="number" name="adult_count" id="adult_count" min="1" required>
+                    <div id="adult_count-error" class="error-message"></div>
                 </div>
                 <div class="form-group">
                     <label>Number of Guests(Kids):</label>
-                    <input type="number" name="guest_count" id="guest_count" min="1" required>
-                    <div id="guest_count-error" class="error-message"></div>
+                    <input type="number" name="kid_count" id="kid_count" min="0" required>
+                    <div id="kid_count-error" class="error-message"></div>
                 </div>
             </div>
             <div class="form-row">
@@ -119,7 +139,7 @@ $mysqli->close();
                 </div>
                 <div class="form-row">
                     <label>Add-Ons:</label>
-                    <textarea name="special_requests" id="special_requests" placeholder="Pillows, Mattress, etc." rows="3"></textarea>
+                    <textarea name="add_ons" id="add_ons" placeholder="Pillows, Mattress, etc." rows="3"></textarea>
                 </div>        
             </div>
             
@@ -135,7 +155,40 @@ $mysqli->close();
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         const form = document.getElementById("reservation-form");
+        const adultCountInput = document.getElementById("adult_count");
+        const kidCountInput = document.getElementById("kid_count");
+        const guestNotification = document.getElementById("guest-notification");
+        
+        // Show notification by default so users are aware of the rule
+        guestNotification.classList.add("show");
+        
+        // Update notification visibility based on guest count
+        function updateGuestNotification() {
+            const adultCount = parseInt(adultCountInput.value) || 0;
+            const kidCount = parseInt(kidCountInput.value) || 0;
+            const totalGuests = adultCount + kidCount;
+            
+            // Always show the notification, but we could highlight it differently if needed
+            guestNotification.classList.add("show");
+            
+            // Optional: Change the style based on the count
+            if (totalGuests > 20) {
+                guestNotification.style.backgroundColor = "#f0f9ff"; // A blue tint for exceeding 20
+                guestNotification.style.borderLeftColor = "#3b82f6";
+            } else {
+                guestNotification.style.backgroundColor = "#ffedd5"; // Default orange tint
+                guestNotification.style.borderLeftColor = "#f97316";
+            }
+        }
+        
+        // Add event listeners to update the notification when guest counts change
+        adultCountInput.addEventListener("input", updateGuestNotification);
+        kidCountInput.addEventListener("input", updateGuestNotification);
+        
+        // Initial check when the page loads
+        updateGuestNotification();
 
+        // Form validation
         form.addEventListener("submit", function(event) {
             let errors = {};
 

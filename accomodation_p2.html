@@ -26,17 +26,16 @@
                     Enjoy exclusive access to the entire resort! This includes two pools, two houses, a pavilion, and a cozy kubo, ensuring privacy and relaxation.
                     Perfect for families, reunions, and private gatherings. Guests can also partake in exciting activities available in the public area.
                 </p>
-                <button onclick="bookNow('Phase 1')">BOOK NOW</button>
+                <a href="home_p1.php" class="phasebutton">Proceed to Phase 1</a>
             </div>
             <div class="phase-card phase-public">
                 <h2>PHASE 2</h2>
                 <h3>PUBLIC</h3>
-
                 <p>
                     Stay in our welcoming accommodations, including rooms, cabins, and houses, ideal for individuals or small groups. 
                     Enjoy thrilling activities such as ziplining, bonfires, and swimming, making your stay an unforgettable adventure!
                 </p>
-                <button onclick="bookNow('Phase 2')">BOOK NOW</button>
+                <a href="home_p2.php" class="phasebutton">Proceed to Phase 2</a>
             </div>            
         </div>
     </div>
@@ -53,10 +52,11 @@
             </div>
 
             <ul class="nav-links">
-                <li><a href="homep1.html">HOME</a></li>
-                    <li><a href="aboutus.html">ABOUT</a></li>
-                    <li><a href="accom.html">ACCOMMODATIONS</a></li>
-                    <li><a href="#">ACTIVITIES</a></li>
+                <li><a href="home_p2.php">HOME</a></li>
+                    <li><a href="aboutus_p2.php">ABOUT</a></li>
+                    <li><a href="accomodation_p2.html">ACCOMMODATIONS</a></li>
+                    <li><a href="activities_p2.php">ACTIVITIES</a></li>
+                    <li><a href="contact_p2.php">CONTACT US</a></li>
                     <li><a href="#">BOOK NOW</a></li>
             </ul>
             <div class="icon">
@@ -65,91 +65,139 @@
         </div>
     </header>
 
-    <main class="content-wrapper">
-    <div class="accom-container">
-        <div class="card">
-            <div class="card-background"></div>
-            <img src="up and down house.png" alt="House">
-            <div class="card-content">
-                <h2 class="card-title">Up and Down House</h2>
-                <p class="card-description">
-                    Includes Upper Open Bedroom with Mattress, Pillows, Blanket & E-Fans. Electricity Socket. Kalan with LPG. Own CR.
-                </p>
-                <button class="card-button">See Details</button>
-            </div>
-        </div>
+    <main class="content-wrapper" role="main">
+        <h1>Our Accommodations</h1>
+        <section class="accom-container" aria-label="Accommodation Listings">
+            <article class="accom-item" aria-labelledby="up-down-house">
+                <div class="accom-image">
+                    <img src="images/IMG_4861.jpg" alt="Up and Down House" />
+                </div>
+                <div class="accom-details">
+                    <h2 id="up-down-house" class="accom-title">Up and Down House</h2>
+                    <span class="availability">1 AVAILABLE</span>
+                    <div class="accom-divider"></div>
+                    <h3 class="accom-description">FOR 10-15 PAX</h3>
+                    <h4>Daytour: ₱4,000.00<br> Overnight: ₱6,500.00</h4>
+                    <button class="accom-button" aria-label="See details for Up and Down House">See Details</button>
+                </div>
+            </article>
+            <article class="accom-item" aria-labelledby="Glass Cabin">
+                <div class="accom-image">
+                    <img src="images/IMG_4857.jpg" alt="Glass Cabin" />
+                </div>
+                <div class="accom-details">
+                    <h2 id="glass-cabin" class="accom-title">Glass Cabin</h2>
+                    <span class="availability">4 AVAILABLE</span>
+                    <div class="accom-divider"></div>
+                    <h3 class="accom-description">FOR 2-4 PAX</h3>
+                    <h4>Daytour: ₱1,500.00 <br> Overnight: ₱2,000.00</h4>
+                    <button class="accom-button" aria-label="See details for Glass Cabin">See Details</button>
+                </div>
+            </article>
+            <article class="accom-item" aria-labelledby="concrete-house">
+                <div class="accom-image">
+                    <img src="images/IMG_4918.jpg" alt="Concrete House" />
+                </div>
+                <div class="accom-details">
+                    <h2 id="glass-cabin" class="accom-title">Concrete House</h2>
+                    <span class="availability">1 AVAILABLE</span>
+                    <div class="accom-divider"></div>
+                    <h3 class="accom-description">FOR 10-15 PAX</h3>
+                    <h4>Daytour: ₱4,000.00 <br> Overnight: ₱6,500.00</h4>
+                    <button class="accom-button" aria-label="See details for Glass Cabin">See Details</button>
+                </div>
+            </article>
+        </section>
 
-        <div class="card">
-            <div class="card-background"></div>
-            <img src="concrete room.png" alt="House">
-            <div class="card-content">
-                <h2 class="card-title">Concrete Room</h2>
-                <p class="card-description">
-                    (4 Pax for Adults, 6 Pax mised of Adults and Kids) Includes Bunk Bed w/ Mattress, Pillows, Blanket & E-Fan. Electricity Socket. Own Sink and CR.
-                </p>
-                <button class="card-button">See Details</button>
-            </div>
-        </div>
+        <section class="accom-container" aria-label="Accommodation Listings">
+            <article class="accom-item" aria-labelledby="Concrete Room">
+                <div class="accom-image">
+                    <img src="images/IMG_4821.jpg" alt="Concrete Room" />
+                </div>
+                <div class="accom-details">
+                    <h2 id="glass-cabin" class="accom-title">Concrete Room</h2>
+                    <span class="availability">4 AVAILABLE</span>
+                    <div class="accom-divider"></div>
+                    <h3 class="accom-description">FOR 4-6 PAX</h3>
+                    <h4>Daytour: ₱2,000.00 <br> Overnight: ₱2,500.00</h4>
+                    <button class="accom-button" aria-label="See details for Glass Cabin">See Details</button>
+                </div>
+            </article>
+            <article class="accom-item" aria-labelledby="TP Hut">
+                <div class="accom-image">
+                    <img src="images/IMG_4895.jpg" alt="TP Hut" />
+                </div>
+                <div class="accom-details">
+                    <h2 id="glass-cabin" class="accom-title">TP Hut</h2>
+                    <span class="availability">2 AVAILABLE</span>
+                    <div class="accom-divider"></div>
+                    <h3 class="accom-description">FOR 2 PAX</h3>
+                    <h4>Daytour: ₱1,500.00 <br> Overnight: ₱1,500.00</h4>
+                    <button class="accom-button" aria-label="See details for Glass Cabin">See Details</button>
+                </div>
+            </article>
+            <article class="accom-item" aria-labelledby="Kubo Room">
+                <div class="accom-image">
+                    <img src="images/IMG_4859.jpg" alt="Kubo Room" />
+                </div>
+                <div class="accom-details">
+                    <h2 id="glass-cabin" class="accom-title">Kubo Room</h2>
+                    <span class="availability">2 AVAILABLE</span>
+                    <div class="accom-divider"></div>
+                    <h3 class="accom-description">FOR 2-4 PAX</h3>
+                    <h4>Daytour: ₱1,500.00 <br> Overnight: ₱2,000.00</h4>
+                    <button class="accom-button" aria-label="See details for Glass Cabin">See Details</button>
+                </div>
+            </article>
+            <article class="accom-item" aria-labelledby="Group Cabin">
+                <div class="accom-image">
+                    <img src="images/IMG_4840.jpg" alt="Group Cabin" />
+                </div>
+                <div class="accom-details">
+                    <h2 id="glass-cabin" class="accom-title">Group Cabin</h2>
+                    <span class="availability">1 AVAILABLE</span>
+                    <div class="accom-divider"></div>
+                    <h3 class="accom-description">FOR 6-12 PAX</h3>
+                    <h4>Daytour: ₱3,000.00 <br> Overnight: ₱6,000.00</h4>
+                    <button class="accom-button" aria-label="See details for Glass Cabin">See Details</button>
+                </div>
+            </article>
+            <article class="accom-item" aria-labelledby="Open Cottage">
+                <div class="accom-image">
+                    <img src="images/img26.jpg" alt="Open Kubo" />
+                </div>
+                <div class="accom-details">
+                    <h2 id="glass-cabin" class="accom-title">Open Cottage</h2>
+                    <span class="availability">6 AVAILABLE</span>
+                    <div class="accom-divider"></div>
+                    <h3 class="accom-description">FOR 10-15 PAX</h3>
+                    <h4>Daytour: ₱1,500.00 <br> Overnight: ₱2,000.00</h4>
+                    <button class="accom-button" aria-label="See details for Glass Cabin">See Details</button>
+                </div>
+            </article>
+            <article class="accom-item" aria-labelledby="Canopy Tent">
+                <div class="accom-image">
+                    <img src="images/IMG_4919.jpg" alt="Canopy Tent" />
+                </div>
+                <div class="accom-details">
+                    <h2 id="glass-cabin" class="accom-title">Canopy Tent</h2>
+                    <span class="availability">3 AVAILABLE</span>
+                    <div class="accom-divider"></div>
+                    <h3 class="accom-description">FOR 10 PAX</h3>
+                    <h4>Daytour: ₱800.00 <br> Overnight: ₱1,300.00</h4>
+                    <button class="accom-button" aria-label="See details for Glass Cabin">See Details</button>
+                </div>
+            </article>
+        </section>
 
-        <div class="card">
-            <div class="card-background"></div>
-            <img src="concretehouse.png" alt="House">
-            <div class="card-content">
-                <h2 class="card-title">Concrete House</h2>
-                <p class="card-description">
-                    Includes Upper Bedroom w/ Mattress, Pillows, Blanket. Electricity Socket. Kalan w/LPG. Alfresco Dining area. Own CR.
-                </p>
-                <button class="card-button">See Details</button>
-            </div>
         </div>
-    </div>
-
-    <div class="accom-container">
-        <div class="card">
-            <div class="card-background"></div>
-            <img src="glass cabin.png" alt="House">
-            <div class="card-content">
-                <h2 class="card-title">Glass Cabin</h2>
-                <p class="card-description">
-                    Includes Mattress, Pillows, Blanket and E-Fan. W/ Electricity Socket.
-                </p>
-                <button class="card-button">See Details</button>
-            </div>
-        </div>
- 
-        <div class="card">
-            <div class="card-background"></div>
-            <img src="group cabin.png" alt="House">
-            <div class="card-content">
-                <h2 class="card-title">Teepee Hut</h2>
-                <p class="card-description">
-                    Includes Mattress, Pillows, Blanket and E-Fan. W/ Electricity Socket.
-                </p>
-                <button class="card-button">See Details</button>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-background"></div>
-            <img src="kubo1.png" alt="House">
-            <div class="card-content">
-                <h2 class="card-title">Kubo Room</h2>
-                <p class="card-description">
-                    Includes Mattress, Pillows, Blanket and E-Fan. W/ Electricity Socket.
-                </p>
-                <button class="card-button">See Details</button>
-            </div>
-        </div>
-    </div>
-
-    
-</main>
-    
+        </section>
+    </main>
    
 <footer>
     <div class="footer-container">
         <div class="footer-logo">
-            <img src="rainbow-logo.png" alt="Rainbow Forest Logo">
+            <img src="images/rainbow-logo.png" alt="Rainbow Forest Logo">
         </div>
         <div class="footer-nav">
             <h3>Explore</h3>
