@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2025 at 04:49 PM
+-- Generation Time: Mar 27, 2025 at 08:19 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -67,47 +67,38 @@ INSERT INTO `bills` (`id`, `reservation_id`, `user_id`, `total_amount`, `payment
 -- --------------------------------------------------------
 
 --
--- Table structure for table `guest_reservations`
+-- Table structure for table `guest_reservation`
 --
 
-CREATE TABLE `guest_reservations` (
+CREATE TABLE `guest_reservation` (
   `id` int(11) NOT NULL,
-  `reservation_code` varchar(20) NOT NULL,
-  `check_in_date` date NOT NULL,
-  `check_out_date` date NOT NULL,
+  `reservation_code` varchar(255) NOT NULL,
+  `check_in` date NOT NULL,
+  `check_out` date NOT NULL,
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
   `contact_number` varchar(20) NOT NULL,
-  `guest_adult` int(30) NOT NULL,
-  `guest_kid` int(30) NOT NULL,
+  `adult_count` int(11) NOT NULL,
+  `kid_count` int(11) NOT NULL,
+  `tour_type` varchar(50) NOT NULL,
   `special_requests` text DEFAULT NULL,
-  `payment_amount` int(255) NOT NULL,
-  `payment_method` varchar(64) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `status` varchar(20) NOT NULL DEFAULT 'pending'
+  `extra_mattress` int(11) DEFAULT 0,
+  `extra_pillow` int(11) DEFAULT 0,
+  `extra_blanket` int(11) DEFAULT 0,
+  `base_price` decimal(10,2) NOT NULL,
+  `extras_price` decimal(10,2) NOT NULL,
+  `total_price` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `guest_reservations`
+-- Dumping data for table `guest_reservation`
 --
 
-INSERT INTO `guest_reservations` (`id`, `reservation_code`, `check_in_date`, `check_out_date`, `first_name`, `last_name`, `email`, `contact_number`, `guest_adult`, `guest_kid`, `special_requests`, `payment_amount`, `payment_method`, `created_at`, `status`) VALUES
-(1, 'G-350FF2EB', '2025-03-23', '2025-03-24', 'Ike Diezel', 'Reyes', 'ikediezel.samosa@gmail.com', '09374583254', 6, 0, '', 0, '', '2025-03-15 16:30:29', 'pending'),
-(2, 'G-E5CE7087', '2025-03-23', '2025-03-24', 'Ike Diezel', 'Reyes', 'ikediezel.samosa@gmail.com', '09374583254', 6, 0, '', 0, '', '2025-03-15 16:30:43', 'pending'),
-(3, 'G-62452DDA', '2025-03-25', '2025-03-26', 'Cerike', 'Samosa', 'ikediezel.samosa@gmail.com', '09125663432', 3, 0, '', 0, '', '2025-03-15 16:40:33', 'pending'),
-(4, 'G-CB43D863', '2025-03-18', '2025-03-19', 'Cerike', 'Samosa', 'ikediezel.samosa@gmail.com', '09125663432', 0, 0, '', 0, '', '2025-03-15 17:29:16', 'pending'),
-(5, 'G-55674B96', '2025-03-24', '2025-03-25', 'Diezel', 'Reyes', 'samosa.ikediezel@ue.edu.ph', '09876524355', 17, 6, '', 25760, 'credit_card', '2025-03-15 18:19:24', 'confirmed'),
-(6, 'G-F392AB55', '2025-03-30', '2025-03-31', 'Cerike', 'Reyes', 'samosa.ikediezel@ue.edu.ph', '09876524355', 10, 5, '', 0, '', '2025-03-16 17:32:47', 'pending'),
-(7, 'G-3197EA51', '2025-03-30', '2025-03-31', 'Cerike', 'Reyes', 'samosa.ikediezel@ue.edu.ph', '09374583254', 15, 4, '', 22400, 'gcash', '2025-03-16 17:33:51', 'confirmed'),
-(8, 'G-332C9950', '2025-03-24', '2025-03-26', 'Bosing', 'Reyes', 'samosa.ikediezel@ue.edu.ph', '09374583254', 0, 0, '', 0, '', '2025-03-20 16:34:40', 'pending'),
-(9, 'G-75AA8786', '2025-03-24', '2025-03-26', 'Ike Diezel', 'Samosa', 'ikediezel.samosa@gmail.com', '09125663432', 25, 8, '', 0, '', '2025-03-20 16:35:38', 'pending'),
-(10, 'G-E0CD6557', '2025-03-24', '2025-03-26', 'Bosing', 'Samosa', 'samosa.ikediezel@ue.edu.ph', '09374583254', 0, 0, '', 0, '', '2025-03-20 16:49:26', 'pending'),
-(11, 'G-4C0D6712', '2025-03-23', '2025-03-24', 'Cerike', 'Samosa', 'ikediezel.samosa@gmail.com', '09125663432', 0, 0, '', 0, '', '2025-03-21 16:28:31', 'pending'),
-(12, 'G-EC96C4C5', '2025-03-23', '2025-03-24', 'Cerike', 'Samosa', 'ikediezel.samosa@gmail.com', '09125663432', 0, 0, '', 0, '', '2025-03-21 16:30:15', 'pending'),
-(13, 'G-ECF808C5', '2025-03-23', '2025-03-24', 'Cerike', 'Samosa', 'ikediezel.samosa@gmail.com', '09125663432', 0, 0, '', 0, '', '2025-03-21 16:30:21', 'pending'),
-(14, 'G-97105543', '2025-03-23', '2025-03-24', 'Cerike', 'Samosa', 'ikediezel.samosa@gmail.com', '09125663432', 0, 0, '', 0, '', '2025-03-21 16:30:30', 'pending'),
-(15, 'G-67C3916F', '2025-03-23', '2025-03-24', 'Cerike', 'Samosa', 'ikediezel.samosa@gmail.com', '09125663432', 0, 0, '', 0, '', '2025-03-21 16:47:17', 'pending');
+INSERT INTO `guest_reservation` (`id`, `reservation_code`, `check_in`, `check_out`, `first_name`, `last_name`, `email`, `contact_number`, `adult_count`, `kid_count`, `tour_type`, `special_requests`, `extra_mattress`, `extra_pillow`, `extra_blanket`, `base_price`, `extras_price`, `total_price`, `created_at`) VALUES
+(1, 'KS2503296701', '2025-03-29', '2025-03-30', 'Keith', 'Samosa', 'ayk.example@yahoo.com', '09876524355', 19, 12, '0', '', 1, 2, 1, 18600.00, 300.00, 18900.00, '2025-03-27 19:08:52'),
+(2, 'IS2503297219', '2025-03-29', '2025-03-30', 'Ike', 'Samosa', 'ikediezel.samosa@gmail.com', '0987652435', 24, 12, '0', '', 2, 2, 2, 13400.00, 500.00, 13900.00, '2025-03-27 19:12:21');
 
 -- --------------------------------------------------------
 
@@ -131,37 +122,6 @@ CREATE TABLE `payments` (
 
 INSERT INTO `payments` (`id`, `reservation_id`, `user_id`, `payment_receipt`, `status`, `uploaded_at`, `file_path`) VALUES
 (12, 17, 26, '', 'Approved', '2025-02-26 15:21:50', 'uploads/payments/payment_1740583310_26.png');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `reservations`
---
-
-CREATE TABLE `reservations` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `check_in` date NOT NULL,
-  `check_out` date NOT NULL,
-  `status` enum('Pending','Confirmed','Expired') DEFAULT 'Pending',
-  `payment_proof` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `last_name` varchar(255) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `contact_number` varchar(15) NOT NULL,
-  `payment_status` enum('No Payment','Pending Verification','Paid','Rejected') DEFAULT 'No Payment'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `reservations`
---
-
-INSERT INTO `reservations` (`id`, `user_id`, `check_in`, `check_out`, `status`, `payment_proof`, `created_at`, `last_name`, `first_name`, `email`, `contact_number`, `payment_status`) VALUES
-(17, 45, '2025-02-28', '2025-03-01', 'Confirmed', NULL, '2025-02-26 15:21:29', 'Formentera', 'jezelle', 'jezelleformentera21@gmail.com', '091292383813', 'Paid'),
-(39, 45, '2025-03-14', '2025-03-15', 'Pending', NULL, '2025-03-13 06:14:02', 'Samosa', 'Bosing', 'samosa.ikediezel@ue.edu.ph', '09374583254', 'No Payment'),
-(40, 45, '2025-03-16', '2025-03-17', 'Pending', NULL, '2025-03-13 06:35:26', 'Reyes', 'Bosing', 'samosa.ikediezel@ue.edu.ph', '09374583254', 'No Payment'),
-(41, 60, '2025-03-17', '2025-03-18', 'Pending', NULL, '2025-03-13 15:42:59', 'Samosa', 'Cerike', 'ikediezel.samosa@gmail.com', '09125663432', 'No Payment');
 
 -- --------------------------------------------------------
 
@@ -196,21 +156,38 @@ INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `contact_number`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `user_reservation`
 --
 
-CREATE TABLE `users` (
-  `id` int(10) NOT NULL
+CREATE TABLE `user_reservation` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `reservation_code` varchar(255) DEFAULT NULL,
+  `check_in` date DEFAULT NULL,
+  `check_out` date DEFAULT NULL,
+  `first_name` varchar(100) DEFAULT NULL,
+  `last_name` varchar(100) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `contact_number` varchar(20) DEFAULT NULL,
+  `adult_count` int(11) DEFAULT NULL,
+  `kid_count` int(11) DEFAULT NULL,
+  `tour_type` varchar(50) DEFAULT NULL,
+  `special_requests` text DEFAULT NULL,
+  `extra_mattress` int(11) DEFAULT 0,
+  `extra_pillow` int(11) DEFAULT 0,
+  `extra_blanket` int(11) DEFAULT 0,
+  `total_price` decimal(10,2) DEFAULT NULL,
+  `extras_total` decimal(10,2) DEFAULT NULL,
+  `total_amount` decimal(10,2) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `user_reservation`
 --
 
-INSERT INTO `users` (`id`) VALUES
-(19),
-(20),
-(26);
+INSERT INTO `user_reservation` (`id`, `user_id`, `reservation_code`, `check_in`, `check_out`, `first_name`, `last_name`, `email`, `contact_number`, `adult_count`, `kid_count`, `tour_type`, `special_requests`, `extra_mattress`, `extra_pillow`, `extra_blanket`, `total_price`, `extras_total`, `total_amount`, `created_at`) VALUES
+(1, 60, '20250327-B8CEE6', '2025-03-29', '2025-03-30', 'Cerike', 'Samosa', 'ikediezel.samosa@gmail.com', '09125663432', 42, 12, '0', '', 5, 7, 4, 32400.00, 1300.00, 33700.00, '2025-03-27 19:18:20');
 
 --
 -- Indexes for dumped tables
@@ -232,10 +209,13 @@ ALTER TABLE `bills`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `guest_reservations`
+-- Indexes for table `guest_reservation`
 --
-ALTER TABLE `guest_reservations`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `guest_reservation`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `reservation_code` (`reservation_code`),
+  ADD KEY `idx_reservation_code` (`reservation_code`),
+  ADD KEY `idx_email` (`email`);
 
 --
 -- Indexes for table `payments`
@@ -243,13 +223,6 @@ ALTER TABLE `guest_reservations`
 ALTER TABLE `payments`
   ADD PRIMARY KEY (`id`),
   ADD KEY `reservation_id` (`reservation_id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `reservations`
---
-ALTER TABLE `reservations`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
@@ -262,10 +235,12 @@ ALTER TABLE `user`
   ADD UNIQUE KEY `account_activation_hash` (`account_activation_hash`);
 
 --
--- Indexes for table `users`
+-- Indexes for table `user_reservation`
 --
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `user_reservation`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `reservation_code` (`reservation_code`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -284,10 +259,10 @@ ALTER TABLE `bills`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT for table `guest_reservations`
+-- AUTO_INCREMENT for table `guest_reservation`
 --
-ALTER TABLE `guest_reservations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+ALTER TABLE `guest_reservation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `payments`
@@ -296,16 +271,16 @@ ALTER TABLE `payments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `reservations`
---
-ALTER TABLE `reservations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
-
---
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+
+--
+-- AUTO_INCREMENT for table `user_reservation`
+--
+ALTER TABLE `user_reservation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -315,21 +290,13 @@ ALTER TABLE `user`
 -- Constraints for table `bills`
 --
 ALTER TABLE `bills`
-  ADD CONSTRAINT `bills_ibfk_1` FOREIGN KEY (`reservation_id`) REFERENCES `reservations` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `bills_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `payments`
+-- Constraints for table `user_reservation`
 --
-ALTER TABLE `payments`
-  ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`reservation_id`) REFERENCES `reservations` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `payments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `reservations`
---
-ALTER TABLE `reservations`
-  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+ALTER TABLE `user_reservation`
+  ADD CONSTRAINT `user_reservation_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -94,8 +94,8 @@ $reservation = $_SESSION['guest_reservation'];
         <div class="reservation-details">
             <p><strong>Name:</strong> <?php echo htmlspecialchars($reservation['name']); ?></p>
             <p><strong>Email:</strong> <?php echo htmlspecialchars($reservation['email']); ?></p>
-            <p><strong>Check-in Date:</strong> <?php echo htmlspecialchars($reservation['check_in']); ?></p>
-            <p><strong>Check-out Date:</strong> <?php echo htmlspecialchars($reservation['check_out']); ?></p>
+            <p><strong>Check-in Date:</strong> <?php echo isset($reservation['check_in_date']) ? htmlspecialchars($reservation['check_in_date']) : 'N/A'; ?></p>
+            <p><strong>Check-out Date:</strong> <?php echo isset($reservation['check_out_date']) ? htmlspecialchars($reservation['check_out_date']) : 'N/A'; ?></p>
         </div>
         
         <div class="reservation-code-container">

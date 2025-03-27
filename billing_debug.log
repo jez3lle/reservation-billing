@@ -1,0 +1,80 @@
+[2025-03-27 19:30:05] Billing Calculation: Array
+(
+    [Tour Type] => whole_day
+    [Total Guests] => 24
+    [Base Tour Price] => 16000
+    [Extras] => Array
+        (
+            [extra_mattress] => 0
+            [extra_pillow] => 0
+            [extra_blanket] => 0
+        )
+
+    [Extras Price] => 0
+    [Total Bill] => 16000
+)
+
+[2025-03-27 19:31:09] Billing Calculation: Array
+(
+    [Tour Type] => whole_day
+    [Total Guests] => 28
+    [Base Tour Price] => 18000
+    [Extras] => Array
+        (
+            [extra_mattress] => 0
+            [extra_pillow] => 0
+            [extra_blanket] => 0
+        )
+
+    [Extras Price] => 0
+    [Total Bill] => 18000
+)
+
+[2025-03-27 19:34:22] Billing Calculation: Array
+(
+    [Tour Type] => whole_day
+    [Total Guests] => 28
+    [Base Tour Price] => 18000
+    [Extras] => Array
+        (
+            [extra_mattress] => 0
+            [extra_pillow] => 0
+            [extra_blanket] => 0
+        )
+
+    [Extras Price] => 0
+    [Total Bill] => 18000
+)
+
+[2025-03-27 19:36:21] Billing Calculation: Array
+(
+    [Tour Type] => whole_day
+    [Total Guests] => 28
+    [Base Tour Price] => 18000
+    [Extras] => Array
+        (
+            [extra_mattress] => 1
+            [extra_pillow] => 1
+            [extra_blanket] => 1
+        )
+
+    [Extras Price] => 250
+    [Total Bill] => 18250
+)
+
+[2025-03-27 19:38:44] Billing Calculation: Array
+(
+    [Tour Type] => whole_day
+    [Total Guests] => 28
+    [Base Tour Price] => 18000
+    [Extras] => Array
+        (
+            [extra_mattress] => 1
+            [extra_pillow] => 1
+            [extra_blanket] => 1
+        )
+
+    [Extras Price] => 250
+    [Total Bill] => 18250
+)
+

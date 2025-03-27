@@ -167,6 +167,10 @@ $current_user = getUserStatus();
             background: #ffffff;
             color: #2d6a4f;
         }
+        .user-info{
+            display: flex;
+            flex-direction: column;
+        }
     </style>
 </head>
 
