@@ -42,6 +42,6 @@ $user = getUserStatus();
         <a href="<?= $base_path ?>account.php" class="profile-link">My Profile</a>
         <a href="<?= $base_path ?>logout.php" class="logout-link">Logout</a>
     <?php else: ?>
-        <a href="<?= $base_path ?>index.php" class="login-link">Login/Register</a>
+        <a href="<?= $base_path ?>login.php" class="login-link">Login/Register</a>
     <?php endif; ?>
 </div>

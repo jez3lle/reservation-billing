@@ -222,7 +222,7 @@ $current_user = getUserStatus();
                     </div>
                 <?php else: ?>
                     <!-- Just a placeholder since we're already on the login page -->
-                    <a href="index.php" class="user-icon">
+                    <a href="login.php" class="user-icon">
                         <img src="images/logo.png" alt="User Icon">
                     </a>
                 <?php endif; ?>
@@ -426,7 +426,7 @@ $current_user = getUserStatus();
                                         $("#availabilityResult").append(`
                                             <div class="reservation-buttons" style="display: flex; justify-content: center; gap: 10px; margin-top: 15px;">
                                                 <a href="guest_reservation.php?check_in=${encodeURIComponent(check_in)}&check_out=${encodeURIComponent(check_out)}" class="btn" id="guestReservation" style="padding: 10px 18px; background: #4caf50; color: white; text-decoration: none; border-radius: 5px; cursor: pointer;">Continue as Guest</a>
-                                                <a href="index.php?check_in=${encodeURIComponent(check_in)}&check_out=${encodeURIComponent(check_out)}" class="btn" id="loginToReserve" style="padding: 10px 18px; background: #03624c; color: white; text-decoration: none; border-radius: 5px; cursor: pointer;">Login to Reserve</a>
+                                                <a href="login.php?check_in=${encodeURIComponent(check_in)}&check_out=${encodeURIComponent(check_out)}" class="btn" id="loginToReserve" style="padding: 10px 18px; background: #03624c; color: white; text-decoration: none; border-radius: 5px; cursor: pointer;">Login to Reserve</a>
                                             </div>
                                         `);
                                     }
@@ -454,7 +454,7 @@ $current_user = getUserStatus();
             $(document).on("click", "#loginToReserve", function(){
                 var check_in = $(this).data("checkin");
                 var check_out = $(this).data("checkout");
-                window.location.href = "index.php?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
+                window.location.href = "login.php?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
             });
         });
         function proceedToReservationFunc(check_in, check_out) {

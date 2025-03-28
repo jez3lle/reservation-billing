@@ -120,8 +120,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <ul class="nav-links">
                 <li><a href="home_p1.php">HOME</a></li>
                     <li><a href="aboutus.php">ABOUT</a></li>
-                    <li><a href="accom.php">ACCOMMODATIONS</a></li>
-                    <li><a href="activties.php">ACTIVITIES</a></li>
+                    <li><a href="accomodation_p1.php">ACCOMMODATIONS</a></li>
+                    <li><a href="activities_p1.php">ACTIVITIES</a></li>
                     <li><a href="#">BOOK NOW</a></li>
             </ul>
             <div class="icon">
@@ -137,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </div>
                 <?php else: ?>
                     <!-- Just a placeholder since we're already on the login page -->
-                    <a href="#" class="user-icon">
+                    <a href="login.php" class="user-icon">
                         <img src="images/logo.png" alt="User Icon">
                     </a>
                 <?php endif; ?>

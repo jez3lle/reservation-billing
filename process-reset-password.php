@@ -42,5 +42,5 @@ $stmt = $mysqli->prepare($sql);
 $stmt->bind_param("ss", $password_hash, $user["id"]);
 $stmt->execute();
 
-echo '<p>Password Updated! You can now <a href="index.php">login</a></p>';
+echo '<p>Password Updated! You can now <a href="login.php">login</a></p>';
 ?>

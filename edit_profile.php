@@ -3,7 +3,7 @@ session_start();
 
 // Check if user is logged in
 if (!isset($_SESSION["user_id"])) {
-    header("Location: index.php");  // Redirect to login page if not logged in
+    header("Location: login.php");  // Redirect to login page if not logged in
     exit;
 }
 
@@ -57,7 +57,7 @@ $user = $result->fetch_assoc();
 // If user doesn't exist (was deleted or session is invalid)
 if (!$user) {
     session_destroy();
-    header("Location: index.php");
+    header("Location: login.php");
     exit;
 }
 ?>
@@ -208,7 +208,7 @@ if (!$user) {
                     </div>
                 <?php else: ?>
                     <!-- Just a placeholder since we're already on the login page -->
-                    <a href="index.php" class="user-icon">
+                    <a href="login.php" class="user-icon">
                         <img src="images/logo.png" alt="User Icon">
                     </a>
                 <?php endif; ?>

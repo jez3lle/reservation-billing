@@ -26,22 +26,36 @@ if ($check_in_date >= $check_out_date) {
 $_SESSION['check_in'] = $check_in;
 $_SESSION['check_out'] = $check_out;
 
-$sql = "SELECT * FROM reservations 
-        WHERE (check_in < ? AND check_out > ?) 
-        OR (check_in >= ? AND check_in < ?) 
-        OR (check_out > ? AND check_out <= ?)";
+// Tables to check for reservation conflicts
+$tables = ['user_reservation', 'guest_reservation'];
+$is_available = true;
+$conflict_tables = [];
 
-$stmt = $mysqli->prepare($sql);
-$stmt->bind_param("ssssss", $check_out, $check_in, $check_in, $check_out, $check_in, $check_out);
-$stmt->execute();
-$result = $stmt->get_result();
+// Check each table for reservation conflicts
+foreach ($tables as $table) {
+    $sql = "SELECT * FROM $table 
+            WHERE (check_in < ? AND check_out > ?) 
+            OR (check_in >= ? AND check_in < ?) 
+            OR (check_out > ? AND check_out <= ?)";
 
-if ($result->num_rows > 0) {
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("ssssss", $check_out, $check_in, $check_in, $check_out, $check_in, $check_out);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $is_available = false;
+        $conflict_tables[] = $table;
+    }
+
+    $stmt->close();
+}
+
+if (!$is_available) {
     echo "<p style='color: red;'>Not Available. Please select different dates.</p>";
 } else {
     echo "<p style='color: green;'>Available! You can proceed with booking.</p>";
 }
 
-$stmt->close();
 $mysqli->close();
 ?>

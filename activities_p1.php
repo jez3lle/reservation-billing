@@ -166,7 +166,7 @@ $current_user = getUserStatus();
                     </div>
                 <?php else: ?>
                     <!-- Just a placeholder since we're already on the login page -->
-                    <a href="index.php" class="user-icon">
+                    <a href="login.php" class="user-icon">
                         <img src="images/logo.png" alt="User Icon">
                     </a>
                 <?php endif; ?>

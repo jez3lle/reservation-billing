@@ -7,7 +7,7 @@ if (!isset($_SESSION["user_id"])) {
     $_SESSION["redirect_after_login"] = $_SERVER["REQUEST_URI"];
     
     // Make sure this path is correct relative to this file
-    header("Location: index.php"); // or the correct path to your login page
+    header("Location: login.php"); // or the correct path to your login page
     exit;
 }
 
