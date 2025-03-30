@@ -1,12 +1,14 @@
 <?php
-$host = 'localhost';
-$user = 'root';
-$password = ''; // Default for XAMPP
-$dbname = 'rainbow_forest_paradise';
+$servername = "localhost"; // Change if needed
+$username = "root"; // Change if needed
+$password = ""; // Default XAMPP password is empty
+$database = "resort_db"; // Replace with your actual database name
 
-$conn = mysqli_connect($host, $user, $password, $dbname);
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
 
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 ?>

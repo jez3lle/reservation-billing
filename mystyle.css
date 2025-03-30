@@ -152,6 +152,34 @@
         .menu-img img.clicked {
             border: 3px solid #fff; /
         }
+        
+
+
+
+        /*dito sa phase 2*/
+         /* Small Vertical Menu */
+         .p2menu-img  {
+            position: absolute;
+            top: 40%;
+            right: 10%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 70px;
+        }
+        .p2menu-img img {
+            width: 140px; /* Increased size */
+            height: 120px; /* Increased size */
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, border 0.3s ease-in-out;
+        }
+        .p2menu-img img:hover {
+            transform: scale(1.1);
+        }
+        .p2menu-img img.clicked {
+            border: 3px solid #fff; /
+        }
+
 
         .booknow {
             display: inline-block;
@@ -564,8 +592,8 @@
 
         .photo-gallery {
             text-align: center;
-            margin: 50px auto;
-            max-width: 100%;
+            margin: 40px auto;
+            max-width: 90%;
         }
         .photo-gallery h2 {
             font-size: 2rem;
@@ -773,6 +801,22 @@
             margin-top: 20px;
             padding: 20px;
         }
+        .acc-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            gap: 20px; /* Spacing between cards */
+            display: flex;
+            flex-wrap: wrap;  /* Ensures responsiveness */
+            justify-content: center;  /* Centers horizontally */
+            align-items: center;  /* Centers vertically */
+            gap: 100px; /* Adds spacing between cards */
+            min-height: 100vh; /* Ensures full height */
+        }
+        
+        .card {
+            width: 100%; 
+            max-width: 350px;
+        }
 
         .card {
             position: relative;
@@ -886,5 +930,72 @@
             font-size: 0.9em;
             line-height: 1.6;
         } 
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh; /* Ensures full viewport height */
+            width: 100%;
+        }
+        
+        
+            html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh;
+            background: url('uploads/back.jpg') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+        }
+        
+                .container {
+                    max-width: 700px;
+                    margin: 100px auto;
+                    padding: 30px;
+                    background: rgba(22, 17, 17, 0.7);
+                    border-radius: 10px;
+                    box-shadow: 10 10px 10px rgba(31, 0, 0, 0.3);
+                    position: relative;
+                }
+                .main-image {
+                    width: 100%;
+                    border-radius: 10px;
+                }
+                .circle-container {
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    gap: 0px;
+                    margin-top: -60px;
+                }
+                .circle {
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    border: 5px solid white;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+                }
+                .circle img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+                h1 {
+                    font-family: 'Brush Script MT', cursive;
+                    font-size: 36px;
+                    margin-top: 20px;
+                }
+                .price {
+                    font-size: 20px;
+                    font-weight: bold;
+                    margin: 10px 0;
+                }
+                .note {
+                    font-size: 16px;
+                    font-style: italic;
+                    color: #ccc;
+                }
+        
 
         
