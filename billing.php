@@ -251,7 +251,7 @@ if (!isset($reservation['reservation_code'])) {
 
     <div class="bank-details">
         <h3>Bank Transfer Payment Instructions</h3>
-        <p>Please complete your payment using one of the following bank details:</p>
+        <p>Please complete your payment using the following bank details:</p>
         
         <div>
             <strong>Bank: RCBC</strong><br>
@@ -278,6 +278,7 @@ if (!isset($reservation['reservation_code'])) {
     </div>
 
     <script>
+        // Replace the existing JavaScript code in billing.php with this enhanced version
         const fileInput = document.getElementById('fileInput');
         const imagePreview = document.getElementById('imagePreview');
         const referenceNumberInput = document.getElementById('referenceNumberInput');
@@ -308,7 +309,7 @@ if (!isset($reservation['reservation_code'])) {
             uploadButton.disabled = !(hasImage && hasReferenceNumber);
         }
 
-        // Upload functionality
+        // Enhanced upload functionality with better error handling
         uploadButton.addEventListener('click', async function() {
             const file = fileInput.files[0];
             const referenceNumber = referenceNumberInput.value.trim();
@@ -318,29 +319,54 @@ if (!isset($reservation['reservation_code'])) {
                 return;
             }
 
+            // Show loading indicator
+            showStatus('Uploading payment proof...', true);
+            
             // Create FormData for file upload
             const formData = new FormData();
             formData.append('paymentProof', file);
             formData.append('referenceNumber', referenceNumber);
 
             try {
-                // Simulated fetch - replace with actual backend endpoint
-                const response = await fetch('/upload-payment-proof', {
+                // Log form data (for debugging)
+                console.log('Sending file:', file.name, 'Size:', file.size, 'Type:', file.type);
+                console.log('Reference number:', referenceNumber);
+                
+                // Make the fetch request
+                const response = await fetch('process_payment.php', {
                     method: 'POST',
                     body: formData
                 });
-
-                if (response.ok) {
-                    showStatus('Payment proof uploaded successfully!', true);
-                    // Optional: redirect or clear form
+                
+                console.log('Response status:', response.status);
+                
+                // Get the raw response text
+                const responseText = await response.text();
+                console.log('Raw response:', responseText);
+                
+                // Try to parse the response as JSON
+                let data;
+                try {
+                    data = JSON.parse(responseText);
+                } catch (parseError) {
+                    console.error('JSON parse error:', parseError);
+                    showStatus('Server returned invalid data. Please contact support.', false);
+                    return;
+                }
+                
+                // Process the parsed data
+                if (data.success) {
+                    showStatus(data.message, true);
+                    // Redirect after successful upload
                     setTimeout(() => {
-                        window.location.href = 'confirmation.html';
+                        window.location.href = 'confirmation.php';
                     }, 2000);
                 } else {
-                    showStatus('Upload failed. Please try again.', false);
+                    showStatus(data.message || 'Unknown error occurred', false);
                 }
             } catch (error) {
-                showStatus('Network error. Please check your connection.', false);
+                console.error('Fetch error:', error);
+                showStatus('Network error: ' + error.message + '. Please check your connection.', false);
             }
         });
 

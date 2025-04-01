@@ -447,7 +447,7 @@ $current_user = getUserStatus();
             $(document).on("click", "#guestReservation", function(){
                 var check_in = $(this).data("checkin");
                 var check_out = $(this).data("checkout");
-                window.location.href = "guest_reservation?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
+                window.location.href = "guest_reservation.php?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
             });
 
             // Handle click for users who want to login first

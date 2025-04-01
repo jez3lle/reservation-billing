@@ -1,0 +1,32 @@
+[01-Apr-2025 18:33:35 Europe/Berlin] Processing payment submission
+[01-Apr-2025 18:33:35 Europe/Berlin] Payment submission for reservation code: JT2504058962
+[01-Apr-2025 18:33:35 Europe/Berlin] File details - Name: Screenshot_2025-03-12-13-20-12-239_com.globe.gcash.android.jpg, Type: image/jpeg, Size: 349519, Error: 0
+[01-Apr-2025 18:33:35 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/JT2504058962_1743525215.jpg
+[01-Apr-2025 18:33:35 Europe/Berlin] Database connection successful
+[01-Apr-2025 18:33:35 Europe/Berlin] Using reservation table: guest_reservation
+[01-Apr-2025 18:33:35 Europe/Berlin] Error in process_payment.php: Unknown column 'total_amount' in 'field list'
+[01-Apr-2025 18:33:35 Europe/Berlin] Deleted uploaded file due to error
+[01-Apr-2025 18:38:18 Europe/Berlin] Processing payment submission
+[01-Apr-2025 18:38:18 Europe/Berlin] Payment submission for reservation code: JT2504058962
+[01-Apr-2025 18:38:18 Europe/Berlin] File details - Name: Screenshot_2025-03-12-13-20-12-239_com.globe.gcash.android.jpg, Type: image/jpeg, Size: 349519, Error: 0
+[01-Apr-2025 18:38:18 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/JT2504058962_1743525498.jpg
+[01-Apr-2025 18:38:18 Europe/Berlin] Database connection successful
+[01-Apr-2025 18:38:18 Europe/Berlin] Using reservation table: guest_reservation
+[01-Apr-2025 18:38:18 Europe/Berlin] Error in process_payment.php: Duplicate entry 'JT2504058962' for key 'reservation_code'
+[01-Apr-2025 18:38:18 Europe/Berlin] Deleted uploaded file due to error
+[01-Apr-2025 18:39:56 Europe/Berlin] Processing payment submission
+[01-Apr-2025 18:39:56 Europe/Berlin] Payment submission for reservation code: JB2504068466
+[01-Apr-2025 18:39:56 Europe/Berlin] File details - Name: Screenshot_2025-03-12-13-20-12-239_com.globe.gcash.android.jpg, Type: image/jpeg, Size: 349519, Error: 0
+[01-Apr-2025 18:39:56 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/JB2504068466_1743525596.jpg
+[01-Apr-2025 18:39:56 Europe/Berlin] Database connection successful
+[01-Apr-2025 18:39:56 Europe/Berlin] Using reservation table: guest_reservation
+[01-Apr-2025 18:39:56 Europe/Berlin] Error in process_payment.php: Duplicate entry 'JB2504068466' for key 'reservation_code'
+[01-Apr-2025 18:39:56 Europe/Berlin] Deleted uploaded file due to error
+[01-Apr-2025 18:41:50 Europe/Berlin] Processing payment submission
+[01-Apr-2025 18:41:50 Europe/Berlin] Payment submission for reservation code: 20250401-D8AF54
+[01-Apr-2025 18:41:50 Europe/Berlin] File details - Name: Screenshot_2025-03-12-13-20-12-239_com.globe.gcash.android.jpg, Type: image/jpeg, Size: 349519, Error: 0
+[01-Apr-2025 18:41:50 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/20250401-D8AF54_1743525710.jpg
+[01-Apr-2025 18:41:50 Europe/Berlin] Database connection successful
+[01-Apr-2025 18:41:50 Europe/Berlin] Using reservation table: user_reservation
+[01-Apr-2025 18:41:50 Europe/Berlin] Error in process_payment.php: Duplicate entry '20250401-D8AF54' for key 'reservation_code'
+[01-Apr-2025 18:41:50 Europe/Berlin] Deleted uploaded file due to error
