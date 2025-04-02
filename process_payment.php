@@ -1,5 +1,5 @@
 <?php
-// process_payment.php with enhanced error handling
+// process_payment.php with enhanced error handling and updated database structure
 // Add error reporting at the top
 error_reporting(E_ALL);
 ini_set('display_errors', 0); // Don't display errors to browser, but log them
@@ -121,116 +121,160 @@ try {
     // Begin transaction
     $mysqli->begin_transaction();
     
-    // Determine which table to use based on reservation data
-    // If there's a user_id, use user_reservation, otherwise use guest_reservation
-    $reservationTable = isset($reservation['user_id']) ? 'user_reservation' : 'guest_reservation';
-    error_log("Using reservation table: $reservationTable");
+    // CHECK FOR DUPLICATE RESERVATION CODE
+    $checkSql = "SELECT 'user' AS type FROM user_reservation WHERE reservation_code = ? 
+                 UNION 
+                 SELECT 'guest' AS type FROM guest_reservation WHERE reservation_code = ?";
+    $checkStmt = $mysqli->prepare($checkSql);
+    if (!$checkStmt) {
+        throw new Exception("Prepare check failed: " . $mysqli->error);
+    }
     
-    // Insert into the correct table
-    if ($reservationTable === 'user_reservation') {
-        $sql = "INSERT INTO user_reservation (
-            user_id, reservation_code, check_in, check_out, first_name, last_name, 
-            email, contact_number, adult_count, kid_count, tour_type, special_requests,
-            extra_mattress, extra_pillow, extra_blanket, total_price, extras_total, total_amount
-        ) VALUES (
-            ?, ?, ?, ?, ?, ?,
-            ?, ?, ?, ?, ?, ?,
-            ?, ?, ?, ?, ?, ?
-        )";
+    $checkStmt->bind_param("ss", $reservation['reservation_code'], $reservation['reservation_code']);
+    $checkStmt->execute();
+    $result = $checkStmt->get_result();
+
+    // Flag to track if reservation already exists
+    $reservationExists = false;
+    $existingType = '';
+    
+    if ($result->num_rows > 0) {
+        // Reservation code already exists
+        $row = $result->fetch_assoc();
+        $existingType = $row['type'];
+        $reservationExists = true;
+        error_log("Reservation code already exists: " . $reservation['reservation_code'] . " (Type: $existingType)");
+    }
+    $checkStmt->close();
+    
+    $reservationId = 0;
+    
+    // Only insert reservation if it doesn't already exist
+    if (!$reservationExists) {
+        // Determine which table to use based on reservation data
+        // If there's a user_id, use user_reservation, otherwise use guest_reservation
+        $reservationType = isset($reservation['user_id']) ? 'user' : 'guest';
+        error_log("Using reservation type: $reservationType");
         
-        $stmt = $mysqli->prepare($sql);
-        if (!$stmt) {
-            throw new Exception("Prepare failed: " . $mysqli->error);
+        // Insert into the correct table
+        if ($reservationType === 'user') {
+            $sql = "INSERT INTO user_reservation (
+                user_id, reservation_code, check_in, check_out, first_name, last_name, 
+                email, contact_number, adult_count, kid_count, tour_type, special_requests,
+                extra_mattress, extra_pillow, extra_blanket, total_price, extras_total, total_amount
+            ) VALUES (
+                ?, ?, ?, ?, ?, ?,
+                ?, ?, ?, ?, ?, ?,
+                ?, ?, ?, ?, ?, ?
+            )";
+            
+            $stmt = $mysqli->prepare($sql);
+            if (!$stmt) {
+                throw new Exception("Prepare failed: " . $mysqli->error);
+            }
+            
+            // Default values for extras if not set
+            $extra_mattress = $reservation['extras']['extra_mattress'] ?? 0;
+            $extra_pillow = $reservation['extras']['extra_pillow'] ?? 0;
+            $extra_blanket = $reservation['extras']['extra_blanket'] ?? 0;
+            $special_requests = $reservation['special_requests'] ?? '';
+            $extras_total = $reservation['extras_total'] ?? 0;
+            
+            $stmt->bind_param(
+                "isssssssiisissiddd",
+                $reservation['user_id'],
+                $reservation['reservation_code'],
+                $reservation['check_in'],
+                $reservation['check_out'],
+                $reservation['first_name'],
+                $reservation['last_name'],
+                $reservation['email'],
+                $reservation['contact_number'],
+                $reservation['adult_count'],
+                $reservation['kid_count'],
+                $reservation['tour_type'],
+                $special_requests,
+                $extra_mattress,
+                $extra_pillow,
+                $extra_blanket,
+                $reservation['total_price'],
+                $extras_total,
+                $reservation['total_amount']
+            );
+        } else {
+            $sql = "INSERT INTO guest_reservation (
+                reservation_code, check_in, check_out, first_name, last_name, 
+                email, contact_number, adult_count, kid_count, tour_type, special_requests,
+                extra_mattress, extra_pillow, extra_blanket, base_price, extras_price, total_price
+            ) VALUES (
+                ?, ?, ?, ?, ?,
+                ?, ?, ?, ?, ?, ?,
+                ?, ?, ?, ?, ?, ?
+            )";
+            
+            $stmt = $mysqli->prepare($sql);
+            if (!$stmt) {
+                throw new Exception("Prepare failed: " . $mysqli->error);
+            }
+            
+            // Default values for extras if not set
+            $extra_mattress = $reservation['extras']['extra_mattress'] ?? 0;
+            $extra_pillow = $reservation['extras']['extra_pillow'] ?? 0;
+            $extra_blanket = $reservation['extras']['extra_blanket'] ?? 0;
+            $special_requests = $reservation['special_requests'] ?? '';
+            $base_price = $reservation['base_price'] ?? 0;
+            $extras_price = $reservation['extras_price'] ?? 0;
+            
+            $stmt->bind_param(
+                "sssssssiisissiddd",
+                $reservation['reservation_code'],
+                $reservation['check_in'],
+                $reservation['check_out'],
+                $reservation['first_name'],
+                $reservation['last_name'],
+                $reservation['email'],
+                $reservation['contact_number'],
+                $reservation['adult_count'],
+                $reservation['kid_count'],
+                $reservation['tour_type'],
+                $special_requests,
+                $extra_mattress,
+                $extra_pillow,
+                $extra_blanket,
+                $base_price,
+                $extras_price,
+                $reservation['total_price']
+            );
         }
         
-        // Default values for extras if not set
-        $extra_mattress = $reservation['extras']['extra_mattress'] ?? 0;
-        $extra_pillow = $reservation['extras']['extra_pillow'] ?? 0;
-        $extra_blanket = $reservation['extras']['extra_blanket'] ?? 0;
-        $special_requests = $reservation['special_requests'] ?? '';
-        $extras_total = $reservation['extras_total'] ?? 0;
+        if (!$stmt->execute()) {
+            throw new Exception("Execute failed: " . $stmt->error);
+        }
         
-        $stmt->bind_param(
-            "isssssssiisissiddd",
-            $reservation['user_id'],
-            $reservation['reservation_code'],
-            $reservation['check_in'],
-            $reservation['check_out'],
-            $reservation['first_name'],
-            $reservation['last_name'],
-            $reservation['email'],
-            $reservation['contact_number'],
-            $reservation['adult_count'],
-            $reservation['kid_count'],
-            $reservation['tour_type'],
-            $special_requests,
-            $extra_mattress,
-            $extra_pillow,
-            $extra_blanket,
-            $reservation['total_price'],
-            $extras_total,
-            $reservation['total_amount']
-        );
+        $reservationId = $mysqli->insert_id;
+        error_log("Reservation inserted with ID: $reservationId");
+        $stmt->close();
     } else {
-        $sql = "INSERT INTO guest_reservation (
-            reservation_code, check_in, check_out, first_name, last_name, 
-            email, contact_number, adult_count, kid_count, tour_type, special_requests,
-            extra_mattress, extra_pillow, extra_blanket, base_price, extras_price, total_price
-        ) VALUES (
-            ?, ?, ?, ?, ?,
-            ?, ?, ?, ?, ?, ?,
-            ?, ?, ?, ?, ?, ?
-        )";
-        
-        $stmt = $mysqli->prepare($sql);
-        if (!$stmt) {
-            throw new Exception("Prepare failed: " . $mysqli->error);
-        }
-        
-        // Default values for extras if not set
-        $extra_mattress = $reservation['extras']['extra_mattress'] ?? 0;
-        $extra_pillow = $reservation['extras']['extra_pillow'] ?? 0;
-        $extra_blanket = $reservation['extras']['extra_blanket'] ?? 0;
-        $special_requests = $reservation['special_requests'] ?? '';
-        $base_price = $reservation['base_price'] ?? 0;
-        $extras_price = $reservation['extras_price'] ?? 0;
-        
-        $stmt->bind_param(
-            "sssssssiisissiddd",
-            $reservation['reservation_code'],
-            $reservation['check_in'],
-            $reservation['check_out'],
-            $reservation['first_name'],
-            $reservation['last_name'],
-            $reservation['email'],
-            $reservation['contact_number'],
-            $reservation['adult_count'],
-            $reservation['kid_count'],
-            $reservation['tour_type'],
-            $special_requests,
-            $extra_mattress,
-            $extra_pillow,
-            $extra_blanket,
-            $base_price,
-            $extras_price,
-            $reservation['total_price']
-        );
+        // Use the existing reservation type
+        $reservationType = $existingType;
     }
     
-    if (!$stmt->execute()) {
-        throw new Exception("Execute failed: " . $stmt->error);
-    }
+    // IMPROVED PAYMENT INSERTION - Always insert payment regardless of whether reservation is new or existing
+    // Determine which code to use based on reservation type
+    $userResvCode = ($reservationType === 'user') ? $reservation['reservation_code'] : null;
+    $guestResvCode = ($reservationType === 'guest') ? $reservation['reservation_code'] : null;
+
+    // Set user_id to 0 for guests instead of null
+    $userId = isset($reservation['user_id']) ? $reservation['user_id'] : 0;
     
-    $reservationId = $mysqli->insert_id;
-    error_log("Reservation inserted with ID: $reservationId");
-    $stmt->close();
-    
-    // Insert payment details
-    $reservationType = $reservationTable === 'user_reservation' ? 'user' : 'guest';
-    
+    // Insert payment details - UPDATED FOR NEW DATABASE STRUCTURE
     $paymentStmt = $mysqli->prepare("
         INSERT INTO payments (
-            user_id, reservation_code, reservation_type, payment_receipt, file_path
+            user_id, 
+            user_reservation_code, 
+            guest_reservation_code, 
+            payment_receipt, 
+            file_path
         ) VALUES (
             ?, ?, ?, ?, ?
         )
@@ -240,12 +284,10 @@ try {
         throw new Exception("Prepare payment failed: " . $mysqli->error);
     }
     
-    $userId = $reservation['user_id'] ?? null;
-    
     $paymentStmt->bind_param("issss", 
         $userId, 
-        $reservation['reservation_code'], 
-        $reservationType, 
+        $userResvCode,
+        $guestResvCode, 
         $referenceNumber, 
         $filePath
     );
@@ -263,7 +305,12 @@ try {
     
     // Successfully stored data
     $response['success'] = true;
-    $response['message'] = 'Payment proof uploaded successfully!';
+    
+    if ($reservationExists) {
+        $response['message'] = 'Payment proof uploaded successfully for existing reservation!';
+    } else {
+        $response['message'] = 'Reservation and payment proof uploaded successfully!';
+    }
     
     // Add reservation details to session
     $_SESSION['reservation_id'] = $reservationId;

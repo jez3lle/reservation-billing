@@ -30,3 +30,76 @@
 [01-Apr-2025 18:41:50 Europe/Berlin] Using reservation table: user_reservation
 [01-Apr-2025 18:41:50 Europe/Berlin] Error in process_payment.php: Duplicate entry '20250401-D8AF54' for key 'reservation_code'
 [01-Apr-2025 18:41:50 Europe/Berlin] Deleted uploaded file due to error
+[02-Apr-2025 07:51:14 Europe/Berlin] Processing payment submission
+[02-Apr-2025 07:51:15 Europe/Berlin] Payment submission for reservation code: 20250402-41ED23
+[02-Apr-2025 07:51:15 Europe/Berlin] File details - Name: Screenshot_2025-03-12-13-20-12-239_com.globe.gcash.android.jpg, Type: image/jpeg, Size: 349519, Error: 0
+[02-Apr-2025 07:51:15 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/20250402-41ED23_1743573075.jpg
+[02-Apr-2025 07:51:15 Europe/Berlin] Database connection successful
+[02-Apr-2025 07:51:15 Europe/Berlin] Using reservation table: user_reservation
+[02-Apr-2025 07:51:15 Europe/Berlin] Error in process_payment.php: Duplicate entry '20250402-41ED23' for key 'reservation_code'
+[02-Apr-2025 07:51:15 Europe/Berlin] Deleted uploaded file due to error
+[02-Apr-2025 08:12:07 Europe/Berlin] Processing payment submission
+[02-Apr-2025 08:12:07 Europe/Berlin] Payment submission for reservation code: MS2504089136
+[02-Apr-2025 08:12:07 Europe/Berlin] File details - Name: Screenshot_2025-03-12-13-20-12-239_com.globe.gcash.android.jpg, Type: image/jpeg, Size: 349519, Error: 0
+[02-Apr-2025 08:12:07 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/MS2504089136_1743574327.jpg
+[02-Apr-2025 08:12:07 Europe/Berlin] Database connection successful
+[02-Apr-2025 08:12:07 Europe/Berlin] Using reservation table: guest_reservation
+[02-Apr-2025 08:12:07 Europe/Berlin] Error in process_payment.php: Duplicate entry 'MS2504089136' for key 'reservation_code'
+[02-Apr-2025 08:12:07 Europe/Berlin] Deleted uploaded file due to error
+[02-Apr-2025 08:45:01 Europe/Berlin] Processing payment submission
+[02-Apr-2025 08:45:01 Europe/Berlin] Payment submission for reservation code: MS2504089136
+[02-Apr-2025 08:45:01 Europe/Berlin] File details - Name: Screenshot_2025-03-12-13-20-12-239_com.globe.gcash.android.jpg, Type: image/jpeg, Size: 349519, Error: 0
+[02-Apr-2025 08:45:01 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/MS2504089136_1743576301.jpg
+[02-Apr-2025 08:45:01 Europe/Berlin] Database connection successful
+[02-Apr-2025 08:45:01 Europe/Berlin] Using reservation type: guest
+[02-Apr-2025 08:45:01 Europe/Berlin] Error in process_payment.php: Duplicate entry 'MS2504089136' for key 'reservation_code'
+[02-Apr-2025 08:45:01 Europe/Berlin] Deleted uploaded file due to error
+[02-Apr-2025 08:47:14 Europe/Berlin] Processing payment submission
+[02-Apr-2025 08:47:14 Europe/Berlin] Payment submission for reservation code: AM2504101669
+[02-Apr-2025 08:47:14 Europe/Berlin] File details - Name: Screenshot_2025-03-12-13-20-12-239_com.globe.gcash.android.jpg, Type: image/jpeg, Size: 349519, Error: 0
+[02-Apr-2025 08:47:14 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/AM2504101669_1743576434.jpg
+[02-Apr-2025 08:47:14 Europe/Berlin] Database connection successful
+[02-Apr-2025 08:47:14 Europe/Berlin] Using reservation type: guest
+[02-Apr-2025 08:47:14 Europe/Berlin] Error in process_payment.php: Duplicate entry 'AM2504101669' for key 'reservation_code'
+[02-Apr-2025 08:47:14 Europe/Berlin] Deleted uploaded file due to error
+[02-Apr-2025 08:55:46 Europe/Berlin] Processing payment submission
+[02-Apr-2025 08:55:46 Europe/Berlin] Payment submission for reservation code: AM2504101669
+[02-Apr-2025 08:55:46 Europe/Berlin] File details - Name: Screenshot_2025-03-12-13-20-12-239_com.globe.gcash.android.jpg, Type: image/jpeg, Size: 349519, Error: 0
+[02-Apr-2025 08:55:46 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/AM2504101669_1743576946.jpg
+[02-Apr-2025 08:55:46 Europe/Berlin] Database connection successful
+[02-Apr-2025 08:55:46 Europe/Berlin] Duplicate reservation code found: AM2504101669 (Type: guest)
+[02-Apr-2025 08:55:46 Europe/Berlin] Error in process_payment.php: Reservation code already exists as a guest reservation.
+[02-Apr-2025 08:55:46 Europe/Berlin] Deleted uploaded file due to error
+[02-Apr-2025 08:57:37 Europe/Berlin] Processing payment submission
+[02-Apr-2025 08:57:37 Europe/Berlin] Payment submission for reservation code: AM2504101669
+[02-Apr-2025 08:57:37 Europe/Berlin] File details - Name: Screenshot_2025-03-12-13-20-12-239_com.globe.gcash.android.jpg, Type: image/jpeg, Size: 349519, Error: 0
+[02-Apr-2025 08:57:37 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/AM2504101669_1743577057.jpg
+[02-Apr-2025 08:57:37 Europe/Berlin] Database connection successful
+[02-Apr-2025 08:57:37 Europe/Berlin] Using reservation type: guest
+[02-Apr-2025 08:57:37 Europe/Berlin] Reservation inserted with ID: 15
+[02-Apr-2025 08:57:37 Europe/Berlin] Error in process_payment.php: Column 'user_id' cannot be null
+[02-Apr-2025 08:57:37 Europe/Berlin] Deleted uploaded file due to error
+[02-Apr-2025 08:59:14 Europe/Berlin] Processing payment submission
+[02-Apr-2025 08:59:14 Europe/Berlin] Payment submission for reservation code: AM2504106058
+[02-Apr-2025 08:59:14 Europe/Berlin] File details - Name: Screenshot_2025-03-12-13-20-12-239_com.globe.gcash.android.jpg, Type: image/jpeg, Size: 349519, Error: 0
+[02-Apr-2025 08:59:14 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/AM2504106058_1743577154.jpg
+[02-Apr-2025 08:59:14 Europe/Berlin] Database connection successful
+[02-Apr-2025 08:59:14 Europe/Berlin] Reservation code already exists: AM2504106058 (Type: guest)
+[02-Apr-2025 08:59:14 Europe/Berlin] Error in process_payment.php: Column 'user_id' cannot be null
+[02-Apr-2025 08:59:14 Europe/Berlin] Deleted uploaded file due to error
+[02-Apr-2025 08:59:15 Europe/Berlin] Processing payment submission
+[02-Apr-2025 08:59:15 Europe/Berlin] Payment submission for reservation code: AM2504106058
+[02-Apr-2025 08:59:15 Europe/Berlin] File details - Name: Screenshot_2025-03-12-13-20-12-239_com.globe.gcash.android.jpg, Type: image/jpeg, Size: 349519, Error: 0
+[02-Apr-2025 08:59:15 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/AM2504106058_1743577155.jpg
+[02-Apr-2025 08:59:15 Europe/Berlin] Database connection successful
+[02-Apr-2025 08:59:15 Europe/Berlin] Reservation code already exists: AM2504106058 (Type: guest)
+[02-Apr-2025 08:59:15 Europe/Berlin] Error in process_payment.php: Column 'user_id' cannot be null
+[02-Apr-2025 08:59:15 Europe/Berlin] Deleted uploaded file due to error
+[02-Apr-2025 09:02:25 Europe/Berlin] Processing payment submission
+[02-Apr-2025 09:02:25 Europe/Berlin] Payment submission for reservation code: AM2504106058
+[02-Apr-2025 09:02:25 Europe/Berlin] File details - Name: Screenshot_2025-03-12-13-20-12-239_com.globe.gcash.android.jpg, Type: image/jpeg, Size: 349519, Error: 0
+[02-Apr-2025 09:02:25 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/AM2504106058_1743577345.jpg
+[02-Apr-2025 09:02:25 Europe/Berlin] Database connection successful
+[02-Apr-2025 09:02:25 Europe/Berlin] Reservation code already exists: AM2504106058 (Type: guest)
+[02-Apr-2025 09:02:25 Europe/Berlin] Payment record inserted
+[02-Apr-2025 09:02:25 Europe/Berlin] Transaction committed successfully
