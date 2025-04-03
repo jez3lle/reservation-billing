@@ -302,3 +302,171 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 03, 2025 at 03:09 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `resort_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rooms`
+--
+
+CREATE TABLE `rooms` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `capacity` varchar(20) NOT NULL,
+  `daytour_price` decimal(10,2) NOT NULL,
+  `overnight_price` decimal(10,2) NOT NULL,
+  `description` text NOT NULL,
+  `image` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `rooms`
+--
+
+INSERT INTO `rooms` (`id`, `name`, `capacity`, `daytour_price`, `overnight_price`, `description`, `image`) VALUES
+(1, 'Glass Cabin', '2', 1500.00, 2000.00, 'Includes Mattress, Pillows, blanket & E-fan. w/ Electricity Socket. (Common Toilet & Bath)', 'uploads/cabingroup1.png'),
+(2, 'Concrete Room', '4', 4000.00, 6500.00, '(4 pax for adults, 6 pax mixed with Kids) Includes Bunk Bed w/Mattress, Pillows, blanket & E-Fan. Electricity Socket. Own Sink, Toilet & Bath.', 'uploads/concreteroom2.png'),
+(3, 'Up And Down House', '10', 4000.00, 6500.00, 'Include Upper Open Bedroom w/ Mattress, Pillows, blanket & E-fans. Electricity Socket. Kalan w/LPG Own Toilet & Bath.', 'uploads/upndown1.png'),
+(4, 'Kubo Room', '2', 1500.00, 2000.00, 'Includes Mattress, Pillows, Blanket & E-fan. w/ Electricity Socket. (Common Toilet & Bath)', 'uploads/kuborooms1.png'),
+(5, 'Concrete House', '10', 800.00, 1300.00, 'Includes Upper Bedroom w/ Mattress, Pillows, blanket. E-Fan. Electricity Socket. Kalan w/ LPG. Alfresco Dining area. Own Toilet & Bath.', 'uploads/concretehouse1.png'),
+(6, 'Group Cabin', '6', 3000.00, 6000.00, 'Includes 3 Cabin w/ Mattress, Pillows, blanket & E-fan. Electricity Socket. Open Area w/ Own Sink & CR. (Overlooking View).', 'uploads/cabinglass3.png'),
+(7, 'Teepee Hut', '2', 1500.00, 1500.00, 'Includes Mattress, Pillows, blanket & E-fan. Electricity Socket. (Common Toilet & Bath).', 'uploads/tpmain.png'),
+(8, 'Open Cottage', '10', 1500.00, 2000.00, 'Includes Tables & Chairs. W/ Electricity Socket.', 'uploads/openmain.png'),
+(9, 'Dome Tent', '2', 500.00, 500.00, 'Includes Insulation Foam (No Pillows & Blanket).', 'uploads/domem.jpg'),
+(10, 'Canopy Tent', '2', 500.00, 500.00, 'Includes Insulation Foam (No Pillows & Blanket).', 'uploads/canomain.jpg'),
+(11, 'Glass Cabin', '2-4 Pax', 1500.00, 2000.00, 'Includes Mattress, Pillows, blanket & E-fan. w/ Electricity Socket. (Common Toilet & Bath)', 'uploads/cabingroup1.png'),
+(12, 'Concrete Room', '4-6 Pax', 4000.00, 6500.00, '(4 pax for adults, 6 pax mixed with Kids) Includes Bunk Bed w/Mattress, Pillows, blanket & E-Fan. Electricity Socket. Own Sink, Toilet & Bath.', 'uploads/concreteroom2.png'),
+(13, 'Up And Down House', '10-15 Pax', 4000.00, 6500.00, 'Include Upper Open Bedroom w/ Mattress, Pillows, blanket & E-fans. Electricity Socket. Kalan w/LPG Own Toilet & Bath.', 'uploads/upndown1.png'),
+(14, 'Kubo Room', '2-4 Pax', 1500.00, 2000.00, 'Includes Mattress, Pillows, Blanket & E-fan. w/ Electricity Socket. (Common Toilet & Bath)', 'uploads/kuborooms1.png'),
+(15, 'Concrete House', '10 Pax', 800.00, 1300.00, 'Includes Upper Bedroom w/ Mattress, Pillows, blanket. E-Fan. Electricity Socket. Kalan w/ LPG. Alfresco Dining area. Own Toilet & Bath.', 'uploads/concretehouse1.png'),
+(16, 'Group Cabin', '6-12 Pax', 3000.00, 6000.00, 'Includes 3 Cabin w/ Mattress, Pillows, blanket & E-fan. Electricity Socket. Open Area w/ Own Sink & CR. (Overlooking View).', 'uploads/cabinglass3.png'),
+(17, 'Teepee Hut', '2 Pax', 1500.00, 1500.00, 'Includes Mattress, Pillows, blanket & E-fan. Electricity Socket. (Common Toilet & Bath).', 'uploads/tpmain.png'),
+(18, 'Open Cottage', '10-15 Pax', 1500.00, 2000.00, 'Includes Tables & Chairs. W/ Electricity Socket.', 'uploads/openmain.png'),
+(19, 'Dome Tent', '2 Pax', 500.00, 500.00, 'Includes Insulation Foam (No Pillows & Blanket).', 'uploads/domem.jpg'),
+(20, 'Canopy Tent', '2 Pax', 500.00, 500.00, 'Includes Insulation Foam (No Pillows & Blanket).', 'uploads/canomain.jpg');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `rooms`
+--
+ALTER TABLE `rooms`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `rooms`
+--
+ALTER TABLE `rooms`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 03, 2025 at 03:09 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `resort_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookings`
+--
+
+CREATE TABLE `bookings` (
+  `id` int(11) NOT NULL,
+  `guest_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `check_in` date NOT NULL,
+  `check_out` date NOT NULL,
+  `room_type` varchar(255) NOT NULL,
+  `guests` int(11) NOT NULL,
+  `special_requests` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`id`, `guest_name`, `email`, `phone`, `check_in`, `check_out`, `room_type`, `guests`, `special_requests`, `created_at`) VALUES
+(20, 'jade', 'uu@yahoo.com', '092927122391', '2025-03-31', '2025-04-02', 'Concrete House', 5, '', '2025-03-30 09:55:00'),
+(21, 'jade', 'uu@yahoo.com', '092927122391', '2025-03-31', '2025-04-02', 'Concrete House', 5, '', '2025-03-30 10:06:11'),
+(22, 'nene', 'nene@yahoo.com', '09292712239a', '2025-04-03', '2025-04-04', 'Teepe Hut', 5, '', '2025-03-30 10:34:22'),
+(23, 'tanginamo', 'tanginamo@yahooo.com', '092927122391', '2025-04-06', '2025-04-08', 'Concrete House', 5, '', '2025-03-30 13:00:55');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `bookings`
+--
+ALTER TABLE `bookings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
