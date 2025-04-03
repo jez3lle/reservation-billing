@@ -1,18 +1,17 @@
 <?php
-include('db.php'); // Ensure database connection is included
+include "db_connect.php";
 
-if (isset($_GET['arrival-date']) && isset($_GET['departure-date'])) {
-    $arrivalDate = $_GET['arrival-date'];
-    $departureDate = $_GET['departure-date'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $check_in = $_POST['check_in'];
+    $check_out = $_POST['check_out'];
 
-    // Query to check overlapping reservations
-    $query = "SELECT * FROM reservations 
-              WHERE NOT (departure_date < '$arrivalDate' OR arrival_date > '$departureDate')";
-    $result = mysqli_query($conn, $query);
+    $sql = "SELECT * FROM bookings WHERE (check_in <= '$check_out' AND check_out >= '$check_in')";
+    $result = $conn->query($sql);
 
-    // Check availability
-    $isAvailable = (mysqli_num_rows($result) == 0);
-
-    echo json_encode(['available' => $isAvailable]);
+    if ($result->num_rows > 0) {
+        echo "<p class='error'>Selected dates are already booked.</p>";
+    } else {
+        echo "<p class='success'>Available! You can proceed to reservation.</p>";
+    }
 }
 ?>

@@ -239,24 +239,14 @@ session_start();
         initialView: 'dayGridMonth',
         selectable: true,
         events: "fetch1_booked_dates.php", // Load booked dates from PHP
-        events: function(fetchInfo, successCallback, failureCallback) {
-            $.ajax({
-                url: "fetch1_booked_dates.php",
-                type: "GET",
-                success: function(response) {
-                    console.log("✅ Fetched Booked Dates:", response); // Debugging
-                    successCallback(response);
-                },
-                error: function(error) {
-                    console.log("❌ Error fetching booked dates:", error);
-                    failureCallback(error);
-                }
-            });
-        },
+        eventBackgroundColor: "red", // Default color for booked events
+        eventDisplay: "background", // Ensure background rendering
         eventDidMount: function(info) {
-            console.log("📅 Event Loaded:", info.event);
+            if (info.event.extendedProps.display === "background") {
+                info.el.style.backgroundColor = info.event.backgroundColor || "red";
+            }
         },
-        select: function(info) {
+        select: function (info) {
             if (isCheckIn) {
                 check_in = info.startStr;
                 $("#selectedCheckIn").text(check_in);
@@ -278,10 +268,11 @@ session_start();
             updateButtonState();
         }
     });
-
     calendar.render();
     return calendar;
 }
+
+
 
             // Render the two separate calendars
             renderCalendar('checkinCalendar', true);

@@ -1,11 +1,15 @@
-         * {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+   
         }
         html, body {
-            background-color: #325f51 !important; /* Override any other styles */
+            background-color: #325f51 !important;
             color: white;
             margin: 0;
             padding: 0;
@@ -17,7 +21,7 @@
             position: relative;
             width: 100%;
             height: 100vh;
-            background-image: url('bg1.png');
+            background-image: url('images/bg1.png');
             background-size: cover;
             background-position: center;
             transition: background-image 1s ease-in-out; 
@@ -184,7 +188,7 @@
         .booknow {
             display: inline-block;
             margin-top: 20px;
-            padding: 15px 30px;
+            padding: 15px 35px;
             font-size: 14px;
             font-weight: bold;
             background-color: transparent; 
@@ -194,7 +198,7 @@
             border: 2px solid white;
         }
         .booknow:hover {
-            background-color: #b3a41d;
+            background-color: #c7a925;
         }
 
         /* Space above header */
@@ -294,7 +298,9 @@
             font-size: 20px;
             line-height: 1.6;
         }
-        .phase-card button {
+
+        .phase-card .phasebutton {
+            display: inline-block; /* Ensures it behaves like a button */
             padding: 12px 30px;
             margin-top: 20px;
             font-size: 18px;
@@ -304,24 +310,33 @@
             border: 2px solid white;
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s;
-            border-radius: 8px;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none; /* Removes underline */
         }
+
+        /* Private Phase */
         .phase-private {
             background: linear-gradient(135deg, #184D47, #0C2D27);
             color: white;
         }
-        .phase-private button:hover {
+
+        .phase-private .phasebutton:hover {
             background-color: white;
             color: #184D47;
         }
+
+        /* Public Phase */
         .phase-public {
             background: linear-gradient(135deg, #508E87, #2F6861);
             color: white;
         }
-        .phase-public button:hover {
+
+        .phase-public .phasebutton:hover {
             background-color: white;
             color: #508E87;
         }
+
 
         .booking-container {
             display: flex;
@@ -481,7 +496,7 @@
         }
     
         .btn1 {
-            background: #8B8000;
+            background: #c7a925;
             color: white;
             margin-top: 18px;
             padding: 10px 25px;
@@ -491,7 +506,7 @@
             transition: 0.3s;
         }
         .btn1:hover {
-            background: #b3a41d;
+            background: #2e7d32;
         }
         @media (max-width: 768px) {
             .containerflex {
@@ -560,7 +575,7 @@
             position: absolute;
             bottom: 5px;
             left: 5px;
-            background-color: rgba(12, 10, 10, 0.6); /* Overlay for text contrast */
+            background-color: rgba(47, 160, 102, 0.6); /* Overlay for text contrast */
             color: white;
             padding: 10px 15px;
             border-radius: 0px;
@@ -569,6 +584,8 @@
             margin: 0;
             font-size: 15px;
             font-weight: bold;
+            letter-spacing: 2px; /* Adjust spacing as needed */
+            text-transform: uppercase;
         }
         .empty-space {
             width: 30%;
@@ -726,9 +743,9 @@
             max-width: 500px;
         }
         .about-text h2 {
-            font-size: 2em;
+            font-size: 2.8em;
             margin-bottom: 20px;
-            color: #99d1a8;
+            color: #ffd700;
         }
         .about-text p {
             font-size: 1em;
@@ -759,8 +776,8 @@
             padding: 0px 40px 30px; 
         } 
         .location-section h2 {
-            font-size: 1.8em;
-            color: #99d1a8;
+            font-size: 2.7em;
+            color: #ffd700;
             margin-bottom: 10px;
         }  
         .location-section p {
@@ -788,19 +805,28 @@
         }
 
         /*--------------accommodationpage-----------*/
+           
         .content-wrapper {
-            margin-top: 50px;
+            width: 90%;
+            max-width: 1400px;
+            margin: 50px auto;
+            text-align: center; 
+            padding: 10px;
+        }
+
+        .content-wrapper h1 {
+            font-size: 2.5em;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .accom-container {
-            top: 100px;
             display: grid;
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 40px; 
-            justify-items: center; 
-            margin-top: 20px;
+            grid-template-columns: repeat(3, 1fr); /* Ensures 3 equal columns */
+            gap: 40px;
             padding: 20px;
         }
+<<<<<<< HEAD
         .acc-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr); /* 2 columns */
@@ -816,69 +842,103 @@
         .card {
             width: 100%; 
             max-width: 350px;
+=======
+        
+        .accom-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 8px rgba(41, 149, 140, 0.1);
+>>>>>>> c35e19c8d0636e85205b5c230bc8c25f2d260afc
         }
 
-        .card {
-            position: relative;
-            width: 300px;
-            text-align: center;
+        .accom-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(255, 255, 255, 0.2);
         }
-        .card img {
+
+        .accom-image img {
             width: 100%;
-            height: 200px;
+            height: 280px;
             object-fit: cover;
-            border-radius: 0;
-            z-index: 1;
-            position: relative;
-            border: 2px solid #85dabf; 
+            transition: transform 0.3s ease;
         }
-        .card-background {
-            position: absolute;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 350px;
-            height: 320px;
-            background-color: #508E87;
-            border-radius: 0px;
-            z-index: 0;
+
+        .accom-item:hover .accom-image img {
+            transform: scale(1.05);
         }
-        .card-content {
-            position: relative;
-            padding: 20px;
-            margin-top: 10px; 
-            z-index: 1;
+
+        .accom-details {
+            padding: 25px;
+            text-align: center; /* Center accommodation details */
         }
-        .card-title {
-            font-size: 24px;
+
+        .accom-title {
+            font-size: 22px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: #ffcc70;
+            letter-spacing: 1px;
+        }
+
+        .availability {
+            font-size: 16px;
             font-weight: bold;
-            margin-top: -20px; 
-            margin-bottom: 10px;
-            color: white;
-        }
-        .card-description {
-            font-size: 14px;
-            line-height: 1.5;
-            color: white;
-            margin-top: 10px; 
-            margin-bottom: 20px;
-        }
-        .card-button {
+            color: #e0e0e0;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 8px;
             display: inline-block;
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            margin-bottom: 5px;
         }
-        .card-button:hover {
-            background-color: white;
-            color: #6a9e8a;
-        }  
+
+        .accom-description {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .accom-divider {
+            width: 130px;
+            height: 4px;
+            background-color: #ffcc70;
+            margin: 15px auto; /* center divider */
+        }
+
+        .accom-button {
+            display: inline-block;
+            margin-top: 12px;
+            background: #ffcc70;
+            color: #184D47;
+            padding: 14px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 24px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .accom-button:hover {
+            background: #ffffff;
+            color: #1e3c72;
+            box-shadow: 0 6px 18px rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .accom-container {
+                grid-template-columns: 1fr;
+            }
+
+            .content-wrapper h1 {
+                font-size: 2em;
+            }
+        }
 
         /*--------------footer-------------*/
         footer {
@@ -930,6 +990,7 @@
             font-size: 0.9em;
             line-height: 1.6;
         } 
+<<<<<<< HEAD
         html, body {
             margin: 0;
             padding: 0;
@@ -997,5 +1058,33 @@
                     color: #ccc;
                 }
         
-
+=======
+        .icon {
+            display: flex;
+            align-items: center;
+        }
+        .icon img {
+            width: 40px;
+            border-radius: 50%;
+        }
+        /* User info styling */
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: transparent; /* Add this line */
+        }
         
+        .user-name {
+            color: white;
+            font-weight: 500;
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+
+>>>>>>> c35e19c8d0636e85205b5c230bc8c25f2d260afc
+

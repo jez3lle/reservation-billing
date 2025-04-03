@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canopy Tent Rental</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('background.jpg') no-repeat center center/cover;
+            text-align: center;
+            color: #fff;
+        }
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        .main-image {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .circle-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: -60px;
+        }
+        .circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        .circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        h1 {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 36px;
+            margin-top: 20px;
+        }
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .note {
+            font-size: 16px;
+            font-style: italic;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="uploads/cabinglass1.png" alt="Canopy Tent Rental" class="main-image">
+        <div class="circle-container">
+            <div class="circle"><img src="uploads/cabinglass2.png" alt="Canopy Tent"></div>
+            <div class="circle"><img src="uploads/concretehouse2.png" alt="Canopy Tent"></div>
+            <div class="circle"><img src="uploads/concreteroom1.png" alt="Canopy Tent"></div>
+        </div>
+        <h1>Canopy Tent</h1>
+        <p>Good for 10 Pax</p>
+        <p class="price">Daytour: 800.00</p>
+        <p class="price">Overnight/22Hrs: 1,300.00</p>
+        <p class="note">Tent Only.</p>
+    </div>
+</body>
+</html>
