@@ -179,108 +179,78 @@ $current_user = getUserStatus();
     </style>
 </head>
 <body>
-
-    <?php include 'header.php'; ?>
-    
-    <main class="rfp-content-wrapper">
-    <section class="rfp-contact-section">
-        <h1>Contact Us</h1>
-        <div class="rfp-contact-container">
-            <div class="rfp-contact-item">
-                <h2>Get in Touch</h2>
-                <p>Have questions? We're here to help.</p>
-                <p><strong>Phone:</strong> <a href="tel:09605877561">0960 587 7561</a></p>
-                <p><strong>Email:</strong> <a href="mailto:rainbowforestparadise2020@gmail.com">rainbowforestparadise2020@gmail.com</a></p>
-            </div>
-            
-            <div class="rfp-contact-item">
-                <h2>Follow Us</h2>
-                <p>Stay updated with our latest news and promotions.</p>
-                <p><a href="https://www.facebook.com/profile.php?id=100050508021940" target="_blank">Facebook Page</a></p>
-            </div>
-        </div>
-    </section>
-
-    <section class="rfp-reviews-section">
-        <h1>Guest Reviews & Feedback</h1>
-        <div class="rfp-review-wrapper">
-            <div class="rfp-review-form">
-                <h2>Leave a Review</h2>
-                <form action="submit_review.php" method="POST">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required placeholder="Your Name">
-                    
-                    <label for="visit-date">When did you go?</label>
-                    <input type="date" id="visit-date" name="visit_date" required>
-                    
-                    <label for="rating">Rating:</label>
-                    <select id="rating" name="rating" required>
-                        <option value="5">★★★★★</option>
-                        <option value="4">★★★★☆</option>
-                        <option value="3">★★★☆☆</option>
-                        <option value="2">★★☆☆☆</option>
-                        <option value="1">★☆☆☆☆</option>
-                    </select>
-                    
-                    <label for="message">Your Feedback:</label>
-                    <textarea id="message" name="message" rows="5" required placeholder="Your feedback..."></textarea>
-                    
-                    <button type="submit">Submit Review</button>
-                </form>
-            </div>
-
-            <div class="rfp-reviews-container">
-                <h2>What Our Guests Say</h2>
-                <div class="rfp-review-list">
-                    <?php
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<div class='rfp-review'>";
-                                echo "<h3>" . htmlspecialchars($row["name"]) . "</h3>";
-                                echo "<p class='rfp-rating'>" . str_repeat("★", $row["rating"]) . "</p>";
-                                echo "<p>\"" . htmlspecialchars($row["message"]) . "\"</p>";
-                                echo "</div>";
-                            }
-                        } else {
-                            echo "<p>No reviews yet. Be the first to leave a review!</p>";
-                        }
-                    ?>
+    <?php include 'headers/header.php'; ?>
+        <main class="rfp-content-wrapper">
+        <section class="rfp-contact-section">
+            <h1>Contact Us</h1>
+            <div class="rfp-contact-container">
+                <div class="rfp-contact-item">
+                    <h2>Get in Touch</h2>
+                    <p>Have questions? We're here to help.</p>
+                    <p><strong>Phone:</strong> <a href="tel:09605877561">0960 587 7561</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:rainbowforestparadise2020@gmail.com">rainbowforestparadise2020@gmail.com</a></p>
+                </div>
+                
+                <div class="rfp-contact-item">
+                    <h2>Follow Us</h2>
+                    <p>Stay updated with our latest news and promotions.</p>
+                    <p><a href="https://www.facebook.com/profile.php?id=100050508021940" target="_blank">Facebook Page</a></p>
                 </div>
             </div>
-        </div>
-    </section>
-</main>
+        </section>
+
+        <section class="rfp-reviews-section">
+            <h1>Guest Reviews & Feedback</h1>
+            <div class="rfp-review-wrapper">
+                <div class="rfp-review-form">
+                    <h2>Leave a Review</h2>
+                    <form action="submit_review.php" method="POST">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required placeholder="Your Name">
+                        
+                        <label for="visit-date">When did you go?</label>
+                        <input type="date" id="visit-date" name="visit_date" required>
+                        
+                        <label for="rating">Rating:</label>
+                        <select id="rating" name="rating" required>
+                            <option value="5">★★★★★</option>
+                            <option value="4">★★★★☆</option>
+                            <option value="3">★★★☆☆</option>
+                            <option value="2">★★☆☆☆</option>
+                            <option value="1">★☆☆☆☆</option>
+                        </select>
+                        
+                        <label for="message">Your Feedback:</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Your feedback..."></textarea>
+                        
+                        <button type="submit">Submit Review</button>
+                    </form>
+                </div>
+
+                <div class="rfp-reviews-container">
+                    <h2>What Our Guests Say</h2>
+                    <div class="rfp-review-list">
+                        <?php
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<div class='rfp-review'>";
+                                    echo "<h3>" . htmlspecialchars($row["name"]) . "</h3>";
+                                    echo "<p class='rfp-rating'>" . str_repeat("★", $row["rating"]) . "</p>";
+                                    echo "<p>\"" . htmlspecialchars($row["message"]) . "\"</p>";
+                                    echo "</div>";
+                                }
+                            } else {
+                                echo "<p>No reviews yet. Be the first to leave a review!</p>";
+                            }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
     
-<footer>
-        <div class="footer-container">
-            <div class="footer-logo">
-                <img src="images/rainbow-logo.png" alt="Rainbow Forest Logo">
-            </div>
-            <div class="footer-nav">
-                <h3>Explore</h3>
-                <ul>
-                    <li><a href="accomodation_p1.php">Accommodations</a></li>
-                    <li><a href="activities_p1.php">Activities</a></li>
-                    <li><a href="aboutus_p1.php">About Us</a></li>
-                    <li><a href="contact_p1.php">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h3>Contact Us</h3>
-                <p><strong>Address:</strong> Brgy. Cuyambay, Tanay, Rizal</p>
-                <p><strong>Contact No.:</strong> 0960 587 7561</p>
-            </div>
-            <div class="footer-actions">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="contact_p1.php">Follow Us</a></li>
-                    <li><a href="#">Book Now</a></li>
-                    <li><a href="#">Cancel Reservation</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
-    
+    <?php include 'headers/footer.php'; ?>
+
     <script>
         function toggleMenu() {
             const menu = document.querySelector('.menu');
