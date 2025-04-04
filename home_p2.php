@@ -1,7 +1,6 @@
 <?php
 session_start(); // Start the session at the beginning
 
-// Store check-in/check-out dates if redirected from booking page
 if (isset($_GET['check_in']) && isset($_GET['check_out'])) {
     // Validate dates before storing in session
     $check_in = date('Y-m-d', strtotime($_GET['check_in']));
@@ -22,23 +21,22 @@ function getUserStatus() {
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
         $stmt->close();
-        
-        // Return null if user doesn't exist in database (account might have been deleted)
+
         return $user ?: null;
     }
     return null;
 }
 
-// Get the current user if logged in
 $current_user = getUserStatus();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME - Rainbow Forest Paradise Resort and Campsite</title>
-    <link rel="stylesheet" href="mystyle.css">
+    <link rel="stylesheet" href="styles/mystyle.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lobster&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
@@ -172,7 +170,6 @@ $current_user = getUserStatus();
         .indent {
         margin-left: 2em;
     }
-
     </style>
 </head>
 <body>
@@ -255,6 +252,7 @@ $current_user = getUserStatus();
         </div>
     </header>
 
+<?php include 'headers/homeheader.php'; ?>
     <form id="bookingForm">
         <div class="form-row">
             <label for="check_in">Check-in:</label>
@@ -268,14 +266,12 @@ $current_user = getUserStatus();
         <div id="availabilityResult" class="message-box"></div>
     </form>
 
-
-
     <section class="abouthome" id="abouthome">
         <div class="containerflex">
         <div class="left">
             <div class="img">
-            <img src="images/resort2.png" alt="" class="image1">
-            <img src="images/pavilion.png" alt="" class="image2">
+            <img src="images/IMG_4859.jpg" alt="" class="image1">
+            <img src="images/img23.jpg" alt="" class="image2">
             </div>
         </div>
         <div class="right">
@@ -289,7 +285,7 @@ $current_user = getUserStatus();
                     <p class="indent">At Rainbow Forest Paradise Resort and Campsite, we take pride in providing a well-maintained and tranquil environment, 
                     ensuring a stress-free stay for all our guests. Our friendly and accommodating staff are always ready to assist, making sure your experience is nothing short of exceptional. From cozy accommodations to refreshing pools and open-air pavilions, every corner of our resort is designed to offer relaxation and enjoyment.
                     </p>
-                <a href="about us.html"><button class="btn1" style="cursor: pointer;">READ MORE</button></a>
+                <a href="aboutus_p1.php"><button class="btn1" style="cursor: pointer;">READ MORE</button></a>
             </div>
         </div>
         </div>

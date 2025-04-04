@@ -1,14 +1,6 @@
 <?php
 session_start();
 
-// Debugging
-error_log('Session data: ' . print_r($_SESSION, true));
-
-// Check if admin is logged in
-if (!isset($_SESSION['admin_id'])) {
-    header("Location: admin_login.php");
-    exit;
-}
 
 // Get database connection
 $mysqli = require 'database.php';

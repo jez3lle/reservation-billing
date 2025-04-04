@@ -25,7 +25,7 @@ $current_user = getUserStatus();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACTIVITIES - Rainbow Forest Paradise Resort and Campsite</title>
-    <link rel="stylesheet" href="mystyle.css">
+    <link rel="stylesheet" href="styles/mystyle.css">
     <style>
         .account-info {
             margin-top: 150px;
@@ -174,6 +174,7 @@ $current_user = getUserStatus();
         </div>
     </header>
 
+<?php include 'headers/header_p2.php'; ?>
     <main class="activities-container">
         <h2>Activities</h2>
         <section class="activity-grid">
@@ -222,36 +223,7 @@ $current_user = getUserStatus();
         </section>
     </main>
     
-   
-<footer>
-    <div class="footer-container">
-        <div class="footer-logo">
-            <img src="images/rainbow-logo.png" alt="Rainbow Forest Logo">
-        </div>
-        <div class="footer-nav">
-            <h3>Explore</h3>
-            <ul>
-                <li><a href="#">Accommodations</a></li>
-                <li><a href="#">Activities</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
-        </div>
-        <div class="footer-contact">
-            <h3>Contact Us</h3>
-            <p><strong>Address:</strong> Brgy. Cuyambay, Tanay, Rizal</p>
-            <p><strong>Contact No.:</strong> 0960 587 7561</p>
-        </div>
-        <div class="footer-actions">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="#">Follow Us</a></li>
-                <li><a href="#">Book Now</a></li>
-                <li><a href="#">Cancel Reservation</a></li>
-            </ul>
-        </div>
-    </div>
-</footer>
+    <?php include 'headers/footer_p2.php'; ?>
 
 <script>
     function toggleMenu() {

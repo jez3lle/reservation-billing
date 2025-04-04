@@ -1,7 +1,6 @@
 <?php
 session_start(); // Start the session at the beginning
 
-// Store check-in/check-out dates if redirected from booking page
 if (isset($_GET['check_in']) && isset($_GET['check_out'])) {
     // Validate dates before storing in session
     $check_in = date('Y-m-d', strtotime($_GET['check_in']));
@@ -22,23 +21,21 @@ function getUserStatus() {
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
         $stmt->close();
-        
-        // Return null if user doesn't exist in database (account might have been deleted)
+
         return $user ?: null;
     }
     return null;
 }
-
-// Get the current user if logged in
 $current_user = getUserStatus();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME - Rainbow Forest Paradise Resort and Campsite</title>
-    <link rel="stylesheet" href="mystyle.css">
+    <link rel="stylesheet" href="styles/mystyle.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lobster&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
@@ -48,8 +45,17 @@ $current_user = getUserStatus();
     <link rel="stylesheet" href="flatpickr.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
+         .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-image: url('images/bg2.png');
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1s ease-in-out; 
+        }
         #bookingForm {
-            margin: 20px auto 20px auto; /* Top margin, auto center, bottom margin */
+            margin: 20px auto 20px auto;
             padding:25px 40px;
             border-radius: 10px;
             background-color: white;
@@ -108,7 +114,6 @@ $current_user = getUserStatus();
             color: #1B4D3E;
         }
     
-    
         .message-box {
             color: #03624c;
             border-radius: 5px;
@@ -162,85 +167,7 @@ $current_user = getUserStatus();
     </style>
 </head>
 <body>
-<div class="top-space">
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
-    </div>
-    <div class="menu">
-        <div class="close-icon" onclick="toggleMenu()">X</div>
-        <div class="menucontainer">
-            <div class="phase-card phase-private">
-                <h2>PHASE 1</h2>
-                <h3>PRIVATE</h3>
-                <p>
-                    Enjoy exclusive access to the entire resort! This includes two pools, two houses, a pavilion, and a cozy kubo, ensuring privacy and relaxation.
-                    Perfect for families, reunions, and private gatherings. Guests can also partake in exciting activities available in the public area.
-                </p>
-                <a href="home_p1.php" class="phasebutton">Proceed to Phase 1</a>
-            </div>
-            <div class="phase-card phase-public">
-                <h2>PHASE 2</h2>
-                <h3>PUBLIC</h3>
-                <p>
-                    Stay in our welcoming accommodations, including rooms, cabins, and houses, ideal for individuals or small groups. 
-                    Enjoy thrilling activities such as ziplining, bonfires, and swimming, making your stay an unforgettable adventure!
-                </p>
-                <a href="home_p2.php" class="phasebutton">Proceed to Phase 2</a>
-            </div>            
-        </div>
-    </div>
-    <header class="hero">
-        <div class="overlay"></div>
-        <!-- Navbar -->
-        <nav class="home-navbar">
-            <div class="logo">
-                <img src="images/rainbow-logo.png" alt="Logo">
-                <div>
-                    <h1>Rainbow Forest Paradise</h1>
-                    <h2>Resort and Campsite</h2>
-                </div>
-            </div>
-            <div class="nav-right">
-                <ul id="menu-img" class="home-nav-links">
-                    <li><a href="home_p1.php">HOME</a></li>
-                    <li><a href="aboutus_p1.php">ABOUT</a></li>
-                    <li><a href="accomodation_p1.php">ACCOMMODATIONS</a></li>
-                    <li><a href="activities_p1.php">ACTIVITIES</a></li>
-                    <li><a href="contact_p1.php">CONTACT US</a></li>
-                    <li><a href="#">BOOK NOW</a></li>
-                </ul>
-            </div>
-            <div class="icon">
-                <?php if($current_user): ?>
-                    <div class="user-info">
-                        <span class="user-name">Hello, <?= htmlspecialchars($current_user["first_name"]) ?></span>
-                        <div class="user-actions">
-                            <a href="account.php" class="profile-btn">My Profile</a>
-                            <form action="logout.php" method="post">
-                                <button type="submit" class="logout-btn">Logout</button>
-                            </form>
-                        </div>
-                    </div>
-                <?php else: ?>
-                    <!-- Just a placeholder since we're already on the login page -->
-                    <a href="login.php" class="user-icon">
-                        <img src="images/logo.png" alt="User Icon">
-                    </a>
-                <?php endif; ?>
-            </div>
-        </nav>
-        <div class="hero-text">
-            <h1><span>Welcome to Phase 1</span><br>Private</h1>
-            <p>Book the entire property for your exclusive retreat!</p>
-            <p>Experience nature, peace, and luxury.</p>
-            <a href="#" class="booknow">BOOK NOW</a> <!-- Book Now Button -->
-        </div>
-        <!-- Vertical Menu with Images -->
-        <div class="menu-img">
-            <img src="images/pavilion.png" alt="Image 1" onclick="changeBackground('images/pavilion.png', this)">
-            <img src="images/img1.jpg" alt="Image 2" onclick="changeBackground('images/img1.jpg', this)">
-            <img src="images/kubo.jpg" alt="Image 3" onclick="changeBackground('images/kubo.jpg', this)">
-        </div>
-    </header>
+<?php include 'headers/homeheader.php'; ?>
 
     <form id="bookingForm">
         <div class="form-row">
@@ -254,8 +181,6 @@ $current_user = getUserStatus();
         </div>
         <div id="availabilityResult" class="message-box"></div>
     </form>
-
-
 
     <section class="abouthome" id="abouthome">
         <div class="containerflex">
@@ -275,7 +200,7 @@ $current_user = getUserStatus();
                  At Rainbow Forest Paradise, we take pride in providing a well-maintained and tranquil environment, 
                  ensuring a stress-free stay for all our guests. Our friendly and accommodating staff are always ready to assist, making sure your experience is nothing short of exceptional. From cozy accommodations to refreshing pools and open-air pavilions, every corner of our resort is designed to offer relaxation and enjoyment.
                 </p>
-            <a href="about us.html"><button class="btn1" style="cursor: pointer;">READ MORE</button>
+            <a href="aboutus_p1.php"><button class="btn1" style="cursor: pointer;">READ MORE</button>
             </a>
             </div>
         </div>
@@ -325,7 +250,7 @@ $current_user = getUserStatus();
     <section class="photo-gallery">
         <h2>Welcome to Our Photo Gallery</h2>
         <div class="gallery-container" id="gallery">
-            <div class="gallery-item"><img src="images/resort11.png" alt="Image 1"></div>
+            <div class="gallery-item"><img src="images/house1.png" alt="Image 1"></div>
             <div class="gallery-item"><img src="images/resort3.png" alt="Image 2"></div>
             <div class="gallery-item"><img src="images/kubo.jpg" alt="Image 3"></div>
             <div class="gallery-item"><img src="images/phase1.png" alt="Image 4"></div>
@@ -335,35 +260,36 @@ $current_user = getUserStatus();
             <button onclick="nextImages()">See More</button>
         </div>
     </section>
-    <footer>
-        <div class="footer-container">
-            <div class="footer-logo">
-                <img src="images/rainbow-logo.png" alt="Rainbow Forest Logo">
-            </div>
-            <div class="footer-nav">
-                <h3>Explore</h3>
-                <ul>
-                    <li><a href="#">Accommodations</a></li>
-                    <li><a href="#">Activities</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h3>Contact Us</h3>
-                <p><strong>Address:</strong> Brgy. Cuyambay, Tanay, Rizal</p>
-                <p><strong>Contact No.:</strong> 0960 587 7561</p>
-            </div>
-            <div class="footer-actions">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#">Follow Us</a></li>
-                    <li><a href="#">Book Now</a></li>
-                    <li><a href="#">Cancel Reservation</a></li>
-                </ul>
+
+
+    <section class="feedback-section" id="feedback-home">
+        <div class="feedback-header">
+            <h2>What Our Guests Say</h2>
+            <p>Your experience matters. Read reviews or share your own!</p>
+        </div>
+
+        <div class="feedback-content">
+            <div class="feedback-box">
+                <div class="feedback-review">
+                    <h3>Jezelle C.</h3>
+                    <p class="stars">★★★★★</p>
+                    <p>"A truly relaxing place! The resort exceeded my expectations."</p>
+                </div>
+                <div class="feedback-review">
+                    <h3>Jennie K.</h3>
+                    <p class="stars">★★★★★</p>
+                    <p>"Great ambiance and friendly staff. Will visit again!"</p>
+                </div>
             </div>
         </div>
-    </footer>
+
+        <div class="feedback-button">
+            <button class="btn-review" onclick="window.location.href='reviews.php'">Write a Review</button>
+        </div>
+    </section>
+
+    <?php include 'headers/footer.php'; ?>
+
     <script>
         $(document).ready(function(){
             var today = new Date().toISOString().split('T')[0];
@@ -446,7 +372,7 @@ $current_user = getUserStatus();
             $(document).on("click", "#guestReservation", function(){
                 var check_in = $(this).data("checkin");
                 var check_out = $(this).data("checkout");
-                window.location.href = "guest_reservation.php?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
+                window.location.href = "guest_reservation?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
             });
 
             // Handle click for users who want to login first
@@ -503,7 +429,7 @@ $current_user = getUserStatus();
         }
 
         // Automatic hero image transition every 3 seconds
-        const images = ['images/pavilion.png', 'images/img1.jpg', 'images/resort2.png'];
+        const images = ['images/bg2.png', 'images/private.png', 'images/resort2.png'];
         let currentImage = 0;
         setInterval(() => {
             currentImage = (currentImage + 1) % images.length;

@@ -19,13 +19,14 @@ function getUserStatus() {
 // Get the current user if logged in
 $current_user = getUserStatus();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACCOMMODATIONS - Rainbow Forest Paradise Resort and Campsite</title>
-    <link rel="stylesheet" href="mystyle.css">
+    <link rel="stylesheet" href="styles/mystyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lobster&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
@@ -125,6 +126,7 @@ $current_user = getUserStatus();
             </div>
         </div>
     </header>
+<?php include 'headers/header_p2.php'; ?>
 
     <main class="content-wrapper" role="main">
         <h1>Our Accommodations</h1>
@@ -255,35 +257,7 @@ $current_user = getUserStatus();
         </section>
     </main>
    
-<footer>
-    <div class="footer-container">
-        <div class="footer-logo">
-            <img src="images/rainbow-logo.png" alt="Rainbow Forest Logo">
-        </div>
-        <div class="footer-nav">
-            <h3>Explore</h3>
-            <ul>
-                <li><a href="#">Accommodations</a></li>
-                <li><a href="#">Activities</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
-        </div>
-        <div class="footer-contact">
-            <h3>Contact Us</h3>
-            <p><strong>Address:</strong> Brgy. Cuyambay, Tanay, Rizal</p>
-            <p><strong>Contact No.:</strong> 0960 587 7561</p>
-        </div>
-        <div class="footer-actions">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="#">Follow Us</a></li>
-                <li><a href="#">Book Now</a></li>
-                <li><a href="#">Cancel Reservation</a></li>
-            </ul>
-        </div>
-    </div>
-</footer>
+    <?php include 'headers/footer_p2.php'; ?>
 
 <script>
     function toggleMenu() {

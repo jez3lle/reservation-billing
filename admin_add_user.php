@@ -1,8 +1,11 @@
 <?php
-include 'db_connect.php'; // Database connection
+include 'db_connect.php'; // Ensure this file is correctly connecting to the database
 
 $error = "";
 $success = "";
+$name = "";
+$email = "";
+$role = "Admin"; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = trim($_POST['name']);
@@ -10,28 +13,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $role = $_POST['role'];
     $password = $_POST['password'];
 
-    // Backend Password Validation (PHP)
-    if (strlen($password) < 8 || 
-        !preg_match('/[A-Z]/', $password) || 
-        !preg_match('/[0-9]/', $password) || 
-        !preg_match('/[\W]/', $password)) {
+    if (strlen($password) < 8 || !preg_match('/[A-Z]/', $password) || !preg_match('/[0-9]/', $password) || !preg_match('/[\W]/', $password)) {
         $error = "Password must be at least 8 characters long and include an uppercase letter, a number, and a special character.";
     } else {
-        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+        $stmt_check = $conn->prepare("SELECT email FROM admin_users WHERE email = ?");
+        $stmt_check->bind_param("s", $email);
+        $stmt_check->execute();
+        $stmt_check->store_result();
 
-        $stmt = $conn->prepare("INSERT INTO admin_users (name, email, role, password) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $name, $email, $role, $hashed_password);
-
-        if ($stmt->execute()) {
-            $success = "User added successfully!";
+        if ($stmt_check->num_rows > 0) {
+            $error = "Email already exists!";
         } else {
-            $error = "Error adding user!";
-        }
+            $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+            $stmt = $conn->prepare("INSERT INTO admin_users (name, email, role, password) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("ssss", $name, $email, $role, $hashed_password);
 
-        $stmt->close();
+            if ($stmt->execute()) {
+                $success = "User added successfully!";
+                $name = "";
+                $email = "";
+                $role = "Admin";
+            } else {
+                $error = "Error adding user!";
+            }
+
+            $stmt->close();
+        }
+        $stmt_check->close();
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -135,8 +147,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="container">
     <h2>Add User</h2>
 
-    <!-- Display Messages -->
-    <?php if (!empty($error)): ?>
+    
+
+<?php if (!empty($error)): ?>
         <div class="message-box error"><?php echo $error; ?></div>
     <?php endif; ?>
 
@@ -146,26 +159,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <form method="POST">
         <label>Name:</label>
-        <input type="text" name="name" required>
+        <input type="text" name="name" value="<?php echo htmlspecialchars($name); ?>" required>
 
         <label>Email:</label>
-        <input type="email" name="email" required>
+        <input type="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
 
         <label>Role:</label>
         <select name="role">
-            <option value="Admin/Owner">Admin/Owner</option>
-            <option value="Admin">Admin</option>
-            <option value="Moderator">Moderator</option>
+            <option value="Admin/Owner" <?php if ($role == "Admin/Owner") echo "selected"; ?>>Admin/Owner</option>
+            <option value="Admin" <?php if ($role == "Admin") echo "selected"; ?>>Admin</option>
+            <option value="Moderator" <?php if ($role == "Moderator") echo "selected"; ?>>Moderator</option>
         </select>
-
         <label>Password:</label>
-        <input type="password" name="password" required>
-
+        <input type="password" name="password" id="password" required>
+        <input type="checkbox" id="showPassword"> Show Password
         <button type="submit" class="btn">Add User</button>
     </form>
 
     <a href="admin_user.php" class="back-link">Back to User Management</a>
 </div>
 
+<script>
+    const passwordInput = document.getElementById('password');
+    const showPasswordCheckbox = document.getElementById('showPassword');
+
+    showPasswordCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            passwordInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+        }
+    });
+</script>
 </body>
 </html>

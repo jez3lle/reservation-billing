@@ -16,7 +16,6 @@ function getUserStatus() {
     return null;
 }
 
-// Get the current user if logged in
 $current_user = getUserStatus();
 ?>
 <!DOCTYPE html>
@@ -125,6 +124,9 @@ $current_user = getUserStatus();
         </div>
     </header>
 
+
+<?php include 'headers/header_p2.php'; ?>
+
     <div class="about-container">
         <div class="about-text">
             <h2>About Us</h2>
@@ -160,35 +162,7 @@ $current_user = getUserStatus();
         </iframe>
     </div>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-logo">
-                <img src="images/rainbow-logo.png" alt="Rainbow Forest Logo">
-            </div>
-            <div class="footer-nav">
-                <h3>Explore</h3>
-                <ul>
-                    <li><a href="#">Accommodations</a></li>
-                    <li><a href="#">Activities</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h3>Contact Us</h3>
-                <p><strong>Address:</strong> Brgy. Cuyambay, Tanay, Rizal</p>
-                <p><strong>Contact No.:</strong> 0960 587 7561</p>
-            </div>
-            <div class="footer-actions">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#">Follow Us</a></li>
-                    <li><a href="#">Book Now</a></li>
-                    <li><a href="#">Cancel Reservation</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
+    <?php include 'headers/footer_p2.php'; ?>
     
     <script>
         function toggleMenu() {
