@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php
 include "db_connect.php";
 
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 ?>
-=======
+
 <?php
 session_start(); // Start the session at the beginning
 
@@ -830,4 +830,4 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 </body>
 </html>
->>>>>>> c35e19c8d0636e85205b5c230bc8c25f2d260afc
+

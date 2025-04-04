@@ -322,7 +322,6 @@ $current_user = getUserStatus();
       <div class="empty-space"></div>
     </div>
   </section>
-  
     <section class="photo-gallery">
         <h2>Welcome to Our Photo Gallery</h2>
         <div class="gallery-container" id="gallery">

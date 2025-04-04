@@ -103,3 +103,35 @@
 [02-Apr-2025 09:02:25 Europe/Berlin] Reservation code already exists: AM2504106058 (Type: guest)
 [02-Apr-2025 09:02:25 Europe/Berlin] Payment record inserted
 [02-Apr-2025 09:02:25 Europe/Berlin] Transaction committed successfully
+[02-Apr-2025 09:11:34 Europe/Berlin] Processing payment submission
+[02-Apr-2025 09:11:34 Europe/Berlin] Payment submission for reservation code: 20250402-10911C
+[02-Apr-2025 09:11:34 Europe/Berlin] File details - Name: Screenshot_2025-03-12-13-20-12-239_com.globe.gcash.android.jpg, Type: image/jpeg, Size: 349519, Error: 0
+[02-Apr-2025 09:11:34 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/20250402-10911C_1743577894.jpg
+[02-Apr-2025 09:11:34 Europe/Berlin] Database connection successful
+[02-Apr-2025 09:11:34 Europe/Berlin] Reservation code already exists: 20250402-10911C (Type: user)
+[02-Apr-2025 09:11:34 Europe/Berlin] Payment record inserted
+[02-Apr-2025 09:11:34 Europe/Berlin] Transaction committed successfully
+[02-Apr-2025 16:31:31 Europe/Berlin] Processing payment submission
+[02-Apr-2025 16:31:31 Europe/Berlin] Payment submission for reservation code: JF2504124932
+[02-Apr-2025 16:31:31 Europe/Berlin] File details - Name: Screenshot_2025-03-12-13-20-12-239_com.globe.gcash.android.jpg, Type: image/jpeg, Size: 349519, Error: 0
+[02-Apr-2025 16:31:31 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/JF2504124932_1743604291.jpg
+[02-Apr-2025 16:31:31 Europe/Berlin] Database connection successful
+[02-Apr-2025 16:31:31 Europe/Berlin] Reservation code already exists: JF2504124932 (Type: guest)
+[02-Apr-2025 16:31:31 Europe/Berlin] Payment record inserted
+[02-Apr-2025 16:31:31 Europe/Berlin] Transaction committed successfully
+[03-Apr-2025 19:13:03 Europe/Berlin] Processing payment submission
+[03-Apr-2025 19:13:03 Europe/Berlin] Payment submission for reservation code: AD2504277619
+[03-Apr-2025 19:13:03 Europe/Berlin] File details - Name: Screenshot_2025-03-12-13-20-12-239_com.globe.gcash.android.jpg, Type: image/jpeg, Size: 349519, Error: 0
+[03-Apr-2025 19:13:03 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/AD2504277619_1743700383.jpg
+[03-Apr-2025 19:13:03 Europe/Berlin] Database connection successful
+[03-Apr-2025 19:13:03 Europe/Berlin] Reservation code already exists: AD2504277619 (Type: guest)
+[03-Apr-2025 19:13:03 Europe/Berlin] Payment record inserted
+[03-Apr-2025 19:13:03 Europe/Berlin] Transaction committed successfully
+[04-Apr-2025 10:05:24 Europe/Berlin] Processing payment submission
+[04-Apr-2025 10:05:24 Europe/Berlin] Payment submission for reservation code: HS2505097924
+[04-Apr-2025 10:05:24 Europe/Berlin] File details - Name: Screenshot_2025-03-12-13-20-12-239_com.globe.gcash.android.jpg, Type: image/jpeg, Size: 349519, Error: 0
+[04-Apr-2025 10:05:24 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/HS2505097924_1743753924.jpg
+[04-Apr-2025 10:05:24 Europe/Berlin] Database connection successful
+[04-Apr-2025 10:05:24 Europe/Berlin] Reservation code already exists: HS2505097924 (Type: guest)
+[04-Apr-2025 10:05:24 Europe/Berlin] Payment record inserted
+[04-Apr-2025 10:05:24 Europe/Berlin] Transaction committed successfully

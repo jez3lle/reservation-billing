@@ -1,6 +1,19 @@
 <?php
 session_start();
 
+// Store the referring page before destroying the session
+$referrer = $_SERVER['HTTP_REFERER'] ?? '';
+
+// Determine which page to redirect to after logout
+if (strpos($referrer, 'home_p2.php') !== false) {
+    $redirect_page = 'home_p2.php';
+} elseif (strpos($referrer, 'home_p1.php') !== false) {
+    $redirect_page = 'home_p1.php';
+} else {
+    // Default redirect if not coming from a specific page
+    $redirect_page = 'home_p1.php';
+}
+
 // Clear all session variables
 $_SESSION = [];
 
@@ -21,7 +34,7 @@ if (ini_get("session.use_cookies")) {
 // Destroy the session
 session_destroy();
 
-// Redirect to home page
-header("Location: home_p1.php");
+// Redirect to appropriate page based on where user came from
+header("Location: " . $redirect_page);
 exit();
 ?>

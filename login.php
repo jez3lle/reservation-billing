@@ -1,10 +1,28 @@
 <?php
 session_start(); // Start the session at the beginning
+
 // Store check-in/check-out dates if redirected from booking page
 if (isset($_GET['check_in']) && isset($_GET['check_out'])) {
     $_SESSION['check_in'] = $_GET['check_in'];
     $_SESSION['check_out'] = $_GET['check_out'];
 }
+
+// Store the referring page for redirection after login
+if (!isset($_SESSION['redirect_after_login'])) {
+    // Get the referrer or set a default
+    $referrer = $_SERVER['HTTP_REFERER'] ?? '';
+    
+    // Check if the referrer contains home_p1.php or home_p2.php
+    if (strpos($referrer, 'home_p1.php') !== false) {
+        $_SESSION['redirect_after_login'] = 'home_p1.php';
+    } elseif (strpos($referrer, 'home_p2.php') !== false) {
+        $_SESSION['redirect_after_login'] = 'home_p2.php';
+    } else {
+        // Default redirect if not coming from a specific page
+        $_SESSION['redirect_after_login'] = 'home_p1.php';
+    }
+}
+
 $if_invalid = false;    
 $error_message = ""; // Initialize an error message variable
 
@@ -22,6 +40,7 @@ function getUserStatus() {
 
 // Get the current user if logged in
 $current_user = getUserStatus();
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Include the database connection
     $mysqli = require __DIR__ . "/database.php";
@@ -48,13 +67,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             session_regenerate_id(true);
             $_SESSION["user_id"] = $user["id"];
             
-            // Redirect based on check-in/check-out session variables
+            // Determine where to redirect the user
             if (isset($_SESSION['check_in']) && isset($_SESSION['check_out'])) {
+                // If there are check-in/out dates, redirect to reservation form
                 header("Location: reservation_form.php");
+                exit();
+            } elseif (isset($_SESSION['redirect_after_login'])) {
+                // Redirect to the stored referring page
+                $redirect_page = $_SESSION['redirect_after_login'];
+                unset($_SESSION['redirect_after_login']); // Clear the stored redirect
+                header("Location: " . $redirect_page);
+                exit();
             } else {
+                // Default redirect
                 header("Location: home_p1.php");
+                exit();
             }
-            exit();
         } else {
             $if_invalid = true;
             $error_message = "Your account is not activated. Please check your email.";

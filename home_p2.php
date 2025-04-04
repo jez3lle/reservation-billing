@@ -217,7 +217,7 @@ $current_user = getUserStatus();
                 <ul id="menu-img" class="home-nav-links">
                     <li><a href="home_p2.php">HOME</a></li>
                     <li><a href="aboutus_p2.php">ABOUT</a></li>
-                    <li><a href="accomodation_p2.html">ACCOMMODATIONS</a></li>
+                    <li><a href="accomodation_p2.php">ACCOMMODATIONS</a></li>
                     <li><a href="activities_p2.php">ACTIVITIES</a></li>
                     <li><a href="contact_p2.php">CONTACT US</a></li>
                     <li><a href="#">BOOK NOW</a></li>
