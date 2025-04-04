@@ -25,7 +25,7 @@ $current_user = getUserStatus();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACTIVITIES - Rainbow Forest Paradise Resort and Campsite</title>
-    <link rel="stylesheet" href="mystyle.css">
+    <link rel="stylesheet" href="styles/mystyle.css">
     <style>
         .account-info {
             margin-top: 150px;

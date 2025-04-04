@@ -8,7 +8,6 @@
     <title>Content Management</title>
     <link rel="stylesheet" href="adminstyle.css">
     <style>
-
     h1 {
         text-align: center;
     }
@@ -55,10 +54,11 @@
 <div class="sidebar">
         <div>
             <div class="resort-name">Rainbow Forest Paradise Resort and Campsite</div>
-            <div class="nav-item">
+            <a href="admin.php" class="nav-item">
                 <img src="icons/home.png" alt="Dashboard Icon" class="nav-icon">
-                <span>Dashboard</span>
-            </div>
+                <span>Reservations</span>
+            </a>
+
             <a href="reservations.php" class="nav-item">
                 <img src="icons/reservations.png" alt="Settings Icon" class="nav-icon">
                 <span>Reservations</span>
@@ -69,6 +69,7 @@
             <a href="public_reservations.php" class="nav-item sub-nav-item">
                 <span>Public</span>
             </a>
+ 
             <div class="nav-item">
                 <img src="icons/payments.png" alt="Payments Icon" class="nav-icon">
                 <span>Payments</span>
@@ -90,6 +91,7 @@
                 <img src="icons/edit.png" alt="Content Management Icon" class="nav-icon">
                 <span>Content Management</span>
             </a>
+            
         </div>
         <div>
             <a href="admin_settings.php" class="nav-item">
@@ -104,15 +106,13 @@
     </div>
 
     <div class="main-content">
-    <h1>Content Management</h1>
+        <h1>Content Management</h1>
+        <div class="grid-container">
+            <div class="grid-item"><a href="edit_about.php">Edit About Us</a></div>
+            <div class="grid-item"><a href="edit_home.php">Edit Home Page</a></div>
+            <div class="grid-item"><a href="edit_services.php">Edit Services Page</a></div>
+        </div>
 
-    <div class="grid-container">
-        <div class="grid-item"><a href="edit_about.php">Edit About Us</a></div>
-        <div class="grid-item"><a href="edit_home.php">Edit Home Page</a></div>
-        <div class="grid-item"><a href="edit_services.php">Edit Services Page</a></div>
-    </div>
-
-    <!-- Add Content Form -->
     <form action="add_content.php" method="POST">
         <label for="title">Title:</label>
         <input type="text" name="title" required>

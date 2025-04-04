@@ -7,10 +7,9 @@
     <link rel="stylesheet" href="adminstyle.css">
 </head>
 <body>
-<div class="sidebar">
+    <div class="sidebar">
         <div>
             <div class="resort-name">Rainbow Forest Paradise Resort and Campsite</div>
-
             <a href="admin.php" class="nav-item">
                 <img src="icons/home.png" alt="Dashboard Icon" class="nav-icon">
                 <span>Reservations</span>
@@ -55,10 +54,10 @@
                 <img src="icons/settings.png" alt="Settings Icon" class="nav-icon">
                 <span>Settings</span>
             </a>
-            <div class="nav-item">
+            <a href="admin_logout.php" class="nav-item">
                 <img src="icons/logout.png" alt="Logout Icon" class="nav-icon">
                 <span>Logout</span>
-            </div>
+            </a>  
         </div>
     </div>
     <div class="main-content">

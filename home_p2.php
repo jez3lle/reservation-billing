@@ -1,7 +1,6 @@
 <?php
 session_start(); // Start the session at the beginning
 
-// Store check-in/check-out dates if redirected from booking page
 if (isset($_GET['check_in']) && isset($_GET['check_out'])) {
     // Validate dates before storing in session
     $check_in = date('Y-m-d', strtotime($_GET['check_in']));
@@ -22,23 +21,22 @@ function getUserStatus() {
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
         $stmt->close();
-        
-        // Return null if user doesn't exist in database (account might have been deleted)
+
         return $user ?: null;
     }
     return null;
 }
 
-// Get the current user if logged in
 $current_user = getUserStatus();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME - Rainbow Forest Paradise Resort and Campsite</title>
-    <link rel="stylesheet" href="mystyle.css">
+    <link rel="stylesheet" href="styles/mystyle.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lobster&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
@@ -172,7 +170,6 @@ $current_user = getUserStatus();
         .indent {
         margin-left: 2em;
     }
-
     </style>
 </head>
 <body>
@@ -202,9 +199,9 @@ $current_user = getUserStatus();
                 </div>            
             </div>
         </div>
+        
     <header class="hero">
         <div class="overlay"></div>
-        <!-- Navbar -->
         <nav class="home-navbar">
             <div class="logo">
                 <img src="images/rainbow-logo.png" alt="Logo">
@@ -235,7 +232,6 @@ $current_user = getUserStatus();
                         </div>
                     </div>
                 <?php else: ?>
-                    <!-- Just a placeholder since we're already on the login page -->
                     <a href="login.php" class="user-icon">
                         <img src="images/logo.png" alt="User Icon">
                     </a>
@@ -267,8 +263,6 @@ $current_user = getUserStatus();
         </div>
         <div id="availabilityResult" class="message-box"></div>
     </form>
-
-
 
     <section class="abouthome" id="abouthome">
         <div class="containerflex">

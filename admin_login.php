@@ -1,53 +1,41 @@
 <?php
 session_start();
+include 'db_connect.php'; // Ensure database connection consistency
 
-// Check if admin is already logged in
 if (isset($_SESSION['admin_id'])) {
-    header("Location: admin_dashboard.php");
+    header("Location: admin.php");
     exit;
 }
 
-// Process login form
 $login_error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get database connection
-    $mysqli = require 'database.php';
-    if ($mysqli->connect_error) {
-        die("Database connection failed: " . $mysqli->connect_error);
-    }
-
-    // Get form data
-    $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
+    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
     $password = $_POST["password"];
 
-    // Validate input
-    if (empty($username) || empty($password)) {
-        $login_error = "All fields are required";
+    if (empty($email) || empty($password)) {
+        $login_error = "All fields are required.";
     } else {
-        // Check if username exists
-        $stmt = $mysqli->prepare("SELECT id, username, password_hash FROM admins WHERE username = ?");
-        $stmt->bind_param("s", $username);
+        $stmt = $conn->prepare("SELECT id, name, email, password FROM admin_users WHERE email = ?");
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($result->num_rows === 1) {
             $admin = $result->fetch_assoc();
             
-            // Verify password
-            if (password_verify($password, $admin["password_hash"])) {
+            if (password_verify($password, $admin["password"])) {
                 session_regenerate_id();
                 $_SESSION['admin_id'] = $admin['id'];
-                $_SESSION['admin_username'] = $admin['username'];
-                header("Location: admin_dashboard.php");
+                $_SESSION['admin_name'] = $admin['name']; // Store name instead of email
+                header("Location: admin.php");
                 exit;
             } else {
-                $login_error = "Invalid login credentials";
+                $login_error = "Invalid login credentials.";
             }
         } else {
-            $login_error = "Invalid login credentials";
+            $login_error = "Invalid login credentials.";
         }
-
         $stmt->close();
     }
 }
@@ -125,7 +113,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="username" class="form-label">Username</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-person"></i></span>
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+
                         </div>
                     </div>
                     

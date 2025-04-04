@@ -1,23 +1,29 @@
 <?php
-session_start(); // Start the session at the beginning
-function getUserStatus() {
+session_start();
+include 'db_connect.php';
+
+$mysqli = require __DIR__ . "/database.php";
+
+// Fetch all About Us content
+$result = $mysqli->query("SELECT title, content FROM site_content WHERE section = 'about'");
+$about_sections = $result->fetch_all(MYSQLI_ASSOC);
+
+// Function to get logged-in user's name
+function getUserStatus($mysqli) { 
     if (isset($_SESSION["user_id"])) {
-        $mysqli = require __DIR__ . "/database.php";
         $stmt = $mysqli->prepare("SELECT first_name, last_name FROM user WHERE id = ?");
         $stmt->bind_param("i", $_SESSION["user_id"]);
         $stmt->execute();
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
         $stmt->close();
-        
-        // Return null if user doesn't exist in database (account might have been deleted)
         return $user ?: null;
     }
     return null;
 }
 
 // Get the current user if logged in
-$current_user = getUserStatus();
+$current_user = getUserStatus($mysqli);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,31 +38,6 @@ $current_user = getUserStatus();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        .account-info {
-            margin-top: 150px;
-            margin-bottom: 150px;
-            background-color: #f0f0f0;
-        }
-
-        .account-info p{
-            line-height: 3;
-            margin-top: 15px;
-            margin-bottom: 15px;
-        }
-        
-        h1{
-            alignment: center;
-        }
-
-        .user-info{
-            display: flex;
-            flex-direction: column;
-        }
-        .profile-btn{
-            color:white;
-        }
-    </style>
 </head>
 <body>
     <div class="top-space">
@@ -85,6 +66,7 @@ $current_user = getUserStatus();
             </div>            
         </div>
     </div>
+
     <header class="page-header">
         <div class="navbar">
             <div class="logo">
@@ -100,7 +82,7 @@ $current_user = getUserStatus();
                 <li><a href="aboutus_p1.php">ABOUT</a></li>
                 <li><a href="accomodation_p1.php">ACCOMMODATIONS</a></li>
                 <li><a href="activities_p1.html">ACTIVITIES</a></li>
-                <li><a href="contact_p1.php">CONTACT US</a></li>
+                <li><a href="#">CONTACT US</a></li>
                 <li><a href="#">BOOK NOW</a></li>
             </ul>
             <div class="icon">
@@ -115,7 +97,7 @@ $current_user = getUserStatus();
                         </div>
                     </div>
                 <?php else: ?>
-                    <a href="login.php" class="user-icon">
+                    <a href="index.php" class="user-icon">
                         <img src="images/logo.png" alt="User Icon">
                     </a>
                 <?php endif; ?>
@@ -124,14 +106,20 @@ $current_user = getUserStatus();
     </header>
 
     <div class="about-container">
-        <div class="about-text">
-            <h2>About Us</h2>
-            <p>
-                Rainbow Forest Paradise Resort and Campsite is a sanctuary for nature lovers, adventure seekers, and those craving a peaceful retreat.
-                Experience the warmth of Filipino hospitality as you unwind in a place where tranquility meets excitement.
-                Since 2019, we have been a haven for travelers looking to escape the noise of city life and reconnect with nature.
-            </p>
-        </div>
+    <div class="about-text">
+        <h2>About Us</h2>
+        <?php if (!empty($about_sections)): ?>
+            <?php foreach ($about_sections as $section): ?>
+                <h3><?= htmlspecialchars($section['title']); ?></h3>
+                <p><?= nl2br(htmlspecialchars($section['content'])); ?></p>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>No content available. Please check back later.</p>
+        <?php endif; ?>
+
+    </div>
+
+
         <div class="about-image">
             <img src="images/activity.png" alt="Rainbow Forest Paradise Resort">
         </div>
@@ -140,10 +128,7 @@ $current_user = getUserStatus();
     <div class="location-section">
         <h2>Location</h2>
         <p>
-        Rainbow Forest Paradise Resort is located just a few hours away from Manila, in the lush countryside, 
-        nestled within a tropical forest. <br> It offers a serene retreat where you can unwind and reconnect with nature. 
-        Its secluded spot provides a peaceful ambiance, yet it remains easily accessible from nearby cities,
-         making it the perfect destination for both relaxation and adventure.
+            Located in a lush countryside, Rainbow Forest Paradise Resort provides an exclusive and serene escape while remaining easily accessible from nearby cities. Surrounded by lush landscapes, fresh mountain air, and breathtaking panoramic views, our resort is the perfect destination for your next outdoor adventure or weekend getaway.
         </p>
     </div>
     
@@ -166,10 +151,10 @@ $current_user = getUserStatus();
             <div class="footer-nav">
                 <h3>Explore</h3>
                 <ul>
-                    <li><a href="accomodation_p1.php">Accommodations</a></li>
-                    <li><a href="activities_p1.php">Activities</a></li>
-                    <li><a href="aboutus_p1.php">About Us</a></li>
-                    <li><a href="contact_p1.php">Contact Us</a></li>
+                    <li><a href="#">Accommodations</a></li>
+                    <li><a href="#">Activities</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
                 </ul>
             </div>
             <div class="footer-contact">
@@ -180,7 +165,7 @@ $current_user = getUserStatus();
             <div class="footer-actions">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="contact_p1.php">Follow Us</a></li>
+                    <li><a href="#">Follow Us</a></li>
                     <li><a href="#">Book Now</a></li>
                     <li><a href="#">Cancel Reservation</a></li>
                 </ul>
@@ -209,6 +194,5 @@ $current_user = getUserStatus();
             alert(`You clicked Book Now for ${phase}!`);
         }
     </script>
-
 </body>
 </html>

@@ -103,81 +103,75 @@ $stmt->close();
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <style>
-        .sidebar {
-            min-height: 100vh;
-            background-color: #343a40;
-            color: white;
-        }
-        .sidebar-link {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            display: block;
-            padding: 10px 15px;
-            transition: all 0.3s;
-        }
-        .sidebar-link:hover, .sidebar-link.active {
-            color: white;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        .sidebar-link i {
-            margin-right: 10px;
-        }
-        .admin-content {
-            padding: 20px;
-        }
-        .table th {
-            background-color: #f8f9fa;
-        }
-        .confirmation-modal .modal-header {
-            border-bottom: none;
-        }
-        .confirmation-modal .modal-footer {
-            border-top: none;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="adminstyle.css">
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
-            <div class="col-lg-2 col-md-3 px-0 sidebar">
-                <div class="d-flex flex-column">
-                    <div class="p-3 text-center">
-                        <h4>Resort Admin</h4>
-                        <hr>
-                    </div>
-                    <a href="admin_dashboard.php" class="sidebar-link">
-                        <i class="bi bi-speedometer2"></i> Dashboard
-                    </a>
-                    <a href="admin_pending.php" class="sidebar-link active">
-                        <i class="bi bi-hourglass-split"></i> Pending Reservations
-                    </a>
-                    <a href="admin_confirmed.php" class="sidebar-link">
-                        <i class="bi bi-check-circle"></i> Confirmed Reservations
-                    </a>
-                    <a href="admin_complete.php" class="sidebar-link">
-                        <i class="bi bi-calendar-check"></i> Completed Reservations
-                    </a>
-                    <a href="admin_cancelled.php" class="sidebar-link">
-                        <i class="bi bi-x-circle"></i> Cancelled Reservations
-                    </a>
-                    <a href="admin_settings.php" class="sidebar-link">
-                        <i class="bi bi-gear"></i> Settings
-                    </a>
-                    <hr>
-                    <a href="admin_logout.php" class="sidebar-link">
-                        <i class="bi bi-box-arrow-right"></i> Logout
-                    </a>
-                </div>
+<div class="sidebar">
+        <div>
+            <div class="resort-name">Rainbow Forest Paradise Resort and Campsite</div>
+            <div class="nav-item">
+                <img src="icons/home.png" alt="Dashboard Icon" class="nav-icon">
+                <span>Dashboard</span>
             </div>
+
+            <a href="reservations.php" class="nav-item">
+                <img src="icons/reservations.png" alt="Settings Icon" class="nav-icon">
+                <span>Reservations</span>
+            </a>
+            <a href="private_reservations.php" class="nav-item sub-nav-item">
+                <span>Private</span>
+            </a>
+            <a href="public_reservations.php" class="nav-item sub-nav-item">
+                <span>Public</span>
+            </a>
+ 
+            <div class="nav-item">
+                <img src="icons/payments.png" alt="Payments Icon" class="nav-icon">
+                <span>Payments</span>
+            </div>
+            <div class="nav-item">
+                <img src="icons/calendar.png" alt="Calendar Icon" class="nav-icon">
+                <span>Calendar</span>
+            </div>
+            <div class="nav-item">
+                <img src="icons/reports.png" alt="Reports Icon" class="nav-icon">
+                <span>Reports</span>
+            </div>
+            <div class="nav-item">
+                <img src="icons/rooms.png" alt="Rooms Icon" class="nav-icon">
+                <span>Rooms</span>
+            </div>
+    
+            <a href="content_management.php" class="nav-item">
+                <img src="icons/edit.png" alt="Content Management Icon" class="nav-icon">
+                <span>Content Management</span>
+            </a>
             
-            <!-- Main Content -->
-            <div class="col-lg-10 col-md-9 ms-auto admin-content">
+        </div>
+        <div>
+            <a href="admin_settings.php" class="nav-item">
+                <img src="icons/settings.png" alt="Settings Icon" class="nav-icon">
+                <span>Settings</span>
+            </a>  
+
+            <a href="admin_logout.php" class="nav-item">
+                <img src="icons/logout.png" alt="Logout Icon" class="nav-icon">
+                <span>Logout</span>
+            </a>  
+        </div>
+    </div>
+    
+     <!-- Main Content -->
+     <div class="main-content">
+     <div class="col-lg-12 col-md-12 admin-content">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h2>Pending Reservations</h2>
                     <div>
-                        <a href="admin_dashboard.php" class="btn btn-outline-secondary me-2">
+                        <a href="admin.php" class="btn btn-outline-secondary me-2">
                             <i class="bi bi-arrow-left"></i> Back to Dashboard
                         </a>
                     </div>

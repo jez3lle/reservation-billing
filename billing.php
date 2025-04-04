@@ -1,16 +1,12 @@
 <?php
 session_start();
 
-// Check if reservation details are in the session
 if (!isset($_SESSION['reservation_details'])) {
     echo "No reservation details found in session.";
     exit;
 }
 
-// Retrieve reservation details
 $reservation = $_SESSION['reservation_details'];
-
-// Generate reservation code if not already present
 if (!isset($reservation['reservation_code'])) {
     // Create a unique reservation code
     // Format: YYYYMMDD-RANDOMSTRING
@@ -278,14 +274,12 @@ if (!isset($reservation['reservation_code'])) {
     </div>
 
     <script>
-        // Replace the existing JavaScript code in billing.php with this enhanced version
         const fileInput = document.getElementById('fileInput');
         const imagePreview = document.getElementById('imagePreview');
         const referenceNumberInput = document.getElementById('referenceNumberInput');
         const uploadButton = document.getElementById('uploadButton');
         const statusMessage = document.getElementById('statusMessage');
 
-        // Image preview
         fileInput.addEventListener('change', function(event) {
             const file = event.target.files[0];
             if (file) {
@@ -299,9 +293,7 @@ if (!isset($reservation['reservation_code'])) {
             }
         });
 
-        // Reference number validation
         referenceNumberInput.addEventListener('input', checkUploadValidity);
-
         function checkUploadValidity() {
             const hasImage = fileInput.files.length > 0;
             const hasReferenceNumber = referenceNumberInput.value.trim() !== '';
@@ -309,7 +301,6 @@ if (!isset($reservation['reservation_code'])) {
             uploadButton.disabled = !(hasImage && hasReferenceNumber);
         }
 
-        // Enhanced upload functionality with better error handling
         uploadButton.addEventListener('click', async function() {
             const file = fileInput.files[0];
             const referenceNumber = referenceNumberInput.value.trim();
@@ -319,20 +310,15 @@ if (!isset($reservation['reservation_code'])) {
                 return;
             }
 
-            // Show loading indicator
             showStatus('Uploading payment proof...', true);
-            
-            // Create FormData for file upload
             const formData = new FormData();
             formData.append('paymentProof', file);
             formData.append('referenceNumber', referenceNumber);
 
             try {
-                // Log form data (for debugging)
                 console.log('Sending file:', file.name, 'Size:', file.size, 'Type:', file.type);
                 console.log('Reference number:', referenceNumber);
                 
-                // Make the fetch request
                 const response = await fetch('process_payment.php', {
                     method: 'POST',
                     body: formData
@@ -340,11 +326,9 @@ if (!isset($reservation['reservation_code'])) {
                 
                 console.log('Response status:', response.status);
                 
-                // Get the raw response text
                 const responseText = await response.text();
                 console.log('Raw response:', responseText);
-                
-                // Try to parse the response as JSON
+
                 let data;
                 try {
                     data = JSON.parse(responseText);
@@ -353,11 +337,9 @@ if (!isset($reservation['reservation_code'])) {
                     showStatus('Server returned invalid data. Please contact support.', false);
                     return;
                 }
-                
-                // Process the parsed data
+
                 if (data.success) {
                     showStatus(data.message, true);
-                    // Redirect after successful upload
                     setTimeout(() => {
                         window.location.href = 'confirmation.php';
                     }, 2000);

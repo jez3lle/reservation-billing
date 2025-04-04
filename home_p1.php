@@ -1,7 +1,6 @@
 <?php
 session_start(); // Start the session at the beginning
 
-// Store check-in/check-out dates if redirected from booking page
 if (isset($_GET['check_in']) && isset($_GET['check_out'])) {
     // Validate dates before storing in session
     $check_in = date('Y-m-d', strtotime($_GET['check_in']));
@@ -22,23 +21,21 @@ function getUserStatus() {
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
         $stmt->close();
-        
-        // Return null if user doesn't exist in database (account might have been deleted)
+
         return $user ?: null;
     }
     return null;
 }
-
-// Get the current user if logged in
 $current_user = getUserStatus();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME - Rainbow Forest Paradise Resort and Campsite</title>
-    <link rel="stylesheet" href="mystyle.css">
+    <link rel="stylesheet" href="styles/mystyle.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lobster&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
@@ -49,7 +46,7 @@ $current_user = getUserStatus();
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         #bookingForm {
-            margin: 20px auto 20px auto; /* Top margin, auto center, bottom margin */
+            margin: 20px auto 20px auto;
             padding:25px 40px;
             border-radius: 10px;
             background-color: white;
@@ -107,7 +104,6 @@ $current_user = getUserStatus();
             background-color: #FBFFE4;
             color: #1B4D3E;
         }
-    
     
         .message-box {
             color: #03624c;
@@ -255,8 +251,6 @@ $current_user = getUserStatus();
         <div id="availabilityResult" class="message-box"></div>
     </form>
 
-
-
     <section class="abouthome" id="abouthome">
         <div class="containerflex">
         <div class="left">
@@ -326,7 +320,7 @@ $current_user = getUserStatus();
     <section class="photo-gallery">
         <h2>Welcome to Our Photo Gallery</h2>
         <div class="gallery-container" id="gallery">
-            <div class="gallery-item"><img src="images/resort11.png" alt="Image 1"></div>
+            <div class="gallery-item"><img src="images/house1.png" alt="Image 1"></div>
             <div class="gallery-item"><img src="images/resort3.png" alt="Image 2"></div>
             <div class="gallery-item"><img src="images/kubo.jpg" alt="Image 3"></div>
             <div class="gallery-item"><img src="images/phase1.png" alt="Image 4"></div>
@@ -336,6 +330,34 @@ $current_user = getUserStatus();
             <button onclick="nextImages()">See More</button>
         </div>
     </section>
+
+
+    <section class="feedback-section" id="feedback-home">
+    <div class="feedback-header">
+        <h2>What Our Guests Say</h2>
+        <p>Your experience matters. Read reviews or share your own!</p>
+    </div>
+
+    <div class="feedback-content">
+        <div class="feedback-box">
+            <div class="feedback-review">
+                <h3>Jezelle C.</h3>
+                <p class="stars">★★★★★</p>
+                <p>"A truly relaxing place! The resort exceeded my expectations."</p>
+            </div>
+            <div class="feedback-review">
+                <h3>Jennie K.</h3>
+                <p class="stars">★★★★★</p>
+                <p>"Great ambiance and friendly staff. Will visit again!"</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="feedback-button">
+        <button class="btn-review" onclick="window.location.href='reviews.php'">Write a Review</button>
+    </div>
+</section>
+
     <footer>
         <div class="footer-container">
             <div class="footer-logo">
@@ -344,10 +366,10 @@ $current_user = getUserStatus();
             <div class="footer-nav">
                 <h3>Explore</h3>
                 <ul>
-                    <li><a href="#">Accommodations</a></li>
-                    <li><a href="#">Activities</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="accomodation_p1.php">Accommodations</a></li>
+                    <li><a href="activities_p1.php">Activities</a></li>
+                    <li><a href="aboutus_p1.php">About Us</a></li>
+                    <li><a href="contact_p1.php">Contact Us</a></li>
                 </ul>
             </div>
             <div class="footer-contact">
@@ -358,13 +380,14 @@ $current_user = getUserStatus();
             <div class="footer-actions">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#">Follow Us</a></li>
+                    <li><a href="contact_p1.php">Follow Us</a></li>
                     <li><a href="#">Book Now</a></li>
                     <li><a href="#">Cancel Reservation</a></li>
                 </ul>
             </div>
         </div>
     </footer>
+
     <script>
         $(document).ready(function(){
             var today = new Date().toISOString().split('T')[0];
@@ -447,7 +470,7 @@ $current_user = getUserStatus();
             $(document).on("click", "#guestReservation", function(){
                 var check_in = $(this).data("checkin");
                 var check_out = $(this).data("checkout");
-                window.location.href = "guest_reservation.php?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
+                window.location.href = "guest_reservation?check_in=" + encodeURIComponent(check_in) + "&check_out=" + encodeURIComponent(check_out);
             });
 
             // Handle click for users who want to login first

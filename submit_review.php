@@ -19,7 +19,7 @@ $sql = "INSERT INTO reviews (name, visit_date, rating, message)
         VALUES ('$name', '$visit_date', '$rating', '$message')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "<script>alert('Review submitted successfully!'); window.location.href='reviews.php';</script>";
+    echo "<script>alert('Review submitted successfully!'); window.location.href='contact_p1.php';</script>";
 }
 
 $conn->close();
