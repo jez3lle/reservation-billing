@@ -135,3 +135,258 @@
 [04-Apr-2025 10:05:24 Europe/Berlin] Reservation code already exists: HS2505097924 (Type: guest)
 [04-Apr-2025 10:05:24 Europe/Berlin] Payment record inserted
 [04-Apr-2025 10:05:24 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 15:55:23 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in D:\xampp\htdocs\reservation-billing\process_booking_p2.php:66
+Stack trace:
+#0 D:\xampp\htdocs\reservation-billing\process_booking_p2.php(66): mysqli_stmt->bind_param('sssiiissssss', 'BOOK17438613236...', '2025-04-06', '2025-04-07', '2', '0', '1500.00', 'Cerike', 'Samosa', 'ayk.example@yah...', '09124563421', '', 'bank-transfer', '{"bank_transfer...')
+#1 {main}
+  thrown in D:\xampp\htdocs\reservation-billing\process_booking_p2.php on line 66
+[05-Apr-2025 17:26:18 Europe/Berlin] Booking error: Cannot add or update a child row: a foreign key constraint fails (`resort_db`.`p2_guest_reservation_room`, CONSTRAINT `p2_guest_reservation_room_ibfk_1` FOREIGN KEY (`reservation_id`) REFERENCES `guest_reservation` (`id`) ON DELETE CASCADE)
+[05-Apr-2025 17:35:25 Europe/Berlin] Reservation created with ID: 13
+[05-Apr-2025 17:35:25 Europe/Berlin] Inserting room: reservation_id=13, room_id=3, quantity=1, price=4000
+[05-Apr-2025 17:36:00 Europe/Berlin] Reservation created with ID: 14
+[05-Apr-2025 17:36:00 Europe/Berlin] Inserting room: reservation_id=14, room_id=3, quantity=1, price=4000
+[05-Apr-2025 17:37:24 Europe/Berlin] Reservation created with ID: 15
+[05-Apr-2025 17:37:24 Europe/Berlin] Inserting room: reservation_id=15, room_id=3, quantity=1, price=4000
+[05-Apr-2025 17:42:09 Europe/Berlin] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in D:\xampp\htdocs\reservation-billing\process_booking_p2.php on line 41
+[05-Apr-2025 17:42:09 Europe/Berlin] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in D:\xampp\htdocs\reservation-billing\process_booking_p2.php on line 42
+[05-Apr-2025 17:42:09 Europe/Berlin] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in D:\xampp\htdocs\reservation-billing\process_booking_p2.php on line 45
+[05-Apr-2025 17:42:09 Europe/Berlin] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in D:\xampp\htdocs\reservation-billing\process_booking_p2.php on line 46
+[05-Apr-2025 17:42:09 Europe/Berlin] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in D:\xampp\htdocs\reservation-billing\process_booking_p2.php on line 48
+[05-Apr-2025 17:42:09 Europe/Berlin] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in D:\xampp\htdocs\reservation-billing\process_booking_p2.php on line 49
+[05-Apr-2025 17:42:09 Europe/Berlin] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in D:\xampp\htdocs\reservation-billing\process_booking_p2.php on line 51
+[05-Apr-2025 17:42:09 Europe/Berlin] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in D:\xampp\htdocs\reservation-billing\process_booking_p2.php on line 59
+[05-Apr-2025 17:42:09 Europe/Berlin] PHP Deprecated:  Constant FILTER_SANITIZE_STRING is deprecated in D:\xampp\htdocs\reservation-billing\process_booking_p2.php on line 60
+[05-Apr-2025 17:42:09 Europe/Berlin] Booking error: Invalid date range selected
+[05-Apr-2025 17:46:24 Europe/Berlin] Check-in: 2025-04-06, Check-out: 2025-04-07, Nights: 1
+[05-Apr-2025 17:46:24 Europe/Berlin] Reservation created with ID: 16
+[05-Apr-2025 17:46:24 Europe/Berlin] Inserting room: reservation_id=16, room_id=2, quantity=1, price=1500
+[05-Apr-2025 17:46:24 Europe/Berlin] Inserting room: reservation_id=16, room_id=5, quantity=1, price=1000
+[05-Apr-2025 17:47:59 Europe/Berlin] Check-in: 2025-04-06, Check-out: 2025-04-07, Nights: 1
+[05-Apr-2025 17:47:59 Europe/Berlin] Reservation created with ID: 17
+[05-Apr-2025 17:47:59 Europe/Berlin] Inserting room: reservation_id=17, room_id=2, quantity=1, price=1500
+[05-Apr-2025 17:47:59 Europe/Berlin] Inserting room: reservation_id=17, room_id=5, quantity=1, price=1000
+[05-Apr-2025 17:55:50 Europe/Berlin] Check-in: 2025-04-06, Check-out: 2025-04-07, Nights: 1
+[05-Apr-2025 17:55:50 Europe/Berlin] Reservation created with ID: 18
+[05-Apr-2025 17:55:50 Europe/Berlin] Inserting room: reservation_id=18, room_id=1, quantity=1, price=4000
+[05-Apr-2025 17:55:50 Europe/Berlin] Transaction committed successfully. Booking reference: P217438685503786
+[05-Apr-2025 17:55:50 Europe/Berlin] Response status: success
+[05-Apr-2025 17:55:50 Europe/Berlin] About to redirect to: booking_success.php?ref=P217438685503786
+[05-Apr-2025 17:55:50 Europe/Berlin] Redirecting to success page
+[05-Apr-2025 17:58:14 Europe/Berlin] Check-in: 2025-04-06, Check-out: 2025-04-07, Nights: 1
+[05-Apr-2025 17:58:14 Europe/Berlin] Reservation created with ID: 19
+[05-Apr-2025 17:58:14 Europe/Berlin] Inserting room: reservation_id=19, room_id=2, quantity=1, price=1500
+[05-Apr-2025 17:58:14 Europe/Berlin] Transaction committed successfully. Booking reference: P217438686944726
+[05-Apr-2025 17:58:14 Europe/Berlin] Response status: success
+[05-Apr-2025 17:58:14 Europe/Berlin] About to redirect to: booking_success.php?ref=P217438686944726
+[05-Apr-2025 17:58:14 Europe/Berlin] Redirecting to success page
+[05-Apr-2025 18:00:51 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 18:00:51 Europe/Berlin] Reservation created with ID: 20
+[05-Apr-2025 18:00:51 Europe/Berlin] Inserting room: reservation_id=20, room_id=1, quantity=1, price=4000
+[05-Apr-2025 18:00:51 Europe/Berlin] Transaction committed successfully. Booking reference: P217438688512564
+[05-Apr-2025 18:00:51 Europe/Berlin] Response status: success
+[05-Apr-2025 18:00:51 Europe/Berlin] About to redirect to: p2_booking_success.php?ref=P217438688512564
+[05-Apr-2025 18:00:51 Europe/Berlin] Redirecting to success page
+[05-Apr-2025 18:05:34 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 18:05:34 Europe/Berlin] Reservation created with ID: 21
+[05-Apr-2025 18:05:34 Europe/Berlin] Inserting room: reservation_id=21, room_id=2, quantity=1, price=1500
+[05-Apr-2025 18:05:34 Europe/Berlin] Inserting room: reservation_id=21, room_id=3, quantity=1, price=4000
+[05-Apr-2025 18:05:34 Europe/Berlin] Transaction committed successfully. Booking reference: P217438691343962
+[05-Apr-2025 18:05:34 Europe/Berlin] Response status: success
+[05-Apr-2025 18:05:34 Europe/Berlin] About to redirect to: p2_booking_success.php?ref=P217438691343962
+[05-Apr-2025 18:05:34 Europe/Berlin] Redirecting to success page
+[05-Apr-2025 18:07:50 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 18:07:50 Europe/Berlin] Reservation created with ID: 22
+[05-Apr-2025 18:07:50 Europe/Berlin] Inserting room: reservation_id=22, room_id=2, quantity=1, price=1500
+[05-Apr-2025 18:07:50 Europe/Berlin] Transaction committed successfully. Booking reference: P217438692705749
+[05-Apr-2025 18:07:50 Europe/Berlin] Response status: success
+[05-Apr-2025 18:07:50 Europe/Berlin] About to redirect to: p2_booking_success.php?ref=P217438692705749
+[05-Apr-2025 18:07:50 Europe/Berlin] Redirecting to success page
+[05-Apr-2025 18:08:26 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 18:08:26 Europe/Berlin] Reservation created with ID: 23
+[05-Apr-2025 18:08:26 Europe/Berlin] Inserting room: reservation_id=23, room_id=2, quantity=1, price=1500
+[05-Apr-2025 18:08:26 Europe/Berlin] Transaction committed successfully. Booking reference: P217438693067782
+[05-Apr-2025 18:08:26 Europe/Berlin] Response status: success
+[05-Apr-2025 18:08:26 Europe/Berlin] About to redirect to: p2_booking_success.php?ref=P217438693067782
+[05-Apr-2025 18:08:26 Europe/Berlin] Redirecting to success page
+[05-Apr-2025 18:10:04 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 18:10:04 Europe/Berlin] Reservation created with ID: 24
+[05-Apr-2025 18:10:04 Europe/Berlin] Inserting room: reservation_id=24, room_id=2, quantity=1, price=2000
+[05-Apr-2025 18:10:05 Europe/Berlin] Transaction committed successfully. Booking reference: P217438694041923
+[05-Apr-2025 18:10:05 Europe/Berlin] Response status: success
+[05-Apr-2025 18:10:05 Europe/Berlin] About to redirect to: p2_booking_success.php?ref=P217438694041923
+[05-Apr-2025 18:10:05 Europe/Berlin] Redirecting to success page
+[05-Apr-2025 18:14:59 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 18:14:59 Europe/Berlin] Reservation created with ID: 25
+[05-Apr-2025 18:14:59 Europe/Berlin] Inserting room: reservation_id=25, room_id=2, quantity=1, price=1500
+[05-Apr-2025 18:14:59 Europe/Berlin] Transaction committed successfully. Booking reference: P217438696995720
+[05-Apr-2025 18:14:59 Europe/Berlin] Response status: success
+[05-Apr-2025 18:14:59 Europe/Berlin] About to redirect to: p2_booking_success.php?ref=P217438696995720
+[05-Apr-2025 18:14:59 Europe/Berlin] Redirecting to success page
+[05-Apr-2025 18:17:35 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 18:17:35 Europe/Berlin] Reservation created with ID: 26
+[05-Apr-2025 18:17:35 Europe/Berlin] Inserting room: reservation_id=26, room_id=3, quantity=1, price=4000
+[05-Apr-2025 18:17:35 Europe/Berlin] Transaction committed successfully. Booking reference: P217438698558976
+[05-Apr-2025 18:17:35 Europe/Berlin] Response status: success
+[05-Apr-2025 18:17:35 Europe/Berlin] About to redirect to: p2_booking_success.php?ref=P217438698558976
+[05-Apr-2025 18:17:35 Europe/Berlin] Redirecting to success page
+[05-Apr-2025 19:44:41 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 19:44:41 Europe/Berlin] Reservation created with ID: 27
+[05-Apr-2025 19:44:41 Europe/Berlin] Inserting room: reservation_id=27, room_id=2, quantity=1, price=1500
+[05-Apr-2025 19:44:41 Europe/Berlin] Transaction committed successfully. Booking reference: P217438750819983
+[05-Apr-2025 19:44:41 Europe/Berlin] Response status: success
+[05-Apr-2025 19:44:41 Europe/Berlin] About to redirect to: p2_booking_success.php?ref=P217438750819983
+[05-Apr-2025 19:44:41 Europe/Berlin] Redirecting to success page
+[05-Apr-2025 19:46:53 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 19:46:53 Europe/Berlin] Reservation created with ID: 28
+[05-Apr-2025 19:46:53 Europe/Berlin] Inserting room: reservation_id=28, room_id=2, quantity=1, price=1500
+[05-Apr-2025 19:46:53 Europe/Berlin] Inserting room: reservation_id=28, room_id=3, quantity=1, price=4000
+[05-Apr-2025 19:46:54 Europe/Berlin] Transaction committed successfully. Booking reference: P217438752133810
+[05-Apr-2025 19:46:54 Europe/Berlin] Response status: success
+[05-Apr-2025 19:46:54 Europe/Berlin] About to redirect to: p2_booking_success.php?ref=P217438752133810
+[05-Apr-2025 19:46:54 Europe/Berlin] Redirecting to success page
+[05-Apr-2025 19:50:16 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 19:50:16 Europe/Berlin] Reservation created with ID: 29
+[05-Apr-2025 19:50:16 Europe/Berlin] Inserting room: reservation_id=29, room_id=1, quantity=1, price=4000
+[05-Apr-2025 19:50:16 Europe/Berlin] Transaction committed successfully. Booking reference: P217438754169812
+[05-Apr-2025 19:50:16 Europe/Berlin] Response status: success
+[05-Apr-2025 19:50:16 Europe/Berlin] About to redirect to: p2_booking_success.php?ref=P217438754169812
+[05-Apr-2025 19:50:16 Europe/Berlin] Redirecting to success page
+[05-Apr-2025 19:53:30 Europe/Berlin] Check-in: 2025-04-08, Check-out: 2025-04-09, Nights: 1
+[05-Apr-2025 19:53:30 Europe/Berlin] Reservation created with ID: 30
+[05-Apr-2025 19:53:30 Europe/Berlin] Inserting room: reservation_id=30, room_id=2, quantity=1, price=1500
+[05-Apr-2025 19:53:30 Europe/Berlin] Transaction committed successfully. Booking reference: P217438756103324
+[05-Apr-2025 19:56:49 Europe/Berlin] Check-in: 2025-04-23, Check-out: 2025-04-24, Nights: 1
+[05-Apr-2025 19:56:49 Europe/Berlin] Reservation created with ID: 31
+[05-Apr-2025 19:56:49 Europe/Berlin] Inserting room: reservation_id=31, room_id=3, quantity=1, price=4000
+[05-Apr-2025 19:56:49 Europe/Berlin] Inserting room: reservation_id=31, room_id=4, quantity=1, price=2000
+[05-Apr-2025 19:56:49 Europe/Berlin] Inserting room: reservation_id=31, room_id=7, quantity=1, price=3000
+[05-Apr-2025 19:56:49 Europe/Berlin] Transaction committed successfully. Booking reference: P217438758096500
+[05-Apr-2025 19:57:46 Europe/Berlin] Check-in: 2025-04-23, Check-out: 2025-04-24, Nights: 1
+[05-Apr-2025 19:57:46 Europe/Berlin] Reservation created with ID: 32
+[05-Apr-2025 19:57:46 Europe/Berlin] Inserting room: reservation_id=32, room_id=3, quantity=1, price=4000
+[05-Apr-2025 19:57:46 Europe/Berlin] Inserting room: reservation_id=32, room_id=4, quantity=1, price=2000
+[05-Apr-2025 19:57:46 Europe/Berlin] Inserting room: reservation_id=32, room_id=7, quantity=1, price=3000
+[05-Apr-2025 19:57:46 Europe/Berlin] Transaction committed successfully. Booking reference: P217438758663090
+[05-Apr-2025 20:03:55 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 20:03:55 Europe/Berlin] Reservation created with ID: 33
+[05-Apr-2025 20:03:55 Europe/Berlin] Inserting room: reservation_id=33, room_id=3, quantity=1, price=4000
+[05-Apr-2025 20:03:55 Europe/Berlin] Transaction committed successfully. Booking reference: P217438762358296
+[05-Apr-2025 20:05:24 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 20:05:24 Europe/Berlin] Reservation created with ID: 34
+[05-Apr-2025 20:05:24 Europe/Berlin] Inserting room: reservation_id=34, room_id=3, quantity=1, price=4000
+[05-Apr-2025 20:05:24 Europe/Berlin] Transaction committed successfully. Booking reference: P217438763241668
+[05-Apr-2025 20:06:53 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 20:06:53 Europe/Berlin] Reservation created with ID: 35
+[05-Apr-2025 20:06:53 Europe/Berlin] Inserting room: reservation_id=35, room_id=2, quantity=1, price=1500
+[05-Apr-2025 20:06:53 Europe/Berlin] Transaction committed successfully. Booking reference: P217438764131992
+[05-Apr-2025 20:07:32 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 20:07:32 Europe/Berlin] Reservation created with ID: 36
+[05-Apr-2025 20:07:32 Europe/Berlin] Inserting room: reservation_id=36, room_id=2, quantity=1, price=1500
+[05-Apr-2025 20:07:32 Europe/Berlin] Transaction committed successfully. Booking reference: P217438764525204
+[05-Apr-2025 20:10:36 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 20:10:36 Europe/Berlin] Reservation created with ID: 37
+[05-Apr-2025 20:10:36 Europe/Berlin] Inserting room: reservation_id=37, room_id=1, quantity=1, price=4000
+[05-Apr-2025 20:10:36 Europe/Berlin] Transaction committed successfully. Booking reference: P217438766369849
+[05-Apr-2025 20:14:50 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 20:14:50 Europe/Berlin] Reservation created with ID: 38
+[05-Apr-2025 20:14:50 Europe/Berlin] Inserting room: reservation_id=38, room_id=2, quantity=1, price=1500
+[05-Apr-2025 20:14:50 Europe/Berlin] Transaction committed successfully. Booking reference: P217438768901575
+[05-Apr-2025 20:14:50 Europe/Berlin] Redirecting: Success = true
+[05-Apr-2025 20:15:14 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 20:15:14 Europe/Berlin] Reservation created with ID: 39
+[05-Apr-2025 20:15:14 Europe/Berlin] Inserting room: reservation_id=39, room_id=2, quantity=1, price=1500
+[05-Apr-2025 20:15:14 Europe/Berlin] Transaction committed successfully. Booking reference: P217438769146015
+[05-Apr-2025 20:15:14 Europe/Berlin] Redirecting: Success = true
+[05-Apr-2025 20:18:53 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 20:18:53 Europe/Berlin] Reservation created with ID: 40
+[05-Apr-2025 20:18:53 Europe/Berlin] Inserting room: reservation_id=40, room_id=1, quantity=1, price=4000
+[05-Apr-2025 20:18:53 Europe/Berlin] Transaction committed successfully. Booking reference: P217438771336150
+[05-Apr-2025 20:18:53 Europe/Berlin] Redirecting: Success = true
+[05-Apr-2025 20:20:16 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 20:20:16 Europe/Berlin] Reservation created with ID: 41
+[05-Apr-2025 20:20:16 Europe/Berlin] Inserting room: reservation_id=41, room_id=3, quantity=1, price=4000
+[05-Apr-2025 20:20:16 Europe/Berlin] Transaction committed successfully. Booking reference: P217438772167494
+[05-Apr-2025 20:20:16 Europe/Berlin] Redirecting: Success = true
+[05-Apr-2025 20:20:51 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 20:20:51 Europe/Berlin] Reservation created with ID: 42
+[05-Apr-2025 20:20:51 Europe/Berlin] Inserting room: reservation_id=42, room_id=3, quantity=1, price=4000
+[05-Apr-2025 20:20:51 Europe/Berlin] Transaction committed successfully. Booking reference: P217438772512104
+[05-Apr-2025 20:20:51 Europe/Berlin] Redirecting: Success = true
+[05-Apr-2025 20:25:40 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 20:25:40 Europe/Berlin] Reservation created with ID: 43
+[05-Apr-2025 20:25:40 Europe/Berlin] Inserting room: reservation_id=43, room_id=2, quantity=1, price=1500
+[05-Apr-2025 20:25:40 Europe/Berlin] Transaction committed successfully. Booking reference: P217438775408170
+[05-Apr-2025 20:25:40 Europe/Berlin] Redirecting: Success = true
+[05-Apr-2025 20:26:18 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[05-Apr-2025 20:26:18 Europe/Berlin] Reservation created with ID: 44
+[05-Apr-2025 20:26:18 Europe/Berlin] Inserting room: reservation_id=44, room_id=2, quantity=1, price=1500
+[05-Apr-2025 20:26:18 Europe/Berlin] Transaction committed successfully. Booking reference: P217438775789315
+[05-Apr-2025 20:26:18 Europe/Berlin] Redirecting: Success = true
+[05-Apr-2025 20:30:25 Europe/Berlin] Check-in: 2025-04-24, Check-out: 2025-04-25, Nights: 1
+[05-Apr-2025 20:30:25 Europe/Berlin] Reservation created with ID: 45
+[05-Apr-2025 20:30:25 Europe/Berlin] Inserting room: reservation_id=45, room_id=3, quantity=1, price=6500
+[05-Apr-2025 20:30:25 Europe/Berlin] Transaction committed successfully. Booking reference: P217438778252320
+[05-Apr-2025 20:30:25 Europe/Berlin] Redirecting: Success = true
+[05-Apr-2025 20:30:25 Europe/Berlin] Redirecting to success page: p2_booking_success.php?ref=P217438778252320
+[06-Apr-2025 16:14:25 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[06-Apr-2025 16:14:25 Europe/Berlin] Reservation created with ID: 46
+[06-Apr-2025 16:14:25 Europe/Berlin] Inserting room: reservation_id=46, room_id=1, quantity=1, price=4000
+[06-Apr-2025 16:14:25 Europe/Berlin] Inserting room: reservation_id=46, room_id=5, quantity=1, price=1000
+[06-Apr-2025 16:14:25 Europe/Berlin] Transaction committed successfully. Booking reference: P217439488655821
+[06-Apr-2025 16:14:25 Europe/Berlin] Redirecting: Success = true
+[06-Apr-2025 16:14:25 Europe/Berlin] Redirecting to success page: p2_booking_success.php?ref=P217439488655821
+[06-Apr-2025 16:19:36 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[06-Apr-2025 16:19:36 Europe/Berlin] Reservation created with ID: 47
+[06-Apr-2025 16:19:36 Europe/Berlin] Inserting room: reservation_id=47, room_id=3, quantity=1, price=4000
+[06-Apr-2025 16:19:36 Europe/Berlin] Transaction committed successfully. Booking reference: P217439491767761
+[06-Apr-2025 16:19:36 Europe/Berlin] Redirecting: Success = true
+[06-Apr-2025 16:19:36 Europe/Berlin] Redirecting to success page: p2_booking_success.php?ref=P217439491767761
+[06-Apr-2025 16:22:12 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[06-Apr-2025 16:22:12 Europe/Berlin] Reservation created with ID: 48
+[06-Apr-2025 16:22:12 Europe/Berlin] Inserting room: reservation_id=48, room_id=1, quantity=1, price=4000
+[06-Apr-2025 16:22:12 Europe/Berlin] Inserting room: reservation_id=48, room_id=9, quantity=1, price=800
+[06-Apr-2025 16:22:12 Europe/Berlin] Transaction committed successfully. Booking reference: P217439493328585
+[06-Apr-2025 16:22:12 Europe/Berlin] Redirecting: Success = true
+[06-Apr-2025 16:22:12 Europe/Berlin] Redirecting to success page: p2_booking_success.php?ref=P217439493328585
+[06-Apr-2025 16:24:05 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[06-Apr-2025 16:24:05 Europe/Berlin] Reservation created with ID: 49
+[06-Apr-2025 16:24:05 Europe/Berlin] Inserting room: reservation_id=49, room_id=1, quantity=1, price=4000
+[06-Apr-2025 16:24:05 Europe/Berlin] Inserting room: reservation_id=49, room_id=9, quantity=1, price=800
+[06-Apr-2025 16:24:05 Europe/Berlin] Transaction committed successfully. Booking reference: P217439494457924
+[06-Apr-2025 16:24:05 Europe/Berlin] Redirecting: Success = true
+[06-Apr-2025 16:24:05 Europe/Berlin] Redirecting to success page: p2_booking_success.php?ref=P217439494457924
+[06-Apr-2025 16:28:46 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[06-Apr-2025 16:28:46 Europe/Berlin] Reservation created with ID: 50
+[06-Apr-2025 16:28:46 Europe/Berlin] Inserting room: reservation_id=50, room_id=2, quantity=1, price=1500
+[06-Apr-2025 16:28:46 Europe/Berlin] Transaction committed successfully. Booking reference: P217439497267865
+[06-Apr-2025 16:28:46 Europe/Berlin] Redirecting: Success = true
+[06-Apr-2025 17:22:29 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[06-Apr-2025 17:22:29 Europe/Berlin] Reservation created with ID: 53
+[06-Apr-2025 17:22:29 Europe/Berlin] Inserting room: reservation_id=53, room_id=2, quantity=1, price=1500
+[06-Apr-2025 17:22:29 Europe/Berlin] Transaction committed successfully. Booking reference: P217439529496866
+[06-Apr-2025 17:22:29 Europe/Berlin] Redirecting: Success = true
+[06-Apr-2025 17:22:29 Europe/Berlin] Redirecting to success page: p2_booking_success.php?ref=P217439529496866
+[06-Apr-2025 17:38:47 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[06-Apr-2025 17:38:47 Europe/Berlin] Reservation created with ID: 54
+[06-Apr-2025 17:38:47 Europe/Berlin] Inserting room: reservation_id=54, room_id=2, quantity=1, price=1500
+[06-Apr-2025 17:38:47 Europe/Berlin] Inserting room: reservation_id=54, room_id=5, quantity=1, price=1000
+[06-Apr-2025 17:38:47 Europe/Berlin] Transaction committed successfully. Booking reference: P217439539273021
+[06-Apr-2025 17:38:47 Europe/Berlin] Redirecting: Success = true
+[06-Apr-2025 17:48:54 Europe/Berlin] Processing payment submission
+[06-Apr-2025 17:48:54 Europe/Berlin] Payment submission for reservation code: KS2504166773
+[06-Apr-2025 17:48:54 Europe/Berlin] File details - Name: 678a60f86ef754.81329459.png, Type: image/png, Size: 825488, Error: 0
+[06-Apr-2025 17:48:54 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/KS2504166773_1743954534.png
+[06-Apr-2025 17:48:54 Europe/Berlin] Database connection successful
+[06-Apr-2025 17:48:54 Europe/Berlin] Reservation code already exists: KS2504166773 (Type: guest)
+[06-Apr-2025 17:48:54 Europe/Berlin] Payment record inserted
+[06-Apr-2025 17:48:54 Europe/Berlin] Transaction committed successfully
+[06-Apr-2025 17:49:47 Europe/Berlin] Check-in: 2025-04-07, Check-out: 2025-04-08, Nights: 1
+[06-Apr-2025 17:49:47 Europe/Berlin] Reservation created with ID: 55
+[06-Apr-2025 17:49:47 Europe/Berlin] Inserting room: reservation_id=55, room_id=2, quantity=1, price=1500
+[06-Apr-2025 17:49:47 Europe/Berlin] Transaction committed successfully. Booking reference: P217439545875940
+[06-Apr-2025 17:49:47 Europe/Berlin] Redirecting: Success = true
+[06-Apr-2025 18:16:05 Europe/Berlin] Check-in: 2025-04-09, Check-out: 2025-04-10, Nights: 1
+[06-Apr-2025 18:16:05 Europe/Berlin] Reservation created with ID: 56
+[06-Apr-2025 18:16:05 Europe/Berlin] Inserting room: reservation_id=56, room_id=3, quantity=1, price=4000
+[06-Apr-2025 18:16:05 Europe/Berlin] Transaction committed successfully. Booking reference: P217439561651737
+[06-Apr-2025 18:16:05 Europe/Berlin] Redirecting: Success = true
