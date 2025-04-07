@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $mail->Subject = "Account Activation";
             
                 // Correctly embed the token in the email body
-                $resetLink = "http://localhost/reservation-billing/signup/activate-account.php?token=" . urlencode($activation_token);
+                $resetLink = "http://localhost/rainbow/activate-account.php?token=" . urlencode($activation_token);
                 $mail->Body = <<<END
                 Click <a href="$resetLink">here</a> to activate your account.
                 END;

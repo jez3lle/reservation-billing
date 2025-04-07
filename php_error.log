@@ -135,3 +135,464 @@
 [04-Apr-2025 10:05:24 Europe/Berlin] Reservation code already exists: HS2505097924 (Type: guest)
 [04-Apr-2025 10:05:24 Europe/Berlin] Payment record inserted
 [04-Apr-2025 10:05:24 Europe/Berlin] Transaction committed successfully
+[04-Apr-2025 12:18:20 Europe/Berlin] Processing payment submission
+[04-Apr-2025 12:18:20 Europe/Berlin] Payment submission for reservation code: JF2504175883
+[04-Apr-2025 12:18:20 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[04-Apr-2025 12:18:20 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/JF2504175883_1743761900.jpg
+[04-Apr-2025 12:18:20 Europe/Berlin] Database connection successful
+[04-Apr-2025 12:18:20 Europe/Berlin] Reservation code already exists: JF2504175883 (Type: guest)
+[04-Apr-2025 12:18:20 Europe/Berlin] Error in process_payment.php: Cannot add or update a child row: a foreign key constraint fails (`resort_db`.`payments`, CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`reservation_id`) REFERENCES `reservations` (`id`) ON DELETE CASCADE)
+[04-Apr-2025 12:18:20 Europe/Berlin] Deleted uploaded file due to error
+[04-Apr-2025 12:23:21 Europe/Berlin] Processing payment submission
+[04-Apr-2025 12:23:21 Europe/Berlin] Payment submission for reservation code: JF2504175883
+[04-Apr-2025 12:23:21 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[04-Apr-2025 12:23:21 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/JF2504175883_1743762201.jpg
+[04-Apr-2025 12:23:21 Europe/Berlin] Database connection successful
+[04-Apr-2025 12:23:21 Europe/Berlin] Using reservation type: guest
+[04-Apr-2025 12:23:21 Europe/Berlin] Reservation inserted with ID: 20
+[04-Apr-2025 12:23:21 Europe/Berlin] Payment record inserted
+[04-Apr-2025 12:23:21 Europe/Berlin] Transaction committed successfully
+[04-Apr-2025 13:43:24 Europe/Berlin] Processing payment submission
+[04-Apr-2025 13:43:24 Europe/Berlin] Payment submission for reservation code: AC2504217706
+[04-Apr-2025 13:43:24 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[04-Apr-2025 13:43:24 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/AC2504217706_1743767004.jpg
+[04-Apr-2025 13:43:24 Europe/Berlin] Database connection successful
+[04-Apr-2025 13:43:24 Europe/Berlin] Reservation code already exists: AC2504217706 (Type: guest)
+[04-Apr-2025 13:43:24 Europe/Berlin] Payment record inserted
+[04-Apr-2025 13:43:24 Europe/Berlin] Transaction committed successfully
+[04-Apr-2025 13:55:35 Europe/Berlin] Processing payment submission
+[04-Apr-2025 13:55:35 Europe/Berlin] Payment submission for reservation code: GH2504234402
+[04-Apr-2025 13:55:35 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[04-Apr-2025 13:55:35 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/GH2504234402_1743767735.jpg
+[04-Apr-2025 13:55:35 Europe/Berlin] Database connection successful
+[04-Apr-2025 13:55:35 Europe/Berlin] Reservation code already exists: GH2504234402 (Type: guest)
+[04-Apr-2025 13:55:35 Europe/Berlin] Payment record inserted
+[04-Apr-2025 13:55:35 Europe/Berlin] Transaction committed successfully
+[04-Apr-2025 14:50:35 Europe/Berlin] Processing payment submission
+[04-Apr-2025 14:50:35 Europe/Berlin] Payment submission for reservation code: BH2504245486
+[04-Apr-2025 14:50:35 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[04-Apr-2025 14:50:35 Europe/Berlin] File uploaded successfully to proof_of_payment/BH2504245486_1743771035.jpg
+[04-Apr-2025 14:50:35 Europe/Berlin] Database connection successful
+[04-Apr-2025 14:50:35 Europe/Berlin] Reservation code already exists: BH2504245486 (Type: guest)
+[04-Apr-2025 14:50:35 Europe/Berlin] Payment record inserted
+[04-Apr-2025 14:50:35 Europe/Berlin] Transaction committed successfully
+[04-Apr-2025 15:47:58 Europe/Berlin] Processing payment submission
+[04-Apr-2025 15:47:58 Europe/Berlin] Payment submission for reservation code: SH2504290179
+[04-Apr-2025 15:47:58 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[04-Apr-2025 15:47:58 Europe/Berlin] File uploaded successfully to uploads/payment_proofs/SH2504290179_1743774478.jpg
+[04-Apr-2025 15:47:58 Europe/Berlin] Database connection successful
+[04-Apr-2025 15:47:58 Europe/Berlin] Reservation code already exists: SH2504290179 (Type: guest)
+[04-Apr-2025 15:47:58 Europe/Berlin] Payment record inserted
+[04-Apr-2025 15:47:58 Europe/Berlin] Transaction committed successfully
+[04-Apr-2025 16:14:13 Europe/Berlin] Processing payment submission
+[04-Apr-2025 16:14:13 Europe/Berlin] Payment submission for reservation code: HE2504252500
+[04-Apr-2025 16:14:13 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[04-Apr-2025 16:14:13 Europe/Berlin] File uploaded successfully to proof_of_payment/HE2504252500_1743776053.jpg
+[04-Apr-2025 16:14:13 Europe/Berlin] Database connection successful
+[04-Apr-2025 16:14:13 Europe/Berlin] Reservation code already exists: HE2504252500 (Type: guest)
+[04-Apr-2025 16:14:13 Europe/Berlin] PHP Fatal error:  Uncaught Error: mysqli_stmt object is already closed in C:\xampp\htdocs\rainbow\process_payment.php:308
+Stack trace:
+#0 C:\xampp\htdocs\rainbow\process_payment.php(308): mysqli_stmt->execute()
+#1 {main}
+  thrown in C:\xampp\htdocs\rainbow\process_payment.php on line 308
+[04-Apr-2025 16:16:36 Europe/Berlin] Processing payment submission
+[04-Apr-2025 16:16:36 Europe/Berlin] Payment submission for reservation code: HE2504252500
+[04-Apr-2025 16:16:36 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[04-Apr-2025 16:16:36 Europe/Berlin] File uploaded successfully to proof_of_payment/HE2504252500_1743776196.jpg
+[04-Apr-2025 16:16:36 Europe/Berlin] Database connection successful
+[04-Apr-2025 16:16:36 Europe/Berlin] Reservation code already exists: HE2504252500 (Type: guest)
+[04-Apr-2025 16:16:36 Europe/Berlin] Payment record inserted
+[04-Apr-2025 16:16:36 Europe/Berlin] Guest reservation updated
+[04-Apr-2025 16:16:36 Europe/Berlin] Transaction committed successfully
+[04-Apr-2025 16:56:57 Europe/Berlin] Processing payment submission
+[04-Apr-2025 16:56:57 Europe/Berlin] Payment submission for reservation code: AJ2504306142
+[04-Apr-2025 16:56:57 Europe/Berlin] File details - Name: bXIzORel_400x400.jpg, Type: image/jpeg, Size: 11214, Error: 0
+[04-Apr-2025 16:56:57 Europe/Berlin] File uploaded successfully to proof_of_payment/AJ2504306142_1743778617.jpg
+[04-Apr-2025 16:56:57 Europe/Berlin] Database connection successful
+[04-Apr-2025 16:56:57 Europe/Berlin] Reservation code already exists: AJ2504306142 (Type: guest)
+[04-Apr-2025 16:56:57 Europe/Berlin] Payment record inserted
+[04-Apr-2025 16:56:57 Europe/Berlin] Guest reservation updated
+[04-Apr-2025 16:56:58 Europe/Berlin] Transaction committed successfully
+[04-Apr-2025 20:15:34 Europe/Berlin] Processing payment submission
+[04-Apr-2025 20:15:34 Europe/Berlin] Payment submission for reservation code: AC2504246025
+[04-Apr-2025 20:15:34 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[04-Apr-2025 20:15:34 Europe/Berlin] File uploaded successfully to proof_of_payment/AC2504246025_1743790534.jpg
+[04-Apr-2025 20:15:34 Europe/Berlin] Database connection successful
+[04-Apr-2025 20:15:34 Europe/Berlin] Reservation code already exists: AC2504246025 (Type: guest)
+[04-Apr-2025 20:15:34 Europe/Berlin] Payment record inserted
+[04-Apr-2025 20:15:34 Europe/Berlin] Error in process_payment.php: Unknown column 'proof_of_payment' in 'field list'
+[04-Apr-2025 20:15:34 Europe/Berlin] Deleted uploaded file due to error
+[04-Apr-2025 20:19:04 Europe/Berlin] Processing payment submission
+[04-Apr-2025 20:19:04 Europe/Berlin] Payment submission for reservation code: AC2504246025
+[04-Apr-2025 20:19:04 Europe/Berlin] File details - Name: bXIzORel_400x400.jpg, Type: image/jpeg, Size: 11214, Error: 0
+[04-Apr-2025 20:19:04 Europe/Berlin] File uploaded successfully to proof_of_payment/AC2504246025_1743790744.jpg
+[04-Apr-2025 20:19:04 Europe/Berlin] Database connection successful
+[04-Apr-2025 20:19:04 Europe/Berlin] Reservation code already exists: AC2504246025 (Type: guest)
+[04-Apr-2025 20:19:04 Europe/Berlin] Payment record inserted
+[04-Apr-2025 20:19:04 Europe/Berlin] Guest reservation updated
+[04-Apr-2025 20:19:04 Europe/Berlin] Transaction committed successfully
+[04-Apr-2025 20:57:48 Europe/Berlin] Processing payment submission
+[04-Apr-2025 20:57:48 Europe/Berlin] Payment submission for reservation code: GH2504253618
+[04-Apr-2025 20:57:48 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[04-Apr-2025 20:57:48 Europe/Berlin] File uploaded successfully to proof_of_payment/GH2504253618_1743793068.jpg
+[04-Apr-2025 20:57:48 Europe/Berlin] Database connection successful
+[04-Apr-2025 20:57:48 Europe/Berlin] Reservation code already exists: GH2504253618 (Type: guest)
+[04-Apr-2025 20:57:48 Europe/Berlin] Payment record inserted
+[04-Apr-2025 20:57:48 Europe/Berlin] Guest reservation updated
+[04-Apr-2025 20:57:48 Europe/Berlin] Transaction committed successfully
+[04-Apr-2025 21:32:53 Europe/Berlin] Processing payment submission
+[04-Apr-2025 21:32:53 Europe/Berlin] Payment submission for reservation code: KJ2504288142
+[04-Apr-2025 21:32:53 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[04-Apr-2025 21:32:53 Europe/Berlin] File uploaded successfully to proof_of_payment/KJ2504288142_1743795173.jpg
+[04-Apr-2025 21:32:53 Europe/Berlin] Database connection successful
+[04-Apr-2025 21:32:53 Europe/Berlin] Reservation code already exists: KJ2504288142 (Type: guest)
+[04-Apr-2025 21:32:53 Europe/Berlin] Payment record inserted
+[04-Apr-2025 21:32:53 Europe/Berlin] Guest reservation updated
+[04-Apr-2025 21:32:53 Europe/Berlin] Transaction committed successfully
+[04-Apr-2025 21:44:36 Europe/Berlin] Processing payment submission
+[04-Apr-2025 21:44:36 Europe/Berlin] Payment submission for reservation code: HB2505016315
+[04-Apr-2025 21:44:36 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[04-Apr-2025 21:44:36 Europe/Berlin] File uploaded successfully to proof_of_payment/HB2505016315_1743795876.jpg
+[04-Apr-2025 21:44:36 Europe/Berlin] Database connection successful
+[04-Apr-2025 21:44:36 Europe/Berlin] Reservation code already exists: HB2505016315 (Type: guest)
+[04-Apr-2025 21:44:36 Europe/Berlin] Payment record inserted
+[04-Apr-2025 21:44:36 Europe/Berlin] Guest reservation updated
+[04-Apr-2025 21:44:36 Europe/Berlin] Transaction committed successfully
+[04-Apr-2025 22:36:42 Europe/Berlin] Processing payment submission
+[04-Apr-2025 22:36:42 Europe/Berlin] Payment submission for reservation code: KB2505037066
+[04-Apr-2025 22:36:42 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[04-Apr-2025 22:36:42 Europe/Berlin] File uploaded successfully to proof_of_payment/KB2505037066_1743799002.jpg
+[04-Apr-2025 22:36:42 Europe/Berlin] Database connection successful
+[04-Apr-2025 22:36:42 Europe/Berlin] Reservation code already exists: KB2505037066 (Type: guest)
+[04-Apr-2025 22:36:42 Europe/Berlin] Payment record inserted
+[04-Apr-2025 22:36:42 Europe/Berlin] Guest reservation updated
+[04-Apr-2025 22:36:42 Europe/Berlin] Transaction committed successfully
+[04-Apr-2025 23:22:34 Europe/Berlin] Processing payment submission
+[04-Apr-2025 23:22:34 Europe/Berlin] Payment submission for reservation code: DS2504143015
+[04-Apr-2025 23:22:34 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[04-Apr-2025 23:22:34 Europe/Berlin] File uploaded successfully to proof_of_payment/DS2504143015_1743801754.jpg
+[04-Apr-2025 23:22:34 Europe/Berlin] Database connection successful
+[04-Apr-2025 23:22:34 Europe/Berlin] Reservation code already exists: DS2504143015 (Type: guest)
+[04-Apr-2025 23:22:34 Europe/Berlin] Payment record inserted
+[04-Apr-2025 23:22:34 Europe/Berlin] Guest reservation updated
+[04-Apr-2025 23:22:34 Europe/Berlin] Transaction committed successfully
+[04-Apr-2025 23:31:47 Europe/Berlin] Processing payment submission
+[04-Apr-2025 23:31:47 Europe/Berlin] Payment submission for reservation code: TC2504184720
+[04-Apr-2025 23:31:47 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[04-Apr-2025 23:31:47 Europe/Berlin] File uploaded successfully to proof_of_payment/TC2504184720_1743802307.jpg
+[04-Apr-2025 23:31:47 Europe/Berlin] Database connection successful
+[04-Apr-2025 23:31:47 Europe/Berlin] Reservation code already exists: TC2504184720 (Type: guest)
+[04-Apr-2025 23:31:47 Europe/Berlin] Payment record inserted
+[04-Apr-2025 23:31:47 Europe/Berlin] Guest reservation updated
+[04-Apr-2025 23:31:47 Europe/Berlin] Transaction committed successfully
+[04-Apr-2025 23:42:32 Europe/Berlin] Processing payment submission
+[04-Apr-2025 23:42:32 Europe/Berlin] Payment submission for reservation code: JP2504202166
+[04-Apr-2025 23:42:32 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[04-Apr-2025 23:42:32 Europe/Berlin] File uploaded successfully to proof_of_payment/JP2504202166_1743802952.jpg
+[04-Apr-2025 23:42:32 Europe/Berlin] Database connection successful
+[04-Apr-2025 23:42:32 Europe/Berlin] Reservation code already exists: JP2504202166 (Type: guest)
+[04-Apr-2025 23:42:32 Europe/Berlin] Payment record inserted
+[04-Apr-2025 23:42:32 Europe/Berlin] Guest reservation updated
+[04-Apr-2025 23:42:32 Europe/Berlin] Transaction committed successfully
+[04-Apr-2025 23:45:56 Europe/Berlin] Processing payment submission
+[04-Apr-2025 23:45:56 Europe/Berlin] Payment submission for reservation code: LR2504230708
+[04-Apr-2025 23:45:56 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[04-Apr-2025 23:45:56 Europe/Berlin] File uploaded successfully to proof_of_payment/LR2504230708_1743803156.jpg
+[04-Apr-2025 23:45:56 Europe/Berlin] Database connection successful
+[04-Apr-2025 23:45:56 Europe/Berlin] Reservation code already exists: LR2504230708 (Type: guest)
+[04-Apr-2025 23:45:56 Europe/Berlin] Payment record inserted
+[04-Apr-2025 23:45:56 Europe/Berlin] Guest reservation updated
+[04-Apr-2025 23:45:56 Europe/Berlin] Transaction committed successfully
+[04-Apr-2025 23:50:10 Europe/Berlin] Processing payment submission
+[04-Apr-2025 23:50:10 Europe/Berlin] Payment submission for reservation code: FO2504290478
+[04-Apr-2025 23:50:10 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[04-Apr-2025 23:50:10 Europe/Berlin] File uploaded successfully to proof_of_payment/FO2504290478_1743803410.jpg
+[04-Apr-2025 23:50:10 Europe/Berlin] Database connection successful
+[04-Apr-2025 23:50:10 Europe/Berlin] Reservation code already exists: FO2504290478 (Type: guest)
+[04-Apr-2025 23:50:10 Europe/Berlin] Payment record inserted
+[04-Apr-2025 23:50:10 Europe/Berlin] Guest reservation updated
+[04-Apr-2025 23:50:10 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 00:04:34 Europe/Berlin] Processing payment submission
+[05-Apr-2025 00:04:34 Europe/Berlin] Payment submission for reservation code: JP2505056911
+[05-Apr-2025 00:04:34 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 00:04:34 Europe/Berlin] File uploaded successfully to proof_of_payment/JP2505056911_1743804274.jpg
+[05-Apr-2025 00:04:34 Europe/Berlin] Database connection successful
+[05-Apr-2025 00:04:34 Europe/Berlin] Reservation code already exists: JP2505056911 (Type: guest)
+[05-Apr-2025 00:04:34 Europe/Berlin] Payment record inserted
+[05-Apr-2025 00:04:34 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 00:04:34 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 00:16:01 Europe/Berlin] Processing payment submission
+[05-Apr-2025 00:16:01 Europe/Berlin] Payment submission for reservation code: AS2505083944
+[05-Apr-2025 00:16:01 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 00:16:01 Europe/Berlin] File uploaded successfully to proof_of_payment/AS2505083944_1743804961.jpg
+[05-Apr-2025 00:16:01 Europe/Berlin] Database connection successful
+[05-Apr-2025 00:16:01 Europe/Berlin] Reservation code already exists: AS2505083944 (Type: guest)
+[05-Apr-2025 00:16:01 Europe/Berlin] Payment record inserted
+[05-Apr-2025 00:16:01 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 00:16:01 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 09:47:06 Europe/Berlin] Processing payment submission
+[05-Apr-2025 09:47:06 Europe/Berlin] Payment submission for reservation code: GD2505049435
+[05-Apr-2025 09:47:06 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 09:47:06 Europe/Berlin] File uploaded successfully to proof_of_payment/GD2505049435_1743839226.jpg
+[05-Apr-2025 09:47:06 Europe/Berlin] Database connection successful
+[05-Apr-2025 09:47:06 Europe/Berlin] Reservation code already exists: GD2505049435 (Type: guest)
+[05-Apr-2025 09:47:06 Europe/Berlin] Payment record inserted
+[05-Apr-2025 09:47:06 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 09:47:07 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 09:48:25 Europe/Berlin] Processing payment submission
+[05-Apr-2025 09:48:25 Europe/Berlin] Payment submission for reservation code: KS2504177205
+[05-Apr-2025 09:48:25 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 09:48:25 Europe/Berlin] File uploaded successfully to proof_of_payment/KS2504177205_1743839305.jpg
+[05-Apr-2025 09:48:25 Europe/Berlin] Database connection successful
+[05-Apr-2025 09:48:25 Europe/Berlin] Reservation code already exists: KS2504177205 (Type: guest)
+[05-Apr-2025 09:48:25 Europe/Berlin] Payment record inserted
+[05-Apr-2025 09:48:25 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 09:48:25 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 10:09:16 Europe/Berlin] Processing payment submission
+[05-Apr-2025 10:09:16 Europe/Berlin] Payment submission for reservation code: ZM2504197757
+[05-Apr-2025 10:09:16 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 10:09:16 Europe/Berlin] File uploaded successfully to proof_of_payment/ZM2504197757_1743840556.jpg
+[05-Apr-2025 10:09:16 Europe/Berlin] Database connection successful
+[05-Apr-2025 10:09:16 Europe/Berlin] Reservation code already exists: ZM2504197757 (Type: guest)
+[05-Apr-2025 10:09:16 Europe/Berlin] Payment record inserted
+[05-Apr-2025 10:09:16 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 10:09:16 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 10:34:47 Europe/Berlin] Processing payment submission
+[05-Apr-2025 10:34:47 Europe/Berlin] Payment submission for reservation code: AE2505104170
+[05-Apr-2025 10:34:47 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 10:34:47 Europe/Berlin] File uploaded successfully to proof_of_payment/AE2505104170_1743842087.jpg
+[05-Apr-2025 10:34:47 Europe/Berlin] Database connection successful
+[05-Apr-2025 10:34:47 Europe/Berlin] Reservation code already exists: AE2505104170 (Type: guest)
+[05-Apr-2025 10:34:47 Europe/Berlin] Payment record inserted
+[05-Apr-2025 10:34:47 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 10:34:47 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 10:54:03 Europe/Berlin] Processing payment submission
+[05-Apr-2025 10:54:03 Europe/Berlin] Payment submission for reservation code: NM2505027378
+[05-Apr-2025 10:54:03 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 10:54:03 Europe/Berlin] File uploaded successfully to proof_of_payment/NM2505027378_1743843243.jpg
+[05-Apr-2025 10:54:03 Europe/Berlin] Database connection successful
+[05-Apr-2025 10:54:03 Europe/Berlin] Reservation code already exists: NM2505027378 (Type: guest)
+[05-Apr-2025 10:54:03 Europe/Berlin] Payment record inserted
+[05-Apr-2025 10:54:03 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 10:54:03 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 11:02:00 Europe/Berlin] Processing payment submission
+[05-Apr-2025 11:02:00 Europe/Berlin] Payment submission for reservation code: RG2505133800
+[05-Apr-2025 11:02:00 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 11:02:00 Europe/Berlin] File uploaded successfully to proof_of_payment/RG2505133800_1743843720.jpg
+[05-Apr-2025 11:02:00 Europe/Berlin] Database connection successful
+[05-Apr-2025 11:02:00 Europe/Berlin] Reservation code already exists: RG2505133800 (Type: guest)
+[05-Apr-2025 11:02:00 Europe/Berlin] Payment record inserted
+[05-Apr-2025 11:02:00 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 11:02:00 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 11:14:15 Europe/Berlin] Processing payment submission
+[05-Apr-2025 11:14:15 Europe/Berlin] Payment submission for reservation code: LG2505267522
+[05-Apr-2025 11:14:15 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 11:14:15 Europe/Berlin] File uploaded successfully to proof_of_payment/LG2505267522_1743844455.jpg
+[05-Apr-2025 11:14:15 Europe/Berlin] Database connection successful
+[05-Apr-2025 11:14:15 Europe/Berlin] Reservation code already exists: LG2505267522 (Type: guest)
+[05-Apr-2025 11:14:15 Europe/Berlin] Payment record inserted
+[05-Apr-2025 11:14:15 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 11:14:15 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 11:25:47 Europe/Berlin] Processing payment submission
+[05-Apr-2025 11:25:47 Europe/Berlin] Payment submission for reservation code: LD2505119681
+[05-Apr-2025 11:25:47 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 11:25:47 Europe/Berlin] File uploaded successfully to proof_of_payment/LD2505119681_1743845147.jpg
+[05-Apr-2025 11:25:47 Europe/Berlin] Database connection successful
+[05-Apr-2025 11:25:47 Europe/Berlin] Reservation code already exists: LD2505119681 (Type: guest)
+[05-Apr-2025 11:25:47 Europe/Berlin] Payment record inserted
+[05-Apr-2025 11:25:47 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 11:25:47 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 11:45:53 Europe/Berlin] Processing payment submission
+[05-Apr-2025 11:45:53 Europe/Berlin] Payment submission for reservation code: NJ2506115501
+[05-Apr-2025 11:45:53 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 11:45:53 Europe/Berlin] File uploaded successfully to proof_of_payment/NJ2506115501_1743846353.jpg
+[05-Apr-2025 11:45:53 Europe/Berlin] Database connection successful
+[05-Apr-2025 11:45:53 Europe/Berlin] Reservation code already exists: NJ2506115501 (Type: guest)
+[05-Apr-2025 11:45:53 Europe/Berlin] Payment record inserted
+[05-Apr-2025 11:45:53 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 11:45:53 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 11:57:43 Europe/Berlin] Processing payment submission
+[05-Apr-2025 11:57:43 Europe/Berlin] Payment submission for reservation code: KM2505231656
+[05-Apr-2025 11:57:43 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 11:57:43 Europe/Berlin] File uploaded successfully to proof_of_payment/KM2505231656_1743847063.jpg
+[05-Apr-2025 11:57:43 Europe/Berlin] Database connection successful
+[05-Apr-2025 11:57:43 Europe/Berlin] Reservation code already exists: KM2505231656 (Type: guest)
+[05-Apr-2025 11:57:43 Europe/Berlin] Payment record inserted
+[05-Apr-2025 11:57:43 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 11:57:43 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 11:57:44 Europe/Berlin] Processing payment submission
+[05-Apr-2025 11:57:44 Europe/Berlin] Payment submission for reservation code: KM2505231656
+[05-Apr-2025 11:57:44 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 11:57:44 Europe/Berlin] File uploaded successfully to proof_of_payment/KM2505231656_1743847064.jpg
+[05-Apr-2025 11:57:44 Europe/Berlin] Database connection successful
+[05-Apr-2025 11:57:44 Europe/Berlin] Reservation code already exists: KM2505231656 (Type: guest)
+[05-Apr-2025 11:57:44 Europe/Berlin] Payment record inserted
+[05-Apr-2025 11:57:44 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 11:57:44 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 11:57:44 Europe/Berlin] Processing payment submission
+[05-Apr-2025 11:57:44 Europe/Berlin] Payment submission for reservation code: KM2505231656
+[05-Apr-2025 11:57:44 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 11:57:44 Europe/Berlin] File uploaded successfully to proof_of_payment/KM2505231656_1743847064.jpg
+[05-Apr-2025 11:57:44 Europe/Berlin] Database connection successful
+[05-Apr-2025 11:57:44 Europe/Berlin] Reservation code already exists: KM2505231656 (Type: guest)
+[05-Apr-2025 11:57:44 Europe/Berlin] Payment record inserted
+[05-Apr-2025 11:57:44 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 11:57:44 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 12:04:07 Europe/Berlin] Processing payment submission
+[05-Apr-2025 12:04:07 Europe/Berlin] Payment submission for reservation code: TK2507143704
+[05-Apr-2025 12:04:07 Europe/Berlin] File details - Name: bXIzORel_400x400.jpg, Type: image/jpeg, Size: 11214, Error: 0
+[05-Apr-2025 12:04:07 Europe/Berlin] File uploaded successfully to proof_of_payment/TK2507143704_1743847447.jpg
+[05-Apr-2025 12:04:07 Europe/Berlin] Database connection successful
+[05-Apr-2025 12:04:07 Europe/Berlin] Reservation code already exists: TK2507143704 (Type: guest)
+[05-Apr-2025 12:04:07 Europe/Berlin] Payment record inserted
+[05-Apr-2025 12:04:07 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 12:04:07 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 12:12:19 Europe/Berlin] Processing payment submission
+[05-Apr-2025 12:12:19 Europe/Berlin] Payment submission for reservation code: GA2506145685
+[05-Apr-2025 12:12:19 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 12:12:19 Europe/Berlin] File uploaded successfully to proof_of_payment/GA2506145685_1743847939.jpg
+[05-Apr-2025 12:12:19 Europe/Berlin] Database connection successful
+[05-Apr-2025 12:12:19 Europe/Berlin] Reservation code already exists: GA2506145685 (Type: guest)
+[05-Apr-2025 12:12:19 Europe/Berlin] Payment record inserted
+[05-Apr-2025 12:12:19 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 12:12:19 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 12:21:52 Europe/Berlin] Processing payment submission
+[05-Apr-2025 12:21:52 Europe/Berlin] Payment submission for reservation code: MO2505296579
+[05-Apr-2025 12:21:52 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 12:21:52 Europe/Berlin] File uploaded successfully to proof_of_payment/MO2505296579_1743848512.jpg
+[05-Apr-2025 12:21:52 Europe/Berlin] Database connection successful
+[05-Apr-2025 12:21:52 Europe/Berlin] Reservation code already exists: MO2505296579 (Type: guest)
+[05-Apr-2025 12:21:52 Europe/Berlin] Payment record inserted
+[05-Apr-2025 12:21:52 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 12:21:52 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 12:31:07 Europe/Berlin] Processing payment submission
+[05-Apr-2025 12:31:07 Europe/Berlin] Payment submission for reservation code: AG2505206604
+[05-Apr-2025 12:31:07 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 12:31:07 Europe/Berlin] File uploaded successfully to proof_of_payment/AG2505206604_1743849067.jpg
+[05-Apr-2025 12:31:07 Europe/Berlin] Database connection successful
+[05-Apr-2025 12:31:07 Europe/Berlin] Reservation code already exists: AG2505206604 (Type: guest)
+[05-Apr-2025 12:31:07 Europe/Berlin] Payment record inserted
+[05-Apr-2025 12:31:07 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 12:31:07 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 12:37:37 Europe/Berlin] Processing payment submission
+[05-Apr-2025 12:37:37 Europe/Berlin] Payment submission for reservation code: RM2505315810
+[05-Apr-2025 12:37:37 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 12:37:37 Europe/Berlin] File uploaded successfully to proof_of_payment/RM2505315810_1743849457.jpg
+[05-Apr-2025 12:37:37 Europe/Berlin] Database connection successful
+[05-Apr-2025 12:37:37 Europe/Berlin] Reservation code already exists: RM2505315810 (Type: guest)
+[05-Apr-2025 12:37:37 Europe/Berlin] Payment record inserted
+[05-Apr-2025 12:37:37 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 12:37:37 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 13:33:06 Europe/Berlin] Processing payment submission
+[05-Apr-2025 13:33:06 Europe/Berlin] Payment submission for reservation code: SP2506020854
+[05-Apr-2025 13:33:06 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 13:33:06 Europe/Berlin] File uploaded successfully to proof_of_payment/SP2506020854_1743852786.jpg
+[05-Apr-2025 13:33:06 Europe/Berlin] Database connection successful
+[05-Apr-2025 13:33:06 Europe/Berlin] Reservation code already exists: SP2506020854 (Type: guest)
+[05-Apr-2025 13:33:06 Europe/Berlin] Payment record inserted
+[05-Apr-2025 13:33:06 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 13:33:06 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 16:08:09 Europe/Berlin] Processing payment submission
+[05-Apr-2025 16:08:09 Europe/Berlin] Payment submission for reservation code: RG2506265818
+[05-Apr-2025 16:08:09 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 16:08:09 Europe/Berlin] File uploaded successfully to proof_of_payment/RG2506265818_1743862089.jpg
+[05-Apr-2025 16:08:09 Europe/Berlin] Database connection successful
+[05-Apr-2025 16:08:09 Europe/Berlin] Reservation code already exists: RG2506265818 (Type: guest)
+[05-Apr-2025 16:08:09 Europe/Berlin] Payment record inserted
+[05-Apr-2025 16:08:09 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 16:08:09 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 16:50:24 Europe/Berlin] Processing payment submission
+[05-Apr-2025 16:50:24 Europe/Berlin] Payment submission for reservation code: IS2506296044
+[05-Apr-2025 16:50:24 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 16:50:24 Europe/Berlin] File uploaded successfully to proof_of_payment/IS2506296044_1743864624.jpg
+[05-Apr-2025 16:50:24 Europe/Berlin] Database connection successful
+[05-Apr-2025 16:50:24 Europe/Berlin] Reservation code already exists: IS2506296044 (Type: guest)
+[05-Apr-2025 16:50:24 Europe/Berlin] Payment record inserted
+[05-Apr-2025 16:50:24 Europe/Berlin] Guest reservation updated
+[05-Apr-2025 16:50:24 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 17:06:50 Europe/Berlin] Processing payment submission
+[05-Apr-2025 17:06:50 Europe/Berlin] Payment submission for reservation code: 20250405-2BD8C7
+[05-Apr-2025 17:06:50 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 17:06:50 Europe/Berlin] File uploaded successfully to proof_of_payment/20250405-2BD8C7_1743865610.jpg
+[05-Apr-2025 17:06:50 Europe/Berlin] Database connection successful
+[05-Apr-2025 17:06:50 Europe/Berlin] Reservation code already exists: 20250405-2BD8C7 (Type: user)
+[05-Apr-2025 17:06:50 Europe/Berlin] Payment record inserted
+[05-Apr-2025 17:06:50 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 19:56:19 Europe/Berlin] Processing payment submission
+[05-Apr-2025 19:56:19 Europe/Berlin] Payment submission for reservation code: 20250405-487939
+[05-Apr-2025 19:56:19 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 19:56:19 Europe/Berlin] File uploaded successfully to proof_of_payment/20250405-487939_1743875779.jpg
+[05-Apr-2025 19:56:19 Europe/Berlin] Database connection successful
+[05-Apr-2025 19:56:19 Europe/Berlin] Reservation code already exists: 20250405-487939 (Type: user)
+[05-Apr-2025 19:56:19 Europe/Berlin] Payment record inserted
+[05-Apr-2025 19:56:19 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 21:00:18 Europe/Berlin] Processing payment submission
+[05-Apr-2025 21:00:18 Europe/Berlin] Payment submission for reservation code: 20250405-CC41B1
+[05-Apr-2025 21:00:18 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 21:00:18 Europe/Berlin] File uploaded successfully to proof_of_payment/20250405-CC41B1_1743879618.jpg
+[05-Apr-2025 21:00:18 Europe/Berlin] Database connection successful
+[05-Apr-2025 21:00:18 Europe/Berlin] Reservation code already exists: 20250405-CC41B1 (Type: user)
+[05-Apr-2025 21:00:18 Europe/Berlin] Payment record inserted
+[05-Apr-2025 21:00:18 Europe/Berlin] Transaction committed successfully
+[05-Apr-2025 21:29:50 Europe/Berlin] Processing payment submission
+[05-Apr-2025 21:29:50 Europe/Berlin] Payment submission for reservation code: 20250405-D0ABFB
+[05-Apr-2025 21:29:50 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[05-Apr-2025 21:29:50 Europe/Berlin] File uploaded successfully to proof_of_payment/20250405-D0ABFB_1743881390.jpg
+[05-Apr-2025 21:29:50 Europe/Berlin] Database connection successful
+[05-Apr-2025 21:29:50 Europe/Berlin] Reservation code already exists: 20250405-D0ABFB (Type: user)
+[05-Apr-2025 21:29:50 Europe/Berlin] Payment record inserted
+[05-Apr-2025 21:29:50 Europe/Berlin] User reservation updated
+[05-Apr-2025 21:29:50 Europe/Berlin] Transaction committed successfully
+[06-Apr-2025 17:23:54 Europe/Berlin] Processing payment submission
+[06-Apr-2025 17:23:54 Europe/Berlin] Payment submission for reservation code: 20250406-A11C3C
+[06-Apr-2025 17:23:54 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[06-Apr-2025 17:23:54 Europe/Berlin] File uploaded successfully to proof_of_payment/20250406-A11C3C_1743953034.jpg
+[06-Apr-2025 17:23:54 Europe/Berlin] Database connection successful
+[06-Apr-2025 17:23:54 Europe/Berlin] Reservation code already exists: 20250406-A11C3C (Type: user)
+[06-Apr-2025 17:23:54 Europe/Berlin] Payment record inserted
+[06-Apr-2025 17:23:54 Europe/Berlin] User reservation updated
+[06-Apr-2025 17:23:54 Europe/Berlin] Transaction committed successfully
+[06-Apr-2025 18:59:19 Europe/Berlin] Check-in: 2025-04-09, Check-out: 2025-04-10, Nights: 1
+[06-Apr-2025 18:59:19 Europe/Berlin] Reservation created with ID: 57
+[06-Apr-2025 18:59:19 Europe/Berlin] Inserting room: reservation_id=57, room_id=2, quantity=1, price=1500
+[06-Apr-2025 18:59:19 Europe/Berlin] Inserting room: reservation_id=57, room_id=3, quantity=1, price=4000
+[06-Apr-2025 18:59:19 Europe/Berlin] Inserting room: reservation_id=57, room_id=5, quantity=1, price=1000
+[06-Apr-2025 18:59:19 Europe/Berlin] Inserting room: reservation_id=57, room_id=8, quantity=1, price=1500
+[06-Apr-2025 18:59:19 Europe/Berlin] Transaction committed successfully. Booking reference: P217439587592216
+[06-Apr-2025 18:59:19 Europe/Berlin] Redirecting: Success = true
+[06-Apr-2025 22:31:38 Europe/Berlin] Processing payment submission
+[06-Apr-2025 22:31:38 Europe/Berlin] Payment submission for reservation code: JF2506277712
+[06-Apr-2025 22:31:38 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[06-Apr-2025 22:31:38 Europe/Berlin] File uploaded successfully to proof_of_payment/JF2506277712_1743971498.jpg
+[06-Apr-2025 22:31:38 Europe/Berlin] Database connection successful
+[06-Apr-2025 22:31:38 Europe/Berlin] Reservation code already exists: JF2506277712 (Type: guest)
+[06-Apr-2025 22:31:38 Europe/Berlin] Payment record inserted
+[06-Apr-2025 22:31:38 Europe/Berlin] Guest reservation updated
+[06-Apr-2025 22:31:38 Europe/Berlin] Transaction committed successfully
+[06-Apr-2025 22:39:29 Europe/Berlin] Processing payment submission
+[06-Apr-2025 22:39:29 Europe/Berlin] Payment submission for reservation code: 20250406-B72AB9
+[06-Apr-2025 22:39:29 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[06-Apr-2025 22:39:29 Europe/Berlin] File uploaded successfully to proof_of_payment/20250406-B72AB9_1743971969.jpg
+[06-Apr-2025 22:39:29 Europe/Berlin] Database connection successful
+[06-Apr-2025 22:39:29 Europe/Berlin] Reservation code already exists: 20250406-B72AB9 (Type: user)
+[06-Apr-2025 22:39:29 Europe/Berlin] Payment record inserted
+[06-Apr-2025 22:39:29 Europe/Berlin] User reservation updated
+[06-Apr-2025 22:39:29 Europe/Berlin] Transaction committed successfully
+[07-Apr-2025 15:52:17 Europe/Berlin] Processing payment submission
+[07-Apr-2025 15:52:17 Europe/Berlin] Payment submission for reservation code: RJ2507016295
+[07-Apr-2025 15:52:17 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[07-Apr-2025 15:52:18 Europe/Berlin] File uploaded successfully to proof_of_payment/RJ2507016295_1744033937.jpg
+[07-Apr-2025 15:52:18 Europe/Berlin] Database connection successful
+[07-Apr-2025 15:52:18 Europe/Berlin] Reservation code already exists: RJ2507016295 (Type: guest)
+[07-Apr-2025 15:52:18 Europe/Berlin] Payment record inserted
+[07-Apr-2025 15:52:18 Europe/Berlin] Guest reservation updated
+[07-Apr-2025 15:52:18 Europe/Berlin] Transaction committed successfully
+[07-Apr-2025 15:57:34 Europe/Berlin] Processing payment submission
+[07-Apr-2025 15:57:34 Europe/Berlin] Payment submission for reservation code: AD2506247025
+[07-Apr-2025 15:57:34 Europe/Berlin] File details - Name: proof.jpg, Type: image/jpeg, Size: 58543, Error: 0
+[07-Apr-2025 15:57:34 Europe/Berlin] File uploaded successfully to proof_of_payment/AD2506247025_1744034254.jpg
+[07-Apr-2025 15:57:34 Europe/Berlin] Database connection successful
+[07-Apr-2025 15:57:34 Europe/Berlin] Reservation code already exists: AD2506247025 (Type: guest)
+[07-Apr-2025 15:57:34 Europe/Berlin] Payment record inserted
+[07-Apr-2025 15:57:34 Europe/Berlin] Guest reservation updated
+[07-Apr-2025 15:57:34 Europe/Berlin] Transaction committed successfully

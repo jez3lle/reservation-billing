@@ -1,108 +1,90 @@
 <?php
-include 'db_connect.php'; // Database connection
+session_start();
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: admin_login.php");
+    exit;
+}
+require_once 'db_connect.php';
 
-// Fetch all rooms
-$result = $conn->query("SELECT * FROM rooms");
+// Count public rooms
+$public_result = $conn->query("SELECT COUNT(*) AS total FROM rooms");
+$public_count = $public_result ? $public_result->fetch_assoc()['total'] : 0;
 
+// Count private accommodations
+$private_result = $conn->query("SELECT COUNT(*) AS total FROM private_accommodations");
+$private_count = $private_result ? $private_result->fetch_assoc()['total'] : 0;
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Room Management</title>
-    <link rel="stylesheet" href="adminstyle.css">
+    <title>Manage Rooms</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/adminstyle.css">
+    <style>
+        .room-card {
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+        .room-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .room-icon {
+            font-size: 2.5rem;
+        }
+    </style>
 </head>
 <body>
+<?php include 'headers/adminheader.php'; ?>
 
-    <div class="sidebar">
-        <div>
-            <div class="resort-name">Rainbow Forest Paradise Resort and Campsite</div>
-            <div class="nav-item">
-                <img src="icons/home.png" alt="Dashboard Icon" class="nav-icon">
-                <span>Dashboard</span>
+<div class="main-content">
+    <div class="container mt-4">
+        <h2 class="mb-4">Rooms Overview</h2>
+
+        <div class="row g-4">
+            <!-- Public Rooms Card -->
+            <div class="col-md-6">
+                <a href="rooms_public.php" style="text-decoration: none;">
+                    <div class="card border-primary room-card">
+                        <div class="card-body d-flex align-items-center">
+                            <div class="me-3 text-primary">
+                                
+                            </div>
+                            <div>
+                                <h5 class="card-title mb-1 text-dark">Public Rooms</h5>
+                                <p class="mb-0 text-muted">Total: <strong><?php echo $public_count; ?></strong></p>
+                                <small>View and manage public room types</small>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
 
-            <a href="reservations.php" class="nav-item">
-                <img src="icons/reservations.png" alt="Settings Icon" class="nav-icon">
-                <span>Reservations</span>
-            </a>
-            <a href="private_reservations.php" class="nav-item sub-nav-item">
-                <span>Private</span>
-            </a>
-            <a href="public_reservations.php" class="nav-item sub-nav-item">
-                <span>Public</span>
-            </a>
- 
-            <div class="nav-item">
-                <img src="icons/payments.png" alt="Payments Icon" class="nav-icon">
-                <span>Payments</span>
+            <!-- Private Accommodations Card -->
+            <div class="col-md-6">
+                <a href="rooms_private.php" style="text-decoration: none;">
+                    <div class="card border-success room-card">
+                        <div class="card-body d-flex align-items-center">
+                            <div class="me-3 text-success">
+                                
+                            </div>
+                            <div>
+                                <h5 class="card-title mb-1 text-dark">Private Accommodations</h5>
+                                <p class="mb-0 text-muted">Total: <strong><?php echo $private_count; ?></strong></p>
+                                <small>View and manage private area facilities</small>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
-            <div class="nav-item">
-                <img src="icons/calendar.png" alt="Calendar Icon" class="nav-icon">
-                <span>Calendar</span>
-            </div>
-            <div class="nav-item">
-                <img src="icons/reports.png" alt="Reports Icon" class="nav-icon">
-                <span>Reports</span>
-            </div>
-            <div class="nav-item">
-                <img src="icons/rooms.png" alt="Rooms Icon" class="nav-icon">
-                <span>Rooms</span>
-            </div>
-    
-            <a href="content_management.php" class="nav-item">
-                <img src="icons/edit.png" alt="Content Management Icon" class="nav-icon">
-                <span>Content Management</span>
-            </a>
-            
         </div>
-        <div>
-            <a href="admin_settings.php" class="nav-item">
-                <img src="icons/settings.png" alt="Settings Icon" class="nav-icon">
-                <span>Settings</span>
-            </a>
-            <a href="admin_logout.php" class="nav-item">
-                <img src="icons/logout.png" alt="Logout Icon" class="nav-icon">
-                <span>Logout</span>
-            </a>  
+
+        <div class="mt-5 text-muted">
+            <p class="text-center">Choose a category above to manage room details.</p>
         </div>
     </div>
-
-    <div class="main-content">
-        <h2>Room Management</h2>
-        <a href="admin_add_room.php" class="btn">Add New Room</a>
-        <table border="1">
-            <tr>
-                <th>ID</th>
-                <th>Room Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Image</th>
-                <th>Actions</th>
-            </tr>
-            <?php while ($row = $result->fetch_assoc()): ?>
-            <tr>
-                <td><?php echo $row['id']; ?></td>
-                <td><?php echo $row['name']; ?></td>
-                <td><?php echo $row['description']; ?></td>
-                <td>$<?php echo number_format($row['price'], 2); ?></td>
-                <td>
-                    <?php if ($row['image']): ?>
-                        <img src="uploads/<?php echo $row['image']; ?>" width="80">
-                    <?php else: ?>
-                        No Image
-                    <?php endif; ?>
-                </td>
-                <td>
-                    <a href="admin_edit_room.php?id=<?php echo $row['id']; ?>" class="btn">Edit</a>
-                    <a href="admin_delete_room.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
-            <?php endwhile; ?>
-        </table>
-    </div>
-
+</div>
 </body>
 </html>

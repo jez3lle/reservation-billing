@@ -15,7 +15,7 @@ $reservation = $_SESSION['reservation_details'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservation Confirmation - Rainbow Forest Paradise</title>
+    <title>Reservation Confirmation - Rainbow Forest Paradise Resort and Campsite</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -104,13 +104,13 @@ $reservation = $_SESSION['reservation_details'];
 <div class="confirmation-container">
     <div class="confirmation-header">
         <h1>Reservation Confirmed</h1>
-        <p>Rainbow Forest Paradise</p>
+        <p>Rainbow Forest Paradise Resort and Campsite</p>
     </div>
     
     <div class="success-icon">✓</div>
     
     <div class="confirmation-message">
-        <h2>Thank You for Your Reservation!</h2>
+        <h2>Thank You for your Payment!</h2>
         <p>Your payment proof has been received and is being processed.</p>
     </div>
     

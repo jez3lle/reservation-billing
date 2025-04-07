@@ -191,6 +191,12 @@ try {
     $adult_count = intval($sanitized_input['adult_count']);
     $kid_count = intval($sanitized_input['kid_count'] ?? 0);
     $tour_type = $sanitized_input['tour_type'];
+    $tour_type_code = match($tour_type) {
+        'whole_day' => 0,
+        'day_tour' => 1,
+        'night_tour' => 2,
+        default => 0,
+    };
     $special_requests = $sanitized_input['special_requests'] ?? '';
 
     // Prepare extras
@@ -245,7 +251,7 @@ try {
         $contact_number,
         $adult_count,
         $kid_count,
-        $tour_type,
+        $tour_type_code,
         $special_requests,
         $extras['extra_mattress'],
         $extras['extra_pillow'],

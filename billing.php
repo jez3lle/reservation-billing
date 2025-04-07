@@ -159,7 +159,7 @@ if (!isset($reservation['reservation_code'])) {
 <div class="billing-container">
     <div class="billing-header">
         <h1>Reservation Billing</h1>
-        <p>Rainbow Forest Paradise Reservation</p>
+        <p>Rainbow Forest Paradise Resort and Campsite</p>
     </div>
     
     <div class="reservation-code">
@@ -257,9 +257,9 @@ if (!isset($reservation['reservation_code'])) {
 
         <div class="upload-container">
         <h2>Upload Payment Proof</h2>
-        <p>Please upload your bank transfer receipt or screenshot</p>
+        <p>Please upload your bank transfer receipt and enter the reference number.</p>
 
-        <input type="text" id="referenceNumberInput" placeholder="Enter Transaction Reference Number">
+        <input type="text" id="referenceNumberInput" placeholder="Enter Reference Number">
 
         <input type="file" id="fileInput" accept="image/*" capture="environment">
         <label for="fileInput" class="custom-file-upload">
