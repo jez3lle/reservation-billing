@@ -5,11 +5,9 @@ session_start();
 $mysqli = require 'database.php';
 
 // Assuming user is logged in and user_id is in the session
-// If not, you'll need to adjust this logic
 $user_id = $_SESSION['user_id'] ?? null;
 
 if (!$user_id) {
-    // Handle case where user is not logged in
     $_SESSION['error_message'] = "Please log in to make a reservation.";
     header("Location: login.php");
     exit;
@@ -22,8 +20,8 @@ $first_name = $_POST['first_name'];
 $last_name = $_POST['last_name'];
 $email = $_POST['email'];
 $contact_number = $_POST['contact_number'];
-$adult_count = $_POST['adult_count'];
-$kid_count = $_POST['kid_count'] ?? 0;
+$adult_count = intval($_POST['adult_count']);
+$kid_count = intval($_POST['kid_count'] ?? 0);
 $tour_type = $_POST['tour_type'];
 $special_requests = $_POST['special_requests'] ?? '';
 
@@ -32,7 +30,7 @@ $date = date('Ymd');
 $random_string = strtoupper(substr(md5(uniqid(mt_rand(), true)), 0, 6));
 $reservation_code = $date . '-' . $random_string;
 
-// Pricing logic remains the same as in the previous script
+// Pricing logic
 $pricing_data = [
     'whole_day' => [
         'brackets' => [
@@ -66,7 +64,6 @@ $pricing_data = [
     ]
 ];
 
-// [Previous calculateTotalPrice function remains the same]
 function calculateTotalPrice($tour_type, $total_guests, $extras) {
     global $pricing_data;
     
@@ -100,7 +97,12 @@ function calculateTotalPrice($tour_type, $total_guests, $extras) {
     foreach ($extras as $extra => $quantity) {
         $extras_price += $quantity * $extras_prices[$extra];
     }
-    
+
+    // Debugging output for pricing
+    echo "Debug: Base price: " . $base_price . "<br>";
+    echo "Debug: Extras price: " . $extras_price . "<br>";
+    echo "Debug: Total price: " . ($base_price + $extras_price) . "<br>";
+
     return [
         'base_price' => $base_price,
         'extras_price' => $extras_price,
@@ -118,13 +120,6 @@ $extras = [
 $total_guests = $adult_count + $kid_count;
 $pricing_calculation = calculateTotalPrice($tour_type, $total_guests, $extras);
 
-// Prepare extras prices for display
-$extras_prices = [
-    'extra_mattress' => 150,
-    'extra_pillow' => 50,
-    'extra_blanket' => 50
-];
-
 // Prepare reservation details for session
 $_SESSION['reservation_details'] = [
     'user_id' => $user_id, // Added user_id to session
@@ -140,11 +135,14 @@ $_SESSION['reservation_details'] = [
     'tour_type' => $tour_type,
     'special_requests' => $special_requests,
     'extras' => $extras,
-    'extras_prices' => $extras_prices,
     'total_price' => $pricing_calculation['base_price'],
     'extras_total' => $pricing_calculation['extras_price'],
     'total_amount' => $pricing_calculation['total_price']
 ];
+
+// Debugging output for session details
+echo "Debug: Session reservation details: ";
+print_r($_SESSION['reservation_details']);
 
 // Store reservation in database
 $stmt = $mysqli->prepare("INSERT INTO user_reservation (
@@ -167,6 +165,11 @@ $stmt = $mysqli->prepare("INSERT INTO user_reservation (
     extras_total, 
     total_amount
 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+if (!$stmt) {
+    echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error . "<br>";
+    exit;
+}
 
 $stmt->bind_param(
     "isssssssiiisssiiii", 
@@ -194,10 +197,12 @@ $stmt->bind_param(
 if ($stmt->execute()) {
     // Successful database insertion
     $_SESSION['reservation_success'] = true;
+    echo "Debug: Reservation successfully inserted.<br>";
 } else {
     // Database insertion failed
     $_SESSION['reservation_success'] = false;
     $_SESSION['error_message'] = $stmt->error;
+    echo "Debug: Database insertion failed: " . $stmt->error . "<br>";
 }
 
 // Close statement

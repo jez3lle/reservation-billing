@@ -170,11 +170,11 @@ while ($room = $room_result->fetch_assoc()) {
             </div>
             <div>
                 <strong>Check-in Date:</strong> 
-                <?php echo htmlspecialchars($booking['check_in_date']); ?>
+                <?php echo htmlspecialchars($booking['check_in']); ?>
             </div>
             <div>
                 <strong>Check-out Date:</strong> 
-                <?php echo htmlspecialchars($booking['check_out_date']); ?>
+                <?php echo htmlspecialchars($booking['check_out']); ?>
             </div>
             <div>
                 <strong>Adults:</strong> 

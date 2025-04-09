@@ -42,7 +42,7 @@
                     <li><a href="accomodation_p2.php">ACCOMMODATIONS</a></li>
                     <li><a href="activities_p2.php">ACTIVITIES</a></li>
                     <li><a href="contact_p2.php">CONTACT US</a></li>
-                    <li><a href="#">BOOK NOW</a></li>
+                    <li><a href="booking_form.html">BOOK NOW</a></li>
                 </ul>
             </div>
             <div class="icon">

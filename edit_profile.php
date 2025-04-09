@@ -68,12 +68,13 @@ if (!$user) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
     <title>Edit Profile</title>
     <style>
         .edit-profile-form {
             max-width: 600px;
-            margin: 25px;
+            margin-top: 25px;
+            margin-bottom: 25px;
             padding: 30px;
             background-color: #f9f9f9;
             border-radius: 8px;
@@ -139,7 +140,7 @@ if (!$user) {
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
-        h1{
+        .account{
             margin-top: 20px;
         }
         .user-info{
@@ -200,7 +201,6 @@ if (!$user) {
                     <div class="user-info">
                         <span class="user-name">Hello, <?= htmlspecialchars($user["first_name"]) ?></span>
                         <div class="user-actions">
-                            <a href="account.php" class="profile-btn">My Profile</a>
                             <form action="logout.php" method="post">
                                 <button type="submit" class="logout-btn">Logout</button>
                             </form>

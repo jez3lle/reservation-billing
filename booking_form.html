@@ -365,6 +365,9 @@
     <div class="container">
         <header>
             <h1>Book Your Stay</h1>
+            <button id="back-button" class="back-link" onclick="goBack()" style="margin-top: 10px; background-color: #f1f1f1; color: #555; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">
+                ← Get Back
+            </button>
         </header>
         
         <div class="steps">
@@ -394,12 +397,12 @@
                 <div class="date-range">
                     <div class="form-group">
                         <label for="arrival-date">Arrival Date</label>
-                        <input type="date" id="arrival-date" name="check_in_date" required>
+                        <input type="date" id="arrival-date" name="check_in" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="departure-date">Departure Date</label>
-                        <input type="date" id="departure-date" name="check_out_date" required>
+                        <input type="date" id="departure-date" name="check_out" required>
                     </div>
                 </div>
                 
@@ -534,18 +537,23 @@
                     </div>
                 </div>
                 <input type="hidden" name="payment_method" id="payment-method-input" value="gcash">
-                
+
                 <div id="gcash-details" class="payment-details">
-                    <div class="form-group">
-                        <label for="gcash-number">GCash Number</label>
-                        <input type="text" id="gcash-number" name="gcash_number" placeholder="09XX XXX XXXX">
+                    <p><strong>GCash Details:</strong></p>
+                    <p>GCash Number: 09XX XXX XXXX</p>
+                    <p>Account Name: Hotel Booking</p>
+                    <p>Please include your email as reference</p>
+                    
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label for="gcash-reference">GCash Reference Number</label>
+                        <input type="text" id="gcash-reference" name="gcash_reference" placeholder="Enter GCash reference number">
                     </div>
                     <div class="form-group">
-                        <label for="gcash-name">Account Name</label>
-                        <input type="text" id="gcash-name" name="gcash_name">
+                        <label for="gcash-receipt">Proof of Payment (Upload receipt)</label>
+                        <input type="file" id="gcash-receipt" name="gcash_receipt">
                     </div>
                 </div>
-                
+
                 <div id="bank-details" class="payment-details" style="display: none;">
                     <p><strong>Bank Account Details:</strong></p>
                     <p>Bank Name: Sample Bank</p>
@@ -554,6 +562,10 @@
                     <p>Reference: Please use your email as reference</p>
                     
                     <div class="form-group" style="margin-top: 15px;">
+                        <label for="bank-reference">Bank Transfer Reference Number</label>
+                        <input type="text" id="bank-reference" name="bank_reference" placeholder="Enter bank reference number">
+                    </div>
+                    <div class="form-group">
                         <label for="bank-receipt">Proof of Payment (Upload receipt)</label>
                         <input type="file" id="bank-receipt" name="bank_receipt">
                     </div>
@@ -585,350 +597,486 @@
     </div>
 
     <script>
-        // Wait for the DOM to fully load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set minimum date for arrival to tomorrow
-            const today = new Date();
-            const tomorrow = new Date(today);
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            
-            const dayAfterTomorrow = new Date(today);
-            dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 2);
-            
-            const formatDate = date => {
-                const yyyy = date.getFullYear();
-                const mm = String(date.getMonth() + 1).padStart(2, '0');
-                const dd = String(date.getDate()).padStart(2, '0');
-                return `${yyyy}-${mm}-${dd}`;
-            };
-            
-            // Set default dates
-            document.getElementById('arrival-date').value = formatDate(tomorrow);
-            document.getElementById('departure-date').value = formatDate(dayAfterTomorrow);
-            
-            
-            // Direct event listeners for navigation buttons
-            document.getElementById('to-step-2').addEventListener('click', function() {
-                console.log("Check Available Rooms button clicked");
-                
-                // Fetch available rooms from the server
-                fetch('get_rooms.php')
-                    .then(response => response.json())
-                    .then(data => {
-                        displayAvailableRooms(data);
-                        goToStep(2);
-                    })
-                    .catch(error => {
-                        console.error('Error fetching rooms:', error);
-                        alert('Failed to load room data. Please try again later.');
-                    });
-            });
-            
-            document.getElementById('back-to-step-1').addEventListener('click', function() {
-                goToStep(1);
-            });
-            
-            document.getElementById('to-step-3').addEventListener('click', function() {
-                goToStep(3);
-            });
-            
-            document.getElementById('back-to-step-2').addEventListener('click', function() {
-                goToStep(2);
-            });
-            
-            document.getElementById('to-step-4').addEventListener('click', function() {
-                goToStep(4);
-                updateSummary();
-            });
-            
-            document.getElementById('back-to-step-3').addEventListener('click', function() {
-                goToStep(3);
-            });
-            
-            // Handle form submission
-            document.getElementById('booking-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                submitBooking();
-            });
-            
-            // Payment method selection
-            document.querySelectorAll('.payment-method').forEach(method => {
-                method.addEventListener('click', function() {
-                    document.querySelectorAll('.payment-method').forEach(m => {
-                        m.classList.remove('selected');
-                    });
-                    this.classList.add('selected');
-                    
-                    // Update hidden payment method input
-                    document.getElementById('payment-method-input').value = this.dataset.method;
-                    
-                    // Toggle payment details visibility
-                    const gcashDetails = document.getElementById('gcash-details');
-                    const bankDetails = document.getElementById('bank-details');
-                    
-                    if (this.dataset.method === 'gcash') {
-                        gcashDetails.style.display = 'block';
-                        bankDetails.style.display = 'none';
-                    } else {
-                        gcashDetails.style.display = 'none';
-                        bankDetails.style.display = 'block';
-                    }
-                });
-            });
-            
-            // Core functions
-            function goToStep(stepNumber) {
-                console.log("Going to step", stepNumber);
-                
-                // Hide all steps
-                document.querySelectorAll('.step-content').forEach(step => {
-                    step.classList.remove('active');
-                });
-                
-                // Show selected step
-                document.getElementById(`step-${stepNumber}`).classList.add('active');
-                
-                // Update step indicators
-                document.querySelectorAll('.step').forEach((step, index) => {
-                    step.classList.remove('active', 'completed');
-                    if (index + 1 < stepNumber) {
-                        step.classList.add('completed');
-                    } else if (index + 1 === stepNumber) {
-                        step.classList.add('active');
-                    }
-                });
-            }
-            
-            function displayAvailableRooms(rooms) {
-                console.log("Displaying rooms:", rooms);
-                const roomOptionsContainer = document.getElementById('available-rooms');
-                
-                let roomsHTML = '';
-                
-                rooms.forEach(room => {
-                    roomsHTML += `
-                        <div class="room-card" data-room="${room.id}" data-day-price="${room.day_tour_price}" data-night-price="${room.night_tour_price}" data-available="${room.quantity}">
-                            <input type="number" class="room-quantity" value="0" min="0" max="${room.quantity}">
-                            <div class="room-image" style="background-image: url('${room.image}');"></div>
-                            <div class="room-details">
-                                <div class="room-name">${room.name}</div>
-                                <div class="room-features">${room.description || 'No description available'}</div>
-                                <div class="room-availability">${room.quantity} rooms available</div>
-                                <div>
-                                    <label>
-                                        <input type="radio" name="tour-type-${room.id}" value="day" checked> Day Tour (₱${room.day_tour_price})
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="tour-type-${room.id}" value="night"> Night Tour (₱${room.night_tour_price})
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                });
-                
-                roomOptionsContainer.innerHTML = roomsHTML;
-                
-                // Add event listeners to room quantity inputs
-                document.querySelectorAll('.room-quantity').forEach(input => {
-                    input.addEventListener('change', function() {
-                        updateSelectedRoomsSummary();
-                        
-                        // Highlight selected rooms
-                        const roomCard = this.closest('.room-card');
-                        if (parseInt(this.value) > 0) {
-                            roomCard.classList.add('selected');
-                        } else {
-                            roomCard.classList.remove('selected');
-                        }
-                    });
-                });
-                
-                // Room card click event
-                document.querySelectorAll('.room-card').forEach(card => {
-                    card.addEventListener('click', function(e) {
-                        if (e.target.classList.contains('room-quantity')) {
-                            return; // Don't handle clicks on the quantity input
-                        }
-                        
-                        const quantityInput = this.querySelector('.room-quantity');
-                        quantityInput.value = parseInt(quantityInput.value) > 0 ? 0 : 1;
-                        
-                        // Trigger change event
-                        const event = new Event('change');
-                        quantityInput.dispatchEvent(event);
-                    });
-                });
-                
-                updateSelectedRoomsSummary();
-            }
+// Wait for the DOM to fully load
+document.addEventListener('DOMContentLoaded', function() {
+    // Set minimum date for arrival to tomorrow
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    
+    const dayAfterTomorrow = new Date(today);
+    dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 2);
+    
+    const formatDate = date => {
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, '0');
+        const dd = String(date.getDate()).padStart(2, '0');
+        return `${yyyy}-${mm}-${dd}`;
+    };
+    
+    // Check if there's booking data in sessionStorage
+    const bookingData = sessionStorage.getItem('bookingData');
 
-            function updateSelectedRoomsSummary() {
-                const selectedRoomsList = document.getElementById('selected-rooms-list');
-                const totalRoomsCount = document.getElementById('total-rooms-count');
-                
-                let selectedRooms = [];
-                let totalRooms = 0;
-                let totalPrice = 0; // Initialize total price
-
-                document.querySelectorAll('.room-card').forEach(card => {
-                    const quantity = parseInt(card.querySelector('.room-quantity').value) || 0; // Default to 0 if NaN
-                    if (quantity > 0) {
-                        const roomName = card.querySelector('.room-name').textContent;
-                        const dayPrice = parseFloat(card.dataset.dayPrice);
-                        const nightPrice = parseFloat(card.dataset.nightPrice);
-                        const selectedTourType = card.querySelector(`input[name="tour-type-${card.dataset.room}"]:checked`).value;
-
-                        // Determine the price based on the selected tour type
-                        const price = selectedTourType === 'day' ? dayPrice : nightPrice;
-
-                        // Check if price is valid
-                        if (!isNaN(price) && price >= 0) {
-                            selectedRooms.push({
-                                name: roomName,
-                                quantity: quantity,
-                                price: price,
-                                id: card.dataset.room
-                            });
-                            totalRooms += quantity;
-                            totalPrice += price * quantity; // Calculate total price
-                        } else {
-                            console.error('Invalid price for room:', roomName);
-                        }
-                    }
-                });
-                
-                if (selectedRooms.length === 0) {
-                    selectedRoomsList.innerHTML = '<p>No rooms selected yet</p>';
-                } else {
-                    let roomsHTML = '';
-                    selectedRooms.forEach(room => {
-                        roomsHTML += `
-                            <div class="selected-room-item">
-                                <span>${room.name} x ${room.quantity}</span>
-                                <span>₱${(room.price * room.quantity).toFixed(2)}</span>
-                            </div>
-                        `;
-                    });
-                    selectedRoomsList.innerHTML = roomsHTML;
-                }
-                
-                totalRoomsCount.textContent = totalRooms;
-                document.getElementById('summary-total').textContent = `₱${totalPrice.toFixed(2)}`; // Update total price in summary
-            } 
-            
-        function updateSummary() {
-            const checkIn = document.getElementById('arrival-date').value;
-            const checkOut = document.getElementById('departure-date').value;
-            const adults = document.getElementById('adults').value;
-            const children = document.getElementById('children').value;
-
-            // Calculate nights
-            const arrivalDate = new Date(checkIn);
-            const departureDate = new Date(checkOut);
-            const nights = Math.round((departureDate - arrivalDate) / (1000 * 60 * 60 * 24));
-
-            // Format dates for display
-            const formatDateForDisplay = dateString => {
-                const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
-                return new Date(dateString).toLocaleDateString('en-US', options);
-            };
-
-            // Show summary details
-            document.getElementById('summary-checkin').textContent = formatDateForDisplay(checkIn);
-            document.getElementById('summary-checkout').textContent = formatDateForDisplay(checkOut);
-            document.getElementById('summary-nights').textContent = `${nights} night${nights !== 1 ? 's' : ''}`;
-            document.getElementById('summary-guests').textContent = `${adults} adult${adults !== '1' ? 's' : ''}, ${children} child${children !== '1' ? 'ren' : ''}`;
-
-            // Display selected rooms and calculate total
-            let selectedRoomsText = '';
-            let totalPrice = 0;
-            let selectedRoomsData = '';
-
-            document.querySelectorAll('.room-card').forEach(card => {
-                const quantity = parseInt(card.querySelector('.room-quantity').value) || 0; // Default to 0 if NaN
-                if (quantity > 0) {
-                    const roomName = card.querySelector('.room-name').textContent;
-                    const dayPrice = parseFloat(card.dataset.dayPrice);
-                    const nightPrice = parseFloat(card.dataset.nightPrice);
-                    const selectedTourType = card.querySelector(`input[name="tour-type-${card.dataset.room}"]:checked`).value;
-
-                    // Determine the price based on the selected tour type
-                    const price = selectedTourType === 'day' ? dayPrice : nightPrice;
-                    const roomTotal = price * quantity * nights; // Calculate total for this room
-
-                    selectedRoomsText += ` ${roomName} x ${quantity} (${selectedTourType} @ ₱${price})<br>`;
-                    totalPrice += roomTotal; // Add to total price
-
-                    // Store selected room data for submission
-                    selectedRoomsData += `
-                        <input type="hidden" name="room_id[]" value="${card.dataset.room}">
-                        <input type="hidden" name="room_quantity[]" value="${quantity}">
-                        <input type="hidden" name="room_price[]" value="${price}">
-                    `;
-                }
-            });
-
-            document.getElementById('summary-rooms').innerHTML = selectedRoomsText;
-            document.getElementById('summary-total').textContent = `₱${totalPrice.toFixed(2)}`; // Update total price in summary
-            document.getElementById('total-amount-input').value = totalPrice.toFixed(2); // Set hidden input for total amount
-            document.getElementById('selected-rooms-data').innerHTML = selectedRoomsData; // Store selected room data
+    if (bookingData) {
+        const data = JSON.parse(bookingData);
+        console.log("Retrieved booking data:", data);
+        
+        // Fill in Step 1 fields
+        document.getElementById('arrival-date').value = data.checkInDate;
+        document.getElementById('departure-date').value = data.checkOutDate;
+        document.getElementById('adults').value = data.adults || 1;
+        document.getElementById('children').value = data.children || 0;
+        
+        // Store roomId for Step 2
+        if (data.roomId) {
+            sessionStorage.setItem('selectedRoomId', data.roomId);
+            // Also store the tour type (day/night) for later use
+            sessionStorage.setItem('selectedTourType', data.stayType);
         }
+        
+        // Automatically click the "Check Available Rooms" button after a short delay
+        setTimeout(() => {
+            document.getElementById('to-step-2').click();
+        }, 500);
+    } else {
+        // Set default dates only if there's no booking data
+        document.getElementById('arrival-date').value = formatDate(tomorrow);
+        document.getElementById('departure-date').value = formatDate(dayAfterTomorrow);
+    }
+    
+    document.getElementById('to-step-2').addEventListener('click', function() {
+        const arrivalDate = document.getElementById('arrival-date').value;
+        const departureDate = document.getElementById('departure-date').value;
+
+        // Check if dates are valid
+        if (!arrivalDate || !departureDate) {
+            alert("Please select both arrival and departure dates.");
+            return;
+        }
+
+        // Fetch available rooms from the server
+        fetch(`get_rooms.php?arrival_date=${arrivalDate}&departure_date=${departureDate}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                displayAvailableRooms(data);
+                goToStep(2);
+            })
+            .catch(error => {
+                console.error('Error fetching rooms:', error);
+                alert("An error occurred while fetching available rooms. Please try again.");
+            });
+    });
+
+    function displayAvailableRooms(rooms) {
+        const roomOptionsContainer = document.getElementById('available-rooms');
+        roomOptionsContainer.innerHTML = ''; // Clear previous results
+
+        if (rooms.length === 0) {
+            roomOptionsContainer.innerHTML = '<p>No rooms available for the selected dates.</p>';
+            return;
+        }
+
+        let roomsHTML = '';
+        rooms.forEach(room => {
+            roomsHTML += `
+                <div class="room-card" data-room="${room.id}" data-day-price="${room.day_tour_price}" data-night-price="${room.night_tour_price}" data-available="${room.quantity}">
+                    <input type="number" class="room-quantity" value="0" min="0" max="${room.quantity}">
+                    <div class="room-image" style="background-image: url('${room.image}');"></div>
+                    <div class="room-details">
+                        <div class="room-name">${room.name}</div>
+                        <div class="room-features">${room.description || 'No description available'}</div>
+                        <div class="room-availability">${room.quantity} rooms available</div>
+                        <div>
+                            <label>
+                                <input type="radio" name="tour-type-${room.id}" value="daytour" checked> Day Tour (₱${room.day_tour_price})
+                            </label>
+                            <label>
+                                <input type="radio" name="tour-type-${room.id}" value="overnight"> Night Tour (₱${room.night_tour_price})
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        roomOptionsContainer.innerHTML = roomsHTML;
+
+        // Add event listeners to room quantity inputs
+        document.querySelectorAll('.room-quantity').forEach(input => {
+            input.addEventListener('change', function() {
+                updateSelectedRoomsSummary();
+                const roomCard = this.closest('.room-card');
+                if (parseInt(this.value) > 0) {
+                    roomCard.classList.add('selected');
+                } else {
+                    roomCard.classList.remove('selected');
+                }
+            });
+        });
+        
+        // Room card click event for selection
+        document.querySelectorAll('.room-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Don't handle clicks on inputs directly
+                if (e.target.classList.contains('room-quantity') || 
+                    e.target.type === 'radio' || 
+                    e.target.type === 'number') {
+                    return;
+                }
+                
+                const quantityInput = this.querySelector('.room-quantity');
+                const currentValue = parseInt(quantityInput.value) || 0;
+                quantityInput.value = currentValue > 0 ? 0 : 1;
+                
+                // Trigger change event to update UI
+                const event = new Event('change');
+                quantityInput.dispatchEvent(event);
+            });
+        });
+        
+        // Check if there's a pre-selected room from session storage
+        const selectedRoomId = sessionStorage.getItem('selectedRoomId');
+        const selectedTourType = sessionStorage.getItem('selectedTourType');
+        
+        if (selectedRoomId) {
+            console.log("Pre-selected room ID:", selectedRoomId);
+            // Find the room card for the selected room
+            const selectedRoom = document.querySelector(`.room-card[data-room="${selectedRoomId}"]`);
             
-            // Replace the existing submitBooking function with this one
-            function submitBooking() {
-                // Show loading state
-                document.getElementById('complete-booking').disabled = true;
-                document.getElementById('complete-booking').textContent = 'Processing...';
+            if (selectedRoom) {
+                console.log("Found selected room element:", selectedRoom);
+                // Set quantity to 1
+                const quantityInput = selectedRoom.querySelector('.room-quantity');
+                quantityInput.value = 1;
                 
-                // Get the form data
-                const formData = new FormData(document.getElementById('booking-form'));
-                
-                // Send form data via AJAX
-                fetch('process_booking_p2.php', {
-                    method: 'POST',
-                    body: formData,
-                    redirect: 'follow' // This tells fetch to follow redirects
-                })
-                .then(response => {
-                    // Check if response is JSON
-                    const contentType = response.headers.get("content-type");
-                    if (contentType && contentType.indexOf("application/json") !== -1) {
-                        return response.json().then(data => {
-                            if (data.success) {
-                                document.getElementById('booking-reference').textContent = data.booking_reference;
-                                document.getElementById('confirmation-email').textContent = document.getElementById('email').value;
-                                
-                                // Show success message
-                                document.querySelectorAll('.step-content').forEach(step => {
-                                    step.classList.remove('active');
-                                });
-                                document.getElementById('success').classList.add('active');
-                                
-                                // Update step indicators to all completed
-                                document.querySelectorAll('.step').forEach(step => {
-                                    step.classList.remove('active');
-                                    step.classList.add('completed');
-                                });
-                            } else {
-                                // Show error message
-                                alert('Booking failed: ' + data.message);
-                                document.getElementById('complete-booking').disabled = false;
-                                document.getElementById('complete-booking').textContent = 'Complete Booking';
-                            }
-                        });
-                    } else {
-                        // Handle redirect - the response might be HTML from redirect
-                        window.location.href = response.url;
-                        return null;
+                // Set the correct tour type if available
+                if (selectedTourType) {
+                    const tourTypeRadio = selectedRoom.querySelector(`input[value="${selectedTourType}"]`);
+                    if (tourTypeRadio) {
+                        tourTypeRadio.checked = true;
                     }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('An error occurred while processing your booking. Please try again.');
-                    document.getElementById('complete-booking').disabled = false;
-                    document.getElementById('complete-booking').textContent = 'Complete Booking';
-                });
+                }
+                
+                // Trigger the change event
+                const event = new Event('change');
+                quantityInput.dispatchEvent(event);
+                
+                // Highlight the selected room
+                selectedRoom.classList.add('selected');
+            } else {
+                console.log("Selected room element not found");
+            }
+        }
+        
+        updateSelectedRoomsSummary();
+    }
+    
+    document.getElementById('back-to-step-1').addEventListener('click', function() {
+        goToStep(1);
+    });
+    
+    document.getElementById('to-step-3').addEventListener('click', function() {
+        // First check if at least one room is selected
+        const selectedCount = Array.from(document.querySelectorAll('.room-quantity'))
+            .reduce((sum, input) => sum + (parseInt(input.value) || 0), 0);
+            
+        if (selectedCount === 0) {
+            alert('Please select at least one room to continue.');
+            return;
+        }
+        
+        goToStep(3);
+    });
+    
+    document.getElementById('back-to-step-2').addEventListener('click', function() {
+        goToStep(2);
+    });
+    
+    document.getElementById('to-step-4').addEventListener('click', function() {
+        // Validate guest details
+        const firstName = document.getElementById('first-name').value;
+        const lastName = document.getElementById('last-name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        
+        if (!firstName || !lastName || !email || !phone) {
+            alert('Please fill in all required guest details.');
+            return;
+        }
+        
+        goToStep(4);
+        updateSummary();
+    });
+    
+    document.getElementById('back-to-step-3').addEventListener('click', function() {
+        goToStep(3);
+    });
+    
+    // Handle form submission
+    document.getElementById('booking-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Additional validation for payment method
+        const paymentMethod = document.getElementById('payment-method-input').value;
+        
+        if (paymentMethod === 'gcash') {
+            const gcashReference = document.getElementById('gcash-reference').value;
+            const gcashReceipt = document.getElementById('gcash-receipt').value;
+            
+            if (!gcashReference || !gcashReceipt) {
+                alert('Please upload GCash receipt and enter reference number.');
+                return;
+            }
+        } else if (paymentMethod === 'bank-transfer') {
+            const bankReference = document.getElementById('bank-reference').value;
+            const bankReceipt = document.getElementById('bank-receipt').value;
+            
+            if (!bankReference || !bankReceipt) {
+                alert('Please upload bank transfer receipt and enter reference number.');
+                return;
+            }
+        }
+        
+        submitBooking();
+    });
+    
+    // Payment method selection
+    document.querySelectorAll('.payment-method').forEach(method => {
+        method.addEventListener('click', function() {
+            document.querySelectorAll('.payment-method').forEach(m => {
+                m.classList.remove('selected');
+            });
+            this.classList.add('selected');
+            
+            // Update hidden payment method input
+            document.getElementById('payment-method-input').value = this.dataset.method;
+            
+            // Toggle payment details visibility
+            const gcashDetails = document.getElementById('gcash-details');
+            const bankDetails = document.getElementById('bank-details');
+            
+            if (this.dataset.method === 'gcash') {
+                gcashDetails.style.display = 'block';
+                bankDetails.style.display = 'none';
+            } else {
+                gcashDetails.style.display = 'none';
+                bankDetails.style.display = 'block';
             }
         });
+    });
+    
+    // Core functions
+    function goToStep(stepNumber) {
+        console.log("Going to step", stepNumber);
+        
+        // Hide all steps
+        document.querySelectorAll('.step-content').forEach(step => {
+            step.classList.remove('active');
+        });
+        
+        // Show selected step
+        document.getElementById(`step-${stepNumber}`).classList.add('active');
+        
+        // Update step indicators
+        document.querySelectorAll('.step').forEach((step, index) => {
+            step.classList.remove('active', 'completed');
+            if (index + 1 < stepNumber) {
+                step.classList.add('completed');
+            } else if (index + 1 === stepNumber) {
+                step.classList.add('active');
+            }
+        });
+    }
+    
+    function updateSelectedRoomsSummary() {
+        const selectedRoomsList = document.getElementById('selected-rooms-list');
+        const totalRoomsCount = document.getElementById('total-rooms-count');
+        
+        let selectedRooms = [];
+        let totalRooms = 0;
+        let totalPrice = 0; // Initialize total price
+
+        document.querySelectorAll('.room-card').forEach(card => {
+            const quantity = parseInt(card.querySelector('.room-quantity').value) || 0; // Default to 0 if NaN
+            if (quantity > 0) {
+                const roomName = card.querySelector('.room-name').textContent;
+                const dayPrice = parseFloat(card.dataset.dayPrice);
+                const nightPrice = parseFloat(card.dataset.nightPrice);
+                const tourTypeRadio = card.querySelector('input[type="radio"]:checked');
+                const selectedTourType = tourTypeRadio ? tourTypeRadio.value : 'daytour';
+
+                // Determine the price based on the selected tour type
+                const price = selectedTourType === 'daytour' ? dayPrice : nightPrice;
+
+                // Check if price is valid
+                if (!isNaN(price) && price >= 0) {
+                    selectedRooms.push({
+                        name: roomName,
+                        quantity: quantity,
+                        price: price,
+                        tourType: selectedTourType,
+                        id: card.dataset.room
+                    });
+                    totalRooms += quantity;
+                    totalPrice += price * quantity; // Calculate total price
+                } else {
+                    console.error('Invalid price for room:', roomName);
+                }
+            }
+        });
+        
+        if (selectedRooms.length === 0) {
+            selectedRoomsList.innerHTML = '<p>No rooms selected yet</p>';
+        } else {
+            let roomsHTML = '';
+            selectedRooms.forEach(room => {
+                roomsHTML += `
+                    <div class="selected-room-item">
+                        <span>${room.name} x ${room.quantity} (${room.tourType})</span>
+                        <span>₱${(room.price * room.quantity).toFixed(2)}</span>
+                    </div>
+                `;
+            });
+            selectedRoomsList.innerHTML = roomsHTML;
+        }
+        
+        totalRoomsCount.textContent = totalRooms;
+        document.getElementById('summary-total').textContent = `₱${totalPrice.toFixed(2)}`; // Update total price in summary
+    }
+    
+    function updateSummary() {
+        const checkIn = document.getElementById('arrival-date').value;
+        const checkOut = document.getElementById('departure-date').value;
+        const adults = document.getElementById('adults').value;
+        const children = document.getElementById('children').value;
+
+        // Calculate nights
+        const arrivalDate = new Date(checkIn);
+        const departureDate = new Date(checkOut);
+        const nights = Math.round((departureDate - arrivalDate) / (1000 * 60 * 60 * 24));
+
+        // Format dates for display
+        const formatDateForDisplay = dateString => {
+            const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        };
+
+        // Show summary details
+        document.getElementById('summary-checkin').textContent = formatDateForDisplay(checkIn);
+        document.getElementById('summary-checkout').textContent = formatDateForDisplay(checkOut);
+        document.getElementById('summary-nights').textContent = `${nights} night${nights !== 1 ? 's' : ''}`;
+        document.getElementById('summary-guests').textContent = `${adults} adult${adults !== '1' ? 's' : ''}, ${children} child${children !== '1' ? 'ren' : ''}`;
+
+        // Display selected rooms and calculate total
+        let selectedRoomsText = '';
+        let totalPrice = 0;
+        let selectedRoomsData = '';
+
+        document.querySelectorAll('.room-card').forEach(card => {
+            const quantity = parseInt(card.querySelector('.room-quantity').value) || 0; // Default to 0 if NaN
+            if (quantity > 0) {
+                const roomName = card.querySelector('.room-name').textContent;
+                const dayPrice = parseFloat(card.dataset.dayPrice);
+                const nightPrice = parseFloat(card.dataset.nightPrice);
+                const tourTypeRadio = card.querySelector('input[type="radio"]:checked');
+                const selectedTourType = tourTypeRadio ? tourTypeRadio.value : 'daytour';
+
+                // Determine the price based on the selected tour type
+                const price = selectedTourType === 'daytour' ? dayPrice : nightPrice;
+                const roomTotal = price * quantity * (selectedTourType === 'overnight' ? nights : 1); // Calculate total for this room
+
+                selectedRoomsText += `${roomName} x ${quantity} (${selectedTourType} @ ₱${price})<br>`;
+                totalPrice += roomTotal; // Add to total price
+
+                // Store selected room data for submission
+                selectedRoomsData += `
+                    <input type="hidden" name="room_id[]" value="${card.dataset.room}">
+                    <input type="hidden" name="room_quantity[]" value="${quantity}">
+                    <input type="hidden" name="room_price[]" value="${price}">
+                    <input type="hidden" name="room_type[]" value="${selectedTourType}">
+                `;
+            }
+        });
+
+        document.getElementById('summary-rooms').innerHTML = selectedRoomsText;
+        document.getElementById('summary-total').textContent = `₱${totalPrice.toFixed(2)}`; // Update total price in summary
+        document.getElementById('total-amount-input').value = totalPrice.toFixed(2); // Set hidden input for total amount
+        document.getElementById('selected-rooms-data').innerHTML = selectedRoomsData; // Store selected room data
+    }
+    
+    function submitBooking() {
+        // Show loading state
+        document.getElementById('complete-booking').disabled = true;
+        document.getElementById('complete-booking').textContent = 'Processing...';
+        
+        // Get the form data
+        const formData = new FormData(document.getElementById('booking-form'));
+        
+        // Send form data via AJAX
+        fetch('process_booking_p2.php', {
+            method: 'POST',
+            body: formData,
+            redirect: 'follow' // This tells fetch to follow redirects
+        })
+        .then(response => {
+            // Check if response is JSON
+            const contentType = response.headers.get("content-type");
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+                return response.json().then(data => {
+                    if (data.success) {
+                        // Clear the booking data from sessionStorage now that booking is successful
+                        sessionStorage.removeItem('bookingData');
+                        sessionStorage.removeItem('selectedRoomId');
+                        sessionStorage.removeItem('selectedTourType');
+                        
+                        document.getElementById('booking-reference').textContent = data.booking_reference;
+                        document.getElementById('confirmation-email').textContent = document.getElementById('email').value;
+                        
+                        // Show success message
+                        document.querySelectorAll('.step-content').forEach(step => {
+                            step.classList.remove('active');
+                        });
+                        document.getElementById('success').classList.add('active');
+                        
+                        // Update step indicators to all completed
+                        document.querySelectorAll('.step').forEach(step => {
+                            step.classList.remove('active');
+                            step.classList.add('completed');
+                        });
+                    } else {
+                        // Show error message
+                        alert('Booking failed: ' + data.message);
+                        document.getElementById('complete-booking').disabled = false;
+                        document.getElementById('complete-booking').textContent = 'Complete Booking';
+                    }
+                });
+            } else {
+                // Handle redirect - the response might be HTML from redirect
+                window.location.href = response.url;
+                return null;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while processing your booking. Please try again.');
+            document.getElementById('complete-booking').disabled = false;
+            document.getElementById('complete-booking').textContent = 'Complete Booking';
+        });
+    }
+});
+
+function goBack() {
+    // Check if there's a referrer (previous page)
+    if(document.referrer) {
+        window.location.href = document.referrer;
+    } else {
+        // If no referrer is available, redirect to the homepage or another default page
+        window.location.href = "home_p2.php";
+    }
+}
     </script>

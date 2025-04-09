@@ -50,7 +50,7 @@ if (isset($_GET['msg'])) {
         <p>Oops! Something went wrong with your booking.</p>
         <p>Error details: <strong><?php echo $message; ?></strong></p>
         <p>If the problem persists, please contact us.</p>
-        <p><a href="index.php">Return to Home</a></p>
+        <p><a href="home_p2.php">Return to Home</a></p>
     </div>
 
 </body>

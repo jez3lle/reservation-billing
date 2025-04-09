@@ -390,3 +390,458 @@ Stack trace:
 [06-Apr-2025 18:16:05 Europe/Berlin] Inserting room: reservation_id=56, room_id=3, quantity=1, price=4000
 [06-Apr-2025 18:16:05 Europe/Berlin] Transaction committed successfully. Booking reference: P217439561651737
 [06-Apr-2025 18:16:05 Europe/Berlin] Redirecting: Success = true
+[07-Apr-2025 17:49:56 Europe/Berlin] Form submission received: {"check_in_date":"2025-04-10","check_out":"2025-04-11","adults":"4","children":"2","tour-type-1":"daytour","tour-type-2":"daytour","tour-type-3":"daytour","tour-type-4":"daytour","tour-type-5":"daytour","tour-type-6":"daytour","tour-type-7":"daytour","tour-type-8":"daytour","tour-type-9":"daytour","first_name":"Cerike","last_name":"Samosa","email":"samosa.ikediezel@ue.edu.ph","contact_number":"09125663432","special_requests":"","total_amount":"2000.00","payment_method":"gcash","gcash_number":"0954532132","gcash_name":"Ike Narciso","room_id":["4"],"room_quantity":["1"],"room_price":["2000"],"room_type":["daytour"]}
+[07-Apr-2025 17:49:56 Europe/Berlin] POST data: Array
+(
+    [check_in_date] => 2025-04-10
+    [check_out] => 2025-04-11
+    [adults] => 4
+    [children] => 2
+    [tour-type-1] => daytour
+    [tour-type-2] => daytour
+    [tour-type-3] => daytour
+    [tour-type-4] => daytour
+    [tour-type-5] => daytour
+    [tour-type-6] => daytour
+    [tour-type-7] => daytour
+    [tour-type-8] => daytour
+    [tour-type-9] => daytour
+    [first_name] => Cerike
+    [last_name] => Samosa
+    [email] => samosa.ikediezel@ue.edu.ph
+    [contact_number] => 09125663432
+    [special_requests] => 
+    [total_amount] => 2000.00
+    [payment_method] => gcash
+    [gcash_number] => 0954532132
+    [gcash_name] => Ike Narciso
+    [room_id] => Array
+        (
+            [0] => 4
+        )
+
+    [room_quantity] => Array
+        (
+            [0] => 1
+        )
+
+    [room_price] => Array
+        (
+            [0] => 2000
+        )
+
+    [room_type] => Array
+        (
+            [0] => daytour
+        )
+
+)
+
+[07-Apr-2025 17:49:56 Europe/Berlin] Booking error: All required fields must be filled out.
+[07-Apr-2025 17:54:59 Europe/Berlin] Form submission received: {"check_in":"2025-04-10","check_out":"2025-04-11","adults":"4","children":"2","tour-type-1":"daytour","tour-type-2":"daytour","tour-type-3":"daytour","tour-type-4":"daytour","tour-type-5":"daytour","tour-type-6":"daytour","tour-type-7":"daytour","tour-type-8":"daytour","tour-type-9":"daytour","first_name":"Cerike","last_name":"Samosa","email":"samosa.ikediezel@ue.edu.ph","contact_number":"09374583254","special_requests":"","total_amount":"2000.00","payment_method":"gcash","gcash_number":"0954532132","gcash_name":"Ike Samosa","room_id":["4"],"room_quantity":["1"],"room_price":["2000"],"room_type":["daytour"]}
+[07-Apr-2025 17:54:59 Europe/Berlin] POST data: Array
+(
+    [check_in] => 2025-04-10
+    [check_out] => 2025-04-11
+    [adults] => 4
+    [children] => 2
+    [tour-type-1] => daytour
+    [tour-type-2] => daytour
+    [tour-type-3] => daytour
+    [tour-type-4] => daytour
+    [tour-type-5] => daytour
+    [tour-type-6] => daytour
+    [tour-type-7] => daytour
+    [tour-type-8] => daytour
+    [tour-type-9] => daytour
+    [first_name] => Cerike
+    [last_name] => Samosa
+    [email] => samosa.ikediezel@ue.edu.ph
+    [contact_number] => 09374583254
+    [special_requests] => 
+    [total_amount] => 2000.00
+    [payment_method] => gcash
+    [gcash_number] => 0954532132
+    [gcash_name] => Ike Samosa
+    [room_id] => Array
+        (
+            [0] => 4
+        )
+
+    [room_quantity] => Array
+        (
+            [0] => 1
+        )
+
+    [room_price] => Array
+        (
+            [0] => 2000
+        )
+
+    [room_type] => Array
+        (
+            [0] => daytour
+        )
+
+)
+
+[07-Apr-2025 17:54:59 Europe/Berlin] Check-in: 2025-04-10, Check-out: 2025-04-11, Nights: 1
+[07-Apr-2025 17:54:59 Europe/Berlin] PHP Fatal error:  Uncaught Error: Object of class DateTime could not be converted to string in D:\xampp\htdocs\reservation-billing\process_booking_p2.php:93
+Stack trace:
+#0 D:\xampp\htdocs\reservation-billing\process_booking_p2.php(93): mysqli_stmt->execute()
+#1 {main}
+  thrown in D:\xampp\htdocs\reservation-billing\process_booking_p2.php on line 93
+[07-Apr-2025 17:54:59 Europe/Berlin] Form submission received: []
+[07-Apr-2025 17:58:53 Europe/Berlin] Form submission received: {"check_in":"2025-04-10","check_out":"2025-04-11","adults":"4","children":"2","tour-type-1":"daytour","tour-type-2":"daytour","tour-type-3":"daytour","tour-type-4":"daytour","tour-type-5":"daytour","tour-type-6":"daytour","tour-type-7":"daytour","tour-type-8":"daytour","tour-type-9":"daytour","first_name":"Cerike","last_name":"Samosa","email":"samosa.ikediezel@ue.edu.ph","contact_number":"09124563421","special_requests":"","total_amount":"2000.00","payment_method":"gcash","gcash_number":"0954532132","gcash_name":"Ike Samosa","room_id":["4"],"room_quantity":["1"],"room_price":["2000"],"room_type":["daytour"]}
+[07-Apr-2025 17:58:53 Europe/Berlin] POST data: Array
+(
+    [check_in] => 2025-04-10
+    [check_out] => 2025-04-11
+    [adults] => 4
+    [children] => 2
+    [tour-type-1] => daytour
+    [tour-type-2] => daytour
+    [tour-type-3] => daytour
+    [tour-type-4] => daytour
+    [tour-type-5] => daytour
+    [tour-type-6] => daytour
+    [tour-type-7] => daytour
+    [tour-type-8] => daytour
+    [tour-type-9] => daytour
+    [first_name] => Cerike
+    [last_name] => Samosa
+    [email] => samosa.ikediezel@ue.edu.ph
+    [contact_number] => 09124563421
+    [special_requests] => 
+    [total_amount] => 2000.00
+    [payment_method] => gcash
+    [gcash_number] => 0954532132
+    [gcash_name] => Ike Samosa
+    [room_id] => Array
+        (
+            [0] => 4
+        )
+
+    [room_quantity] => Array
+        (
+            [0] => 1
+        )
+
+    [room_price] => Array
+        (
+            [0] => 2000
+        )
+
+    [room_type] => Array
+        (
+            [0] => daytour
+        )
+
+)
+
+[07-Apr-2025 17:58:53 Europe/Berlin] Check-in: 2025-04-10, Check-out: 2025-04-11, Nights: 1
+[07-Apr-2025 17:58:53 Europe/Berlin] Reservation created with ID: 57
+[07-Apr-2025 17:58:53 Europe/Berlin] Inserting room: reservation_id=57, room_id=4, quantity=1, price=2000, type=daytour
+[07-Apr-2025 17:58:53 Europe/Berlin] Booking error: Unknown column 'room_type' in 'field list'
+[07-Apr-2025 18:08:25 Europe/Berlin] Form submission received: {"check_in":"2025-04-10","check_out":"2025-04-11","adults":"4","children":"2","tour-type-1":"daytour","tour-type-2":"daytour","tour-type-3":"daytour","tour-type-4":"daytour","tour-type-5":"daytour","tour-type-6":"daytour","tour-type-7":"daytour","tour-type-8":"daytour","tour-type-9":"daytour","first_name":"Cerike","last_name":"Samosa","email":"ikediezel.samosa@gmail.com","contact_number":"09374583254","special_requests":"","total_amount":"2000.00","payment_method":"gcash","gcash_number":"0954532132","gcash_name":"Ike Samosa","room_id":["4"],"room_quantity":["1"],"room_price":["2000"],"room_type":["daytour"]}
+[07-Apr-2025 18:08:25 Europe/Berlin] POST data: Array
+(
+    [check_in] => 2025-04-10
+    [check_out] => 2025-04-11
+    [adults] => 4
+    [children] => 2
+    [tour-type-1] => daytour
+    [tour-type-2] => daytour
+    [tour-type-3] => daytour
+    [tour-type-4] => daytour
+    [tour-type-5] => daytour
+    [tour-type-6] => daytour
+    [tour-type-7] => daytour
+    [tour-type-8] => daytour
+    [tour-type-9] => daytour
+    [first_name] => Cerike
+    [last_name] => Samosa
+    [email] => ikediezel.samosa@gmail.com
+    [contact_number] => 09374583254
+    [special_requests] => 
+    [total_amount] => 2000.00
+    [payment_method] => gcash
+    [gcash_number] => 0954532132
+    [gcash_name] => Ike Samosa
+    [room_id] => Array
+        (
+            [0] => 4
+        )
+
+    [room_quantity] => Array
+        (
+            [0] => 1
+        )
+
+    [room_price] => Array
+        (
+            [0] => 2000
+        )
+
+    [room_type] => Array
+        (
+            [0] => daytour
+        )
+
+)
+
+[07-Apr-2025 18:08:25 Europe/Berlin] Check-in: 2025-04-10, Check-out: 2025-04-11, Nights: 1
+[07-Apr-2025 18:08:25 Europe/Berlin] Reservation created with ID: 58
+[07-Apr-2025 18:08:25 Europe/Berlin] Inserting room: reservation_id=58, room_id=4, quantity=1, price=2000
+[07-Apr-2025 18:08:26 Europe/Berlin] Booking error: Unknown column 'room_quantity' in 'field list'
+[07-Apr-2025 18:09:27 Europe/Berlin] Form submission received: {"check_in":"2025-04-10","check_out":"2025-04-11","adults":"4","children":"2","tour-type-1":"daytour","tour-type-2":"daytour","tour-type-3":"daytour","tour-type-4":"daytour","tour-type-5":"daytour","tour-type-6":"daytour","tour-type-7":"daytour","tour-type-8":"daytour","tour-type-9":"daytour","first_name":"Cerike","last_name":"Samosa","email":"ikediezel.samosa@gmail.com","contact_number":"09374583254","special_requests":"","total_amount":"2000.00","payment_method":"gcash","gcash_number":"0954532132","gcash_name":"Ike Samosa","room_id":["4"],"room_quantity":["1"],"room_price":["2000"],"room_type":["daytour"]}
+[07-Apr-2025 18:09:27 Europe/Berlin] POST data: Array
+(
+    [check_in] => 2025-04-10
+    [check_out] => 2025-04-11
+    [adults] => 4
+    [children] => 2
+    [tour-type-1] => daytour
+    [tour-type-2] => daytour
+    [tour-type-3] => daytour
+    [tour-type-4] => daytour
+    [tour-type-5] => daytour
+    [tour-type-6] => daytour
+    [tour-type-7] => daytour
+    [tour-type-8] => daytour
+    [tour-type-9] => daytour
+    [first_name] => Cerike
+    [last_name] => Samosa
+    [email] => ikediezel.samosa@gmail.com
+    [contact_number] => 09374583254
+    [special_requests] => 
+    [total_amount] => 2000.00
+    [payment_method] => gcash
+    [gcash_number] => 0954532132
+    [gcash_name] => Ike Samosa
+    [room_id] => Array
+        (
+            [0] => 4
+        )
+
+    [room_quantity] => Array
+        (
+            [0] => 1
+        )
+
+    [room_price] => Array
+        (
+            [0] => 2000
+        )
+
+    [room_type] => Array
+        (
+            [0] => daytour
+        )
+
+)
+
+[07-Apr-2025 18:09:27 Europe/Berlin] Check-in: 2025-04-10, Check-out: 2025-04-11, Nights: 1
+[07-Apr-2025 18:09:27 Europe/Berlin] Reservation created with ID: 59
+[07-Apr-2025 18:09:27 Europe/Berlin] Inserting room: reservation_id=59, room_id=4, quantity=1, price=2000
+[07-Apr-2025 18:09:27 Europe/Berlin] Transaction committed successfully. Booking reference: P217440421675416
+[07-Apr-2025 19:23:25 Europe/Berlin] Form submission received: {"check_in":"2025-04-09","check_out":"2025-04-10","adults":"2","children":"0","tour-type-1":"daytour","tour-type-2":"daytour","tour-type-4":"daytour","tour-type-5":"daytour","tour-type-6":"daytour","tour-type-7":"daytour","tour-type-8":"daytour","tour-type-9":"daytour","first_name":"Jade","last_name":"Torrejas","email":"torrejas.jade@ue.edu.ph","contact_number":"09876524355","special_requests":"","total_amount":"1500.00","payment_method":"bank-transfer","gcash_number":"","gcash_name":"","room_id":["6"],"room_quantity":["1"],"room_price":["1500"],"room_type":["daytour"]}
+[07-Apr-2025 19:23:25 Europe/Berlin] POST data: Array
+(
+    [check_in] => 2025-04-09
+    [check_out] => 2025-04-10
+    [adults] => 2
+    [children] => 0
+    [tour-type-1] => daytour
+    [tour-type-2] => daytour
+    [tour-type-4] => daytour
+    [tour-type-5] => daytour
+    [tour-type-6] => daytour
+    [tour-type-7] => daytour
+    [tour-type-8] => daytour
+    [tour-type-9] => daytour
+    [first_name] => Jade
+    [last_name] => Torrejas
+    [email] => torrejas.jade@ue.edu.ph
+    [contact_number] => 09876524355
+    [special_requests] => 
+    [total_amount] => 1500.00
+    [payment_method] => bank-transfer
+    [gcash_number] => 
+    [gcash_name] => 
+    [room_id] => Array
+        (
+            [0] => 6
+        )
+
+    [room_quantity] => Array
+        (
+            [0] => 1
+        )
+
+    [room_price] => Array
+        (
+            [0] => 1500
+        )
+
+    [room_type] => Array
+        (
+            [0] => daytour
+        )
+
+)
+
+[07-Apr-2025 19:23:25 Europe/Berlin] Check-in: 2025-04-09, Check-out: 2025-04-10, Nights: 1
+[07-Apr-2025 19:23:25 Europe/Berlin] Reservation created with ID: 60
+[07-Apr-2025 19:23:25 Europe/Berlin] Inserting room: reservation_id=60, room_id=6, quantity=1, price=1500
+[07-Apr-2025 19:23:25 Europe/Berlin] Transaction committed successfully. Booking reference: P217440466059927
+[07-Apr-2025 19:33:10 Europe/Berlin] Form submission received: {"check_in":"2025-04-10","check_out":"2025-04-11","adults":"2","children":"0","tour-type-1":"daytour","tour-type-2":"overnight","tour-type-3":"daytour","tour-type-5":"daytour","tour-type-6":"daytour","tour-type-7":"daytour","tour-type-9":"daytour","first_name":"Andrei","last_name":"Dionisio","email":"dionisio.andrei@gmail.com","contact_number":"09374583254","special_requests":"","total_amount":"2000.00","payment_method":"gcash","gcash_number":"0954532132","gcash_name":"Andrei Dionisio","room_id":["2"],"room_quantity":["1"],"room_price":["2000"],"room_type":["overnight"]}
+[07-Apr-2025 19:33:10 Europe/Berlin] POST data: Array
+(
+    [check_in] => 2025-04-10
+    [check_out] => 2025-04-11
+    [adults] => 2
+    [children] => 0
+    [tour-type-1] => daytour
+    [tour-type-2] => overnight
+    [tour-type-3] => daytour
+    [tour-type-5] => daytour
+    [tour-type-6] => daytour
+    [tour-type-7] => daytour
+    [tour-type-9] => daytour
+    [first_name] => Andrei
+    [last_name] => Dionisio
+    [email] => dionisio.andrei@gmail.com
+    [contact_number] => 09374583254
+    [special_requests] => 
+    [total_amount] => 2000.00
+    [payment_method] => gcash
+    [gcash_number] => 0954532132
+    [gcash_name] => Andrei Dionisio
+    [room_id] => Array
+        (
+            [0] => 2
+        )
+
+    [room_quantity] => Array
+        (
+            [0] => 1
+        )
+
+    [room_price] => Array
+        (
+            [0] => 2000
+        )
+
+    [room_type] => Array
+        (
+            [0] => overnight
+        )
+
+)
+
+[07-Apr-2025 19:33:10 Europe/Berlin] Check-in: 2025-04-10, Check-out: 2025-04-11, Nights: 1
+[07-Apr-2025 19:33:10 Europe/Berlin] Reservation created with ID: 61
+[07-Apr-2025 19:33:10 Europe/Berlin] Inserting room: reservation_id=61, room_id=2, quantity=1, price=2000
+[07-Apr-2025 19:33:10 Europe/Berlin] Transaction committed successfully. Booking reference: P217440471902436
+[07-Apr-2025 20:07:58 Europe/Berlin] Form submission received: {"check_in":"2025-04-09","check_out":"2025-04-10","adults":"3","children":"0","tour-type-1":"daytour","tour-type-2":"overnight","tour-type-4":"daytour","tour-type-5":"daytour","tour-type-6":"daytour","tour-type-7":"daytour","tour-type-8":"daytour","tour-type-9":"daytour","first_name":"Keith","last_name":"Samosa","email":"samosa.ikediezel@ue.edu.ph","contact_number":"09374583254","special_requests":"","total_amount":"1500.00","payment_method":"gcash","gcash_number":"0954532132","gcash_name":"Keith Samosa","room_id":["6"],"room_quantity":["1"],"room_price":["1500"],"room_type":["daytour"]}
+[07-Apr-2025 20:07:58 Europe/Berlin] POST data: Array
+(
+    [check_in] => 2025-04-09
+    [check_out] => 2025-04-10
+    [adults] => 3
+    [children] => 0
+    [tour-type-1] => daytour
+    [tour-type-2] => overnight
+    [tour-type-4] => daytour
+    [tour-type-5] => daytour
+    [tour-type-6] => daytour
+    [tour-type-7] => daytour
+    [tour-type-8] => daytour
+    [tour-type-9] => daytour
+    [first_name] => Keith
+    [last_name] => Samosa
+    [email] => samosa.ikediezel@ue.edu.ph
+    [contact_number] => 09374583254
+    [special_requests] => 
+    [total_amount] => 1500.00
+    [payment_method] => gcash
+    [gcash_number] => 0954532132
+    [gcash_name] => Keith Samosa
+    [room_id] => Array
+        (
+            [0] => 6
+        )
+
+    [room_quantity] => Array
+        (
+            [0] => 1
+        )
+
+    [room_price] => Array
+        (
+            [0] => 1500
+        )
+
+    [room_type] => Array
+        (
+            [0] => daytour
+        )
+
+)
+
+[07-Apr-2025 20:07:58 Europe/Berlin] Check-in: 2025-04-09, Check-out: 2025-04-10, Nights: 1
+[07-Apr-2025 20:07:58 Europe/Berlin] Reservation created with ID: 62
+[07-Apr-2025 20:07:58 Europe/Berlin] Inserting room: reservation_id=62, room_id=6, quantity=1, price=1500
+[07-Apr-2025 20:07:58 Europe/Berlin] Transaction committed successfully. Booking reference: P217440492781201
+[07-Apr-2025 20:34:31 Europe/Berlin] Form submission received: {"check_in":"2025-04-11","check_out":"2025-04-12","adults":"2","children":"0","tour-type-1":"daytour","tour-type-2":"daytour","tour-type-3":"daytour","tour-type-4":"daytour","tour-type-5":"daytour","tour-type-6":"daytour","tour-type-7":"daytour","tour-type-8":"daytour","tour-type-9":"daytour","first_name":"Ike","last_name":"Samosa","email":"samosa.ikediezel@ue.edu.ph","contact_number":"09374583254","special_requests":"","total_amount":"1500.00","payment_method":"gcash","gcash_number":"0954532132","gcash_name":"Ike Samosa","room_id":["2"],"room_quantity":["1"],"room_price":["1500"],"room_type":["daytour"]}
+[07-Apr-2025 20:34:31 Europe/Berlin] POST data: Array
+(
+    [check_in] => 2025-04-11
+    [check_out] => 2025-04-12
+    [adults] => 2
+    [children] => 0
+    [tour-type-1] => daytour
+    [tour-type-2] => daytour
+    [tour-type-3] => daytour
+    [tour-type-4] => daytour
+    [tour-type-5] => daytour
+    [tour-type-6] => daytour
+    [tour-type-7] => daytour
+    [tour-type-8] => daytour
+    [tour-type-9] => daytour
+    [first_name] => Ike
+    [last_name] => Samosa
+    [email] => samosa.ikediezel@ue.edu.ph
+    [contact_number] => 09374583254
+    [special_requests] => 
+    [total_amount] => 1500.00
+    [payment_method] => gcash
+    [gcash_number] => 0954532132
+    [gcash_name] => Ike Samosa
+    [room_id] => Array
+        (
+            [0] => 2
+        )
+
+    [room_quantity] => Array
+        (
+            [0] => 1
+        )
+
+    [room_price] => Array
+        (
+            [0] => 1500
+        )
+
+    [room_type] => Array
+        (
+            [0] => daytour
+        )
+
+)
+
+[07-Apr-2025 20:34:31 Europe/Berlin] Check-in: 2025-04-11, Check-out: 2025-04-12, Nights: 1
+[07-Apr-2025 20:34:31 Europe/Berlin] Reservation created with ID: 63
+[07-Apr-2025 20:34:31 Europe/Berlin] Inserting room: reservation_id=63, room_id=2, quantity=1, price=1500
+[07-Apr-2025 20:34:31 Europe/Berlin] Transaction committed successfully. Booking reference: P217440508717983
