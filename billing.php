@@ -528,7 +528,7 @@ $stmt->close();
 <div class="billing-container">
     <div class="billing-header">
         <h1>Reservation Billing</h1>
-        <p>Rainbow Forest Paradise Reservation</p>
+        <p>Rainbow Forest Paradise Resort and Campsite</p>
     </div>
     
     <?php if ($expiration_message): ?>
@@ -578,7 +578,6 @@ $stmt->close();
                 ?>
             </div>
         </div>
-
         <div class="billing-section">
             <h3>Reservation Breakdown</h3>
             <div class="reservation-details">
@@ -612,6 +611,11 @@ $stmt->close();
                         'extra_pillow' => 50,
                         'extra_blanket' => 50
                     ];
+        <div class="upload-container">
+        <h2>Upload Payment Proof</h2>
+        <p>Please upload your bank transfer receipt and enter the reference number.</p>
+
+        <input type="text" id="referenceNumberInput" placeholder="Enter Reference Number">
 
                     // Make sure extras is properly defined as an array
                     if (!isset($reservation['extras']) || !is_array($reservation['extras'])) {

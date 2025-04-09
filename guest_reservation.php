@@ -1,30 +1,19 @@
 <?php
-session_start(); // Start the session at the beginning
-
-// Define variables for the user data
+session_start(); 
 $user = [];
-
-// If user is logged in, fetch their data
 if (isset($_SESSION["user_id"])) {
-    // Get the database connection
     $mysqli = require 'database.php';
-
-    // Fetch user data using the user_id in the session
     $stmt = $mysqli->prepare("SELECT first_name, last_name, email, contact_number FROM user WHERE id = ?");
     if ($stmt === false) {
         die("Error preparing the query: " . $mysqli->error);
     }
-
     $stmt->bind_param("i", $_SESSION["user_id"]);
     $stmt->execute();
     $result = $stmt->get_result();
-    $user = $result->fetch_assoc(); // Now $user contains the personal information
-
+    $user = $result->fetch_assoc(); 
     $stmt->close();
     $mysqli->close();
 }
-
-// Store check-in/check-out dates if redirected from booking page
 if (isset($_GET['check_in']) && isset($_GET['check_out'])) {
     $_SESSION['check_in'] = $_GET['check_in'];
     $_SESSION['check_out'] = $_GET['check_out'];
@@ -36,351 +25,10 @@ if (isset($_GET['check_in']) && isset($_GET['check_out'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservation Form</title>
-    <link rel="stylesheet" href="reservation.css">
-    <style>
-/* Reset and Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
-}
-
-/* Container */
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-    overflow: visible; /* Ensure content isn't hidden */
-}
-
-/* Page Header */
-.page-header {
-    background-color: #2c7a57;
-    color: white;
-    text-align: center;
-    padding: 40px 15px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    width: 100%; /* Ensure full width */
-    box-sizing: border-box; /* Include padding in width calculation */
-}
-
-.page-header h1 {
-    font-size: 2.8rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-.page-header p {
-    font-size: 1.1rem;
-    color: rgba(255,255,255,0.85);
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* Content Wrapper */
-.content-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 30px;
-}
-
-/* Form Container */
-.form-container {
-    flex: 1;
-    min-width: 300px;
-}
-
-.reservation-form {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-/* Form Rows and Groups */
-.form-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.form-group {
-    flex: 1;
-    min-width: 220px;
-}
-
-/* Labels */
-label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: 600;
-    color: #2c3e50;
-}
-
-/* Input Styles */
-input[type="text"],
-input[type="email"],
-input[type="number"],
-input[type="date"],
-select,
-textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #d1d8e0;
-    border-radius: 6px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-    border-color: #2c7a57;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(44, 122, 87, 0.15);
-}
-
-textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-/* Pricing Container */
-.pricing-container {
-    flex: 0 0 350px;
-    background-color: #f0f9ff;
-    border-radius: 10px;
-    padding: 25px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.08);
-    align-self: flex-start;
-    position: sticky;
-    top: 20px;
-}
-
-.pricing-container h3 {
-    color: #0369a1;
-    margin-bottom: 20px;
-    text-align: center;
-    border-bottom: 2px solid #bae6fd;
-    padding-bottom: 10px;
-}
-
-/* Tour Pricing Tables */
-.tour-pricing {
-    margin-bottom: 25px;
-}
-
-.tour-pricing h4 {
-    color: #0c4a6e;
-    margin-bottom: 10px;
-}
-
-.pricing-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 15px;
-}
-
-.pricing-table th,
-.pricing-table td {
-    border: 1px solid #cbd5e1;
-    padding: 10px;
-    text-align: center;
-}
-
-.pricing-table th {
-    background-color: #e0f2fe;
-    color: #0c4a6e;
-    font-weight: bold;
-}
-
-/* Bill Calculation */
-.bill-calculation {
-    background-color: #e0f7fa;
-    border: 1px solid #bae6fd;
-    border-radius: 8px;
-    padding: 20px;
-    margin-top: 20px;
-}
-
-.bill-calculation h4 {
-    color: #0369a1;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.bill-calculation p {
-    margin: 10px 0;
-    font-size: 16px;
-}
-
-/* Buttons */
-.btn {
-    display: inline-block;
-    padding: 14px 28px;
-    border: none;
-    border-radius: 6px;
-    background-color: #2c7a57;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-}
-
-.btn:hover {
-    background-color: #1d5a3f;
-}
-
-.btn-secondary {
-    background-color: #64748b;
-}
-
-.btn-secondary:hover {
-    background-color: #475569;
-}
-
-.actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-}
-
-/* Extras Selection */
-.extras-selection {
-    background-color: #f0f9ff;
-    border: 1px solid #bae6fd;
-    border-radius: 8px;
-    padding: 25px;
-    margin-top: 25px;
-}
-
-.extras-selection h4 {
-    color: #0369a1;
-    margin-bottom: 20px;
-    text-align: center;
-    border-bottom: 2px solid #bae6fd;
-    padding-bottom: 10px;
-}
-
-.extras-selection .form-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    padding: 12px;
-    background-color: white;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.extras-selection .form-row:hover {
-    background-color: #f0f9ff;
-    transition: background-color 0.3s ease;
-}
-
-.extras-selection label {
-    margin-bottom: 0;
-    font-weight: 500;
-    color: #0c4a6e;
-    flex-grow: 1;
-}
-
-.extras-selection .extra-price {
-    color: #64748b;
-    margin-right: 15px;
-    font-size: 0.9rem;
-}
-
-.extras-selection input[type="number"] {
-    width: 80px;
-    padding: 8px;
-    border: 1px solid #cbd5e1;
-    border-radius: 4px;
-    text-align: center;
-}
-
-/* Error Messages */
-.error-message {
-    color: #dc2626;
-    font-size: 14px;
-    margin-top: 5px;
-}
-
-.note {
-    font-style: italic;
-    color: #64748b;
-    margin-top: 20px;
-}
-
-/* Login Banner */
-.login-banner {
-    background-color: #f0f9ff;
-    border: 1px solid #bae6fd;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.login-banner p {
-    margin-bottom: 10px;
-    color: #0c4a6e;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .page-header h1 {
-        font-size: 2.2rem;
-    }
-
-    .content-wrapper {
-        flex-direction: column;
-    }
-
-    .form-container,
-    .pricing-container {
-        width: 100%;
-        max-width: 100%;
-        flex: none;
-    }
-
-    .form-row {
-        flex-direction: column;
-    }
-
-    .form-group {
-        min-width: 100%;
-    }
-
-    .actions {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .btn {
-        width: 100%;
-    }
-}
-    </style>
+    <link rel="stylesheet" href="styles/guest_reservation.css">
 </head>
 <body>
 <div class="container">
-    <!-- Full Page Header -->
     <div class="page-header">
         <h1>Comprehensive Guided Tour Reservation Form and Booking Details</h1>
         <div class="subtitle">
@@ -457,8 +105,6 @@ textarea {
                         <div id="tour_type-error" class="error-message"></div>
                     </div>
                 </div>
-
-                <!-- Extras selection section (moved below bill calculation) -->
                 <div class="extras-selection">
                     <h4>Additional Extras</h4>
                     <div class="form-row">
@@ -474,28 +120,21 @@ textarea {
                         <input type="number" id="extra-blanket" name="extra_blanket" min="0" value="0">
                     </div>
                 </div> 
-                
                 <div class="form-row">
                     <div class="form-group">
                         <label>Special Requests:</label>
                         <textarea name="special_requests" id="special_requests" rows="3"></textarea>
                     </div>
                 </div>
-                
                 <p class="note">Note: A confirmation email will be sent to your provided email address.</p>
-                
                 <div class="form-row actions">
                     <a href="home_p1.php" class="btn btn-secondary">Back to Home</a>
                     <button type="submit" class="btn">Submit Reservation</button>
                 </div>
             </form>
         </div>
-        
-        <!-- Pricing information sidebar -->
         <div class="pricing-container" id="pricing-container">
             <h3>Tour Pricing Information</h3>
-            
-            <!-- Whole Day Tour pricing -->
             <div id="whole_day-pricing" class="tour-pricing">
                 <h4>Whole Day Tour</h4>
                 <p>Time: 9:00 AM to 7:00 AM (next day)</p>
@@ -530,8 +169,6 @@ textarea {
                     </tr>
                 </table>
             </div>
-            
-            <!-- Day Tour pricing -->
             <div id="day_tour-pricing" class="tour-pricing">
                 <h4>Day Tour</h4>
                 <p>Time: 9:00 AM to 6:00 PM</p>
@@ -565,8 +202,6 @@ textarea {
                     </tr>
                 </table>
             </div>
-            
-            <!-- Night Tour pricing -->
             <div id="night_tour-pricing" class="tour-pricing">
                 <h4>Night Tour</h4>
                 <p>Time: 8:00 PM to 7:00 AM (next day)</p>
@@ -600,8 +235,6 @@ textarea {
                     </tr>
                 </table>
             </div>
-            
-            <!-- Bill calculation section -->
             <div class="bill-calculation">
                 <h4>Your Estimated Bill</h4>
                 <p id="total-guests">Total Guests: 0</p>
@@ -611,7 +244,6 @@ textarea {
         </div>
     </div>
 </div>
-  
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("reservation-form");
